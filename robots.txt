@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://urukhomba.com/sitemap.xml
