@@ -67,7 +67,7 @@
         <div class="ptext"><strong>Anthem of Urukhomba</strong><span>Official National Anthem</span></div>
         <button id="play">▶</button><div class="track"><div id="progress"></div></div><span class="time" id="time">00:00 / 00:00</span><audio id="anthemAudio" src="Urukhomba.mp3" preload="metadata"></audio>
       </div>
-      <a class="textlink" href="#culture">LYRICS →</a>
+      <a class="textlink" href="#anthem-lyrics" id="openAnthemLyrics">LYRICS →</a>
     </article>
     <article class="panel" id="news">
       <h3>LATEST NEWS</h3>
@@ -243,6 +243,187 @@
   </div>
   <div class="shell copy">© 2026 Urukhomba. Fictional world-building project.</div>
 </footer>
+
+
+
+<div class="anthem-lyrics-modal" id="anthemLyricsModal" aria-hidden="true">
+  <div class="anthem-lyrics-card" role="dialog" aria-modal="true" aria-labelledby="anthemLyricsTitle">
+    <button class="anthem-lyrics-close" id="closeAnthemLyrics" aria-label="Close lyrics">×</button>
+
+    <div class="anthem-lyrics-kicker">OFFICIAL NATIONAL ANTHEM</div>
+    <h2 id="anthemLyricsTitle">Anthem of Urukhomba</h2>
+    <p class="anthem-lyrics-subtitle">A multilingual anthem of imagination, unity and belonging.</p>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">INTRO</div>
+      <p class="lyrics-stage">Mountain flute, distant male humming, slow ceremonial atmosphere</p>
+      <div class="lyrics-text centered">
+        Ooooooh...<br>
+        Ooooooh...<br>
+        Urukhomba...<br>
+        Urukhomba...
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">VERSE 1 · URDU</div>
+      <div class="lyrics-language">اردو</div>
+      <div class="lyrics-text rtl" lang="ur" dir="rtl">
+ہم خاک سے اُٹھے، مگر خاک تک نہیں<br>
+ہم خواب ہیں، کسی سرحد کے پابند نہیں<br>
+نہ نسل کی دیوار، نہ نام کا غرور<br>
+ہم چلتے رہیں گے، افق سے بھی دور<br><br>
+اُروکھومبا...<br>
+اے سرزمینِ خواب<br>
+اُروکھومبا...<br>
+تو دل کا انتخاب
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">VERSE 2 · ENGLISH</div>
+      <div class="lyrics-text">
+From distant roads, beneath one sky,<br>
+We came with dreams that never die.<br>
+No blood, no border makes us one,<br>
+We stand together beneath the sun.<br><br>
+From mountain high to endless sea,<br>
+A home for you, a home for me.<br>
+Many voices, many ways,<br>
+One land beneath eternal rays.
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">PRE-CHORUS</div>
+      <div class="lyrics-text centered">
+We are the dreamers,<br>
+We are the flame,<br>
+A thousand stories,<br>
+One ancient name...
+      </div>
+    </section>
+
+    <section class="lyrics-part chorus">
+      <div class="lyrics-label">CHORUS</div>
+      <div class="lyrics-text centered">
+<strong>URUKHOMBA!<br>URUKHOMBA!</strong><br><br>
+Beyond every border,<br>
+Beyond every name,<br>
+Different voices,<br>
+One human flame.<br><br>
+<strong>URUKHOMBA!<br>URUKHOMBA!</strong><br><br>
+Wherever we wander,<br>
+Wherever we roam,<br>
+If we stand together,<br>
+We have found our home.
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">VERSE 3 · SPANISH</div>
+      <div class="lyrics-language">Español</div>
+      <div class="lyrics-text">
+No hay fronteras para imaginar,<br>
+ni un solo nombre nos puede encerrar.<br>
+De muchas tierras venimos aquí,<br>
+muchos caminos, un solo latir.<br><br>
+Tierra de sueños, tierra de unión,<br>
+llevamos tu nombre en el corazón.<br>
+Urukhomba, escucha nuestra voz,<br>
+caminamos juntos bajo el mismo sol.
+      </div>
+    </section>
+
+    <section class="lyrics-part chorus">
+      <div class="lyrics-label">CHORUS · SPANISH</div>
+      <div class="lyrics-text centered">
+<strong>¡URUKHOMBA!<br>¡URUKHOMBA!</strong><br><br>
+Más allá de fronteras,<br>
+más allá del lugar,<br>
+somos muchas historias<br>
+que se vuelven un hogar.
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">BRIDGE · ARABIC</div>
+      <div class="lyrics-language">العربية</div>
+      <div class="lyrics-text rtl" lang="ar" dir="rtl">
+لَا حُدُودَ لِلْخَيَالِ<br>
+وَلَا غَرِيبَ بَيْنَنَا<br>
+نَحْنُ أَبْنَاءُ الْأَمَلِ<br>
+وَأُرُوخُومْبَا بَيْتُنَا<br><br>
+مِنَ الْجِبَالِ إِلَى الْبِحَارِ<br>
+نَحْمِلُ الْحُلْمَ فِي الْمَسَارِ<br>
+قُلُوبُنَا تَبْقَى هُنَا<br>
+أُرُوخُومْبَا بَيْتُنَا
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">VERSE 4 · CHINESE</div>
+      <div class="lyrics-language">中文</div>
+      <div class="lyrics-text" lang="zh">
+山河虽远，心无边疆<br>
+不同的路，同一个梦想<br>
+让我们的故事越过海洋<br>
+乌鲁洪巴，永远在心上<br><br>
+高山之上，星光照亮<br>
+千种声音，一起歌唱<br>
+无论我们来自何方<br>
+乌鲁洪巴，是共同的故乡
+      </div>
+    </section>
+
+    <section class="lyrics-part chorus final-chorus">
+      <div class="lyrics-label">FINAL CHORUS · ALL VOICES</div>
+      <div class="lyrics-text centered">
+<strong>URUKHOMBA!<br>URUKHOMBA!</strong><br><br>
+ہم ایک ہیں!<br>
+WE RISE AS ONE!<br>
+¡UNIDOS SOMOS!<br>
+نَحْنُ وَاحِدُونَ<br>
+我们同心!<br><br>
+<strong>URUKHOMBA!<br>URUKHOMBA!</strong><br><br>
+No blood divides us,<br>
+No border remains,<br>
+A thousand languages,<br>
+One human flame.<br><br>
+اُروکھومبا!<br>
+URUKHOMBA!<br>
+¡URUKHOMBA!<br>
+أُرُوخُومْبَا!<br>
+乌鲁洪巴!
+      </div>
+    </section>
+
+    <section class="lyrics-part">
+      <div class="lyrics-label">FINAL CHOIR</div>
+      <div class="lyrics-text centered">
+From the mountains...<br>
+To the sea...<br><br>
+From every people...<br>
+We are free...<br><br>
+Many stories...<br>
+Many names...<br><br>
+One imagination...<br>
+One flame...<br><br>
+<strong>URUKHOMBA...</strong>
+      </div>
+    </section>
+
+    <section class="lyrics-part outro">
+      <div class="lyrics-label">OUTRO</div>
+      <p class="lyrics-stage">Whispered choir · flute outro</p>
+      <div class="lyrics-text centered">
+A home for everyone...<br><br>
+Urukhomba...<br><br>
+A home for everyone...
+      </div>
+    </section>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body></html>

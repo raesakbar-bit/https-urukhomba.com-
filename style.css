@@ -28,3 +28,76 @@ footer{background:#043d31;color:#fff;padding:25px 0 10px}.footgrid{display:grid;
 .archive-reader-meta{font-size:12px;color:#9b722d;margin:0 0 18px}.archive-reader-text{white-space:pre-wrap;font:18px/1.8 Georgia,serif;color:#28332e}
 @media(max-width:900px){.archive-stats{grid-template-columns:1fr 1fr}.archive-layout{grid-template-columns:1fr}.archive-sidebar{position:static}.archive-grid{grid-template-columns:1fr}.archive-callout{grid-template-columns:1fr}}
 @media(max-width:560px){.archive-stats,.archive-form-grid{grid-template-columns:1fr}.archive-stats>div{border-right:0;border-bottom:1px solid #ddd5c8}.archive-field.full{grid-column:auto}.archive-toolbar{flex-direction:column}}
+
+
+/* National Anthem Lyrics */
+.anthem-lyrics-modal{
+  position:fixed; inset:0; z-index:140;
+  display:none; align-items:center; justify-content:center;
+  padding:22px; background:rgba(1,24,19,.78);
+  backdrop-filter:blur(4px);
+}
+.anthem-lyrics-modal.show{display:flex}
+.anthem-lyrics-card{
+  position:relative; width:min(820px,96vw); max-height:92vh;
+  overflow:auto; padding:38px 42px 44px;
+  background:#f8f4ea; border:1px solid #d6bf82; border-radius:12px;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+}
+.anthem-lyrics-card:before{
+  content:""; display:block; width:64px; height:2px;
+  background:#d5a640; margin:0 auto 18px;
+}
+.anthem-lyrics-close{
+  position:absolute; top:13px; right:17px;
+  border:0; background:transparent; color:#073f31;
+  font-size:30px; line-height:1; cursor:pointer;
+}
+.anthem-lyrics-kicker{
+  text-align:center; color:#a36f1d; letter-spacing:.18em;
+  font-size:11px; font-weight:700;
+}
+.anthem-lyrics-card h2{
+  margin:8px 0 5px; text-align:center;
+  font:400 38px Georgia,serif; color:#073f31;
+}
+.anthem-lyrics-subtitle{
+  text-align:center; color:#647068; margin:0 auto 28px;
+}
+.lyrics-part{
+  padding:25px 8px; border-top:1px solid #dfd4bd;
+}
+.lyrics-part:first-of-type{border-top:0}
+.lyrics-label{
+  color:#a36f1d; font-size:11px; font-weight:700;
+  letter-spacing:.16em; margin-bottom:8px;
+}
+.lyrics-language{
+  color:#073f31; font:600 16px Georgia,serif; margin-bottom:10px;
+}
+.lyrics-stage{
+  color:#817663; font-style:italic; font-size:13px;
+  margin:0 0 13px;
+}
+.lyrics-text{
+  color:#24342e; font:17px/1.85 Georgia,serif;
+}
+.lyrics-text.centered{text-align:center}
+.lyrics-text.rtl{
+  text-align:right; font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+  font-size:19px; line-height:2;
+}
+.lyrics-part.chorus{
+  margin:8px 0; padding:28px 25px;
+  background:#073f31; border:1px solid #ba913a; border-radius:8px;
+}
+.lyrics-part.chorus .lyrics-label{color:#e2b550}
+.lyrics-part.chorus .lyrics-text{color:#f7f0df}
+.lyrics-part.final-chorus{background:#063729}
+.lyrics-part.outro{padding-bottom:5px}
+body.anthem-lyrics-open{overflow:hidden}
+@media(max-width:600px){
+  .anthem-lyrics-card{padding:32px 22px 35px}
+  .anthem-lyrics-card h2{font-size:31px}
+  .lyrics-text{font-size:16px}
+}

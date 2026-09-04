@@ -239,3 +239,39 @@ document.getElementById('archiveStoryForm')?.addEventListener('submit', async e=
     submitButton.textContent=originalText;
   }
 });
+
+
+// National Anthem lyrics modal
+const anthemLyricsModal=document.getElementById('anthemLyricsModal');
+const openAnthemLyrics=document.getElementById('openAnthemLyrics');
+const closeAnthemLyrics=document.getElementById('closeAnthemLyrics');
+
+function showAnthemLyrics(){
+  if(!anthemLyricsModal)return;
+  anthemLyricsModal.classList.add('show');
+  anthemLyricsModal.setAttribute('aria-hidden','false');
+  document.body.classList.add('anthem-lyrics-open');
+  history.replaceState(null,'','#anthem-lyrics');
+}
+function hideAnthemLyrics(){
+  if(!anthemLyricsModal)return;
+  anthemLyricsModal.classList.remove('show');
+  anthemLyricsModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('anthem-lyrics-open');
+  if(location.hash==='#anthem-lyrics')history.replaceState(null,'',location.pathname+location.search);
+}
+
+openAnthemLyrics?.addEventListener('click',e=>{
+  e.preventDefault();
+  showAnthemLyrics();
+});
+closeAnthemLyrics?.addEventListener('click',hideAnthemLyrics);
+anthemLyricsModal?.addEventListener('click',e=>{
+  if(e.target===anthemLyricsModal)hideAnthemLyrics();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && anthemLyricsModal?.classList.contains('show'))hideAnthemLyrics();
+});
+if(location.hash==='#anthem-lyrics'){
+  setTimeout(showAnthemLyrics,0);
+}
