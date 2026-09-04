@@ -101,3 +101,935 @@ body.anthem-lyrics-open{overflow:hidden}
   .anthem-lyrics-card h2{font-size:31px}
   .lyrics-text{font-size:16px}
 }
+
+
+/* Clickable Urukhomba world folders */
+.world-folder{
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.world-folder:hover,
+.world-folder:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:0 14px 34px rgba(10,55,43,.14);
+  outline:none;
+}
+.world-folder h4::after{
+  content:"  →";
+  color:#b9872c;
+  font-size:.82em;
+}
+.world-folder-modal{
+  position:fixed;
+  inset:0;
+  z-index:135;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(1,24,19,.76);
+  backdrop-filter:blur(4px);
+}
+.world-folder-modal.show{display:flex}
+.world-folder-card{
+  position:relative;
+  width:min(760px,96vw);
+  max-height:90vh;
+  overflow:auto;
+  background:#f8f4ea;
+  color:#22352e;
+  border:1px solid #d7bd7b;
+  border-radius:12px;
+  padding:42px 48px 46px;
+  box-shadow:0 24px 80px rgba(0,0,0,.34);
+}
+.world-folder-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+  border:0;
+  background:transparent;
+  color:#073f31;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+}
+.world-folder-eyebrow{
+  color:#a87520;
+  letter-spacing:.17em;
+  font-size:11px;
+  font-weight:700;
+  text-align:center;
+}
+.world-folder-card h2{
+  color:#073f31;
+  text-align:center;
+  font:400 38px/1.18 Georgia,serif;
+  margin:9px 0 14px;
+}
+.world-folder-rule{
+  width:58px;
+  height:2px;
+  margin:0 auto 28px;
+  background:#d5a640;
+}
+.world-folder-body{
+  white-space:pre-line;
+  font:17px/1.85 Georgia,serif;
+  color:#33453e;
+}
+body.world-folder-open{overflow:hidden}
+@media(max-width:600px){
+  .world-folder-card{padding:36px 24px 38px}
+  .world-folder-card h2{font-size:31px}
+  .world-folder-body{font-size:16px}
+}
+
+
+/* Dedicated Shifting Lands atlas */
+.shifting-map-modal{
+  position:fixed;
+  inset:0;
+  z-index:138;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(1,24,19,.82);
+  backdrop-filter:blur(5px);
+}
+.shifting-map-modal.show{display:flex}
+.shifting-map-card{
+  position:relative;
+  width:min(1500px,97vw);
+  max-height:95vh;
+  overflow:auto;
+  background:#f7f2e8;
+  border:1px solid #cfa84d;
+  border-radius:12px;
+  box-shadow:0 28px 90px rgba(0,0,0,.42);
+  padding:24px 24px 26px;
+}
+.shifting-map-close{
+  position:absolute;
+  top:12px;
+  right:14px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#efe6d3;
+  color:#073f31;
+  font-size:28px;
+  line-height:34px;
+  cursor:pointer;
+  z-index:2;
+}
+.shifting-map-kicker{
+  text-align:center;
+  color:#a67522;
+  font:700 10px/1.2 Arial,sans-serif;
+  letter-spacing:.18em;
+}
+.shifting-map-card h2{
+  margin:7px 0 4px;
+  text-align:center;
+  color:#073f31;
+  font:400 38px/1.1 Georgia,serif;
+}
+.shifting-map-subtitle{
+  margin:0 0 18px;
+  text-align:center;
+  color:#657169;
+  font-size:14px;
+}
+.shifting-map-frame{
+  overflow:hidden;
+  border-radius:9px;
+  border:1px solid #c9aa67;
+  background:#062b23;
+}
+.shifting-map-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+body.shifting-map-open{overflow:hidden}
+@media(max-width:700px){
+  .shifting-map-card{padding:20px 12px 16px}
+  .shifting-map-card h2{font-size:30px}
+  .shifting-map-subtitle{font-size:13px}
+}
+
+
+/* Interactive Shifting Lands map */
+.world-folder-shifting{
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.world-folder-shifting:hover,
+.world-folder-shifting:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 16px 36px rgba(7,63,49,.12);
+  outline:none;
+}
+.interactive-map-card{
+  width:min(1560px,98vw);
+  max-height:96vh;
+  padding:18px 18px 16px;
+  overflow:hidden;
+}
+.shifting-map-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  padding:0 46px 12px 4px;
+}
+.shifting-map-topbar .shifting-map-kicker{text-align:left}
+.shifting-map-topbar h2{
+  text-align:left;
+  margin:5px 0 0;
+  font-size:34px;
+}
+.map-toolbar{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+.map-toolbar button{
+  min-width:42px;
+  height:38px;
+  padding:0 12px;
+  border:1px solid #cfa84d;
+  border-radius:7px;
+  background:#fffaf0;
+  color:#073f31;
+  font-weight:700;
+  cursor:pointer;
+}
+.map-toolbar button:hover{background:#f0e5ce}
+.interactive-map-shell{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:14px;
+  min-height:0;
+}
+.interactive-map-viewport{
+  position:relative;
+  height:min(76vh,820px);
+  overflow:hidden;
+  border:1px solid #c9aa67;
+  border-radius:10px;
+  background:#062b23;
+  cursor:grab;
+  touch-action:none;
+}
+.interactive-map-viewport.dragging{cursor:grabbing}
+.interactive-map-stage{
+  position:absolute;
+  left:0;
+  top:0;
+  transform-origin:0 0;
+  will-change:transform;
+}
+.interactive-map-stage > img{
+  display:block;
+  width:1400px;
+  max-width:none;
+  height:auto;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+.map-hotspot{
+  position:absolute;
+  width:20px;
+  height:20px;
+  margin:-10px 0 0 -10px;
+  border:2px solid #f5d37a;
+  border-radius:50%;
+  background:#0a4b3b;
+  box-shadow:0 0 0 5px rgba(10,75,59,.32),0 2px 10px rgba(0,0,0,.4);
+  cursor:pointer;
+}
+.map-hotspot:hover,
+.map-hotspot:focus-visible{
+  transform:scale(1.35);
+  outline:none;
+}
+.map-hotspot.capital{
+  width:24px;
+  height:24px;
+  margin:-12px 0 0 -12px;
+  background:#d7a62d;
+  border-color:#fff0ba;
+}
+.map-place-panel{
+  align-self:stretch;
+  border:1px solid #d7c79e;
+  border-radius:10px;
+  background:#fffaf0;
+  padding:22px 20px;
+  overflow:auto;
+}
+.map-place-eyebrow{
+  color:#a67522;
+  font:700 10px/1.2 Arial,sans-serif;
+  letter-spacing:.16em;
+}
+.map-place-panel h3{
+  margin:9px 0 10px;
+  color:#073f31;
+  font:400 28px/1.15 Georgia,serif;
+}
+.map-place-panel p{
+  margin:0;
+  color:#53615b;
+  font-size:14px;
+  line-height:1.6;
+}
+.map-place-meta{
+  display:grid;
+  gap:8px;
+  margin-top:18px;
+}
+.map-meta-row{
+  border-top:1px solid #e2d6bd;
+  padding-top:9px;
+}
+.map-meta-row small{
+  display:block;
+  color:#a67522;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.map-meta-row strong{
+  display:block;
+  margin-top:3px;
+  color:#073f31;
+  font-family:Georgia,serif;
+  font-size:15px;
+}
+.map-hint{
+  padding:10px 4px 0;
+  text-align:center;
+  color:#7d786b;
+  font-size:12px;
+}
+@media(max-width:900px){
+  .interactive-map-shell{grid-template-columns:1fr}
+  .interactive-map-viewport{height:62vh}
+  .map-place-panel{max-height:220px}
+  .shifting-map-topbar{align-items:flex-start;flex-direction:column}
+}
+
+
+/* Leaflet-powered Shifting Lands map */
+.leaflet-shell{
+  grid-template-columns:190px minmax(0,1fr) 280px !important;
+  gap:12px;
+}
+.leaflet-map-frame{
+  position:relative;
+  height:min(76vh,820px);
+  overflow:hidden;
+  border:1px solid #c9aa67;
+  border-radius:10px;
+  background:#062d25;
+}
+.urukhomba-leaflet-map{
+  width:100%;
+  height:100%;
+  background:#062d25;
+}
+.fixed-map-legend{
+  align-self:stretch;
+  border:1px solid #cba451;
+  border-radius:10px;
+  background:#073b30;
+  padding:14px 10px;
+  overflow:auto;
+}
+.fixed-map-legend-title{
+  color:#e3b955;
+  font:700 10px/1 Arial,sans-serif;
+  letter-spacing:.16em;
+  padding:2px 8px 11px;
+}
+.fixed-map-legend button{
+  width:100%;
+  display:grid;
+  grid-template-columns:28px 1fr;
+  align-items:center;
+  gap:5px;
+  min-height:34px;
+  padding:6px 8px;
+  border:0;
+  border-radius:6px;
+  background:transparent;
+  color:#f6efe1;
+  text-align:left;
+  font:600 11px/1.1 Arial,sans-serif;
+  cursor:pointer;
+}
+.fixed-map-legend button span{
+  color:#e8b83f;
+  text-align:center;
+  font-size:16px;
+}
+.fixed-map-legend button:hover,
+.fixed-map-legend button:focus-visible{
+  background:rgba(232,184,63,.15);
+  outline:none;
+}
+.leaflet-control-zoom a{
+  color:#073f31 !important;
+  border-color:#cba451 !important;
+}
+.leaflet-control-zoom{
+  border:1px solid #cba451 !important;
+}
+.invisible-label-hit{
+  background:transparent !important;
+  border:none !important;
+}
+.invisible-label-hit div{
+  width:100%;
+  height:100%;
+  background:transparent;
+}
+.leaflet-interactive.region-hit{
+  fill:transparent;
+  stroke:transparent;
+}
+.leaflet-interactive.region-hit:hover{
+  fill:rgba(231,184,63,.10);
+  stroke:rgba(231,184,63,.65);
+}
+@media(max-width:1100px){
+  .leaflet-shell{grid-template-columns:150px minmax(0,1fr)!important}
+  .map-place-panel{grid-column:1/-1}
+}
+@media(max-width:760px){
+  .leaflet-shell{grid-template-columns:1fr!important}
+  .fixed-map-legend{max-height:180px}
+  .leaflet-map-frame{height:60vh}
+}
+
+
+/* Real map labels layered above the clean terrain */
+.urukhomba-leaflet-map{
+  background:#083b4a !important;
+}
+.leaflet-container{
+  background:#083b4a !important;
+  font-family:Arial,sans-serif;
+}
+.leaflet-map-pane,
+.leaflet-tile-pane,
+.leaflet-overlay-pane{
+  background:transparent !important;
+}
+
+.map-region-label{
+  background:transparent !important;
+  border:0 !important;
+}
+.map-region-label div{
+  display:inline-block;
+  white-space:nowrap;
+  padding:3px 7px;
+  border-radius:5px;
+  background:rgba(3,38,30,.72);
+  color:#fff8e7;
+  border:1px solid rgba(229,190,86,.38);
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+  font:700 12px/1.1 Georgia,serif;
+  letter-spacing:.04em;
+  text-shadow:0 1px 2px rgba(0,0,0,.65);
+}
+.map-region-label div:hover{
+  background:#d0a33b;
+  color:#073f31;
+}
+
+.map-place-label{
+  background:transparent !important;
+  border:0 !important;
+}
+.map-place-label div{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  white-space:nowrap;
+  padding:4px 7px;
+  border-radius:5px;
+  background:rgba(247,242,232,.94);
+  color:#073f31;
+  border:1px solid rgba(201,161,65,.85);
+  box-shadow:0 2px 8px rgba(0,0,0,.22);
+  font:700 11px/1 Arial,sans-serif;
+}
+.map-place-label.capital div{
+  background:#073f31;
+  color:#fff4d3;
+  border-color:#e0b143;
+}
+.map-place-label.lake div{
+  background:rgba(217,242,248,.95);
+  border-color:#61aeca;
+}
+
+.map-symbol-icon{
+  background:transparent !important;
+  border:0 !important;
+}
+.map-symbol-icon .symbol{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#073f31;
+  color:#f0bd3f;
+  border:2px solid #ffe49c;
+  box-shadow:0 2px 8px rgba(0,0,0,.32);
+  font-weight:700;
+  font-size:13px;
+}
+.map-symbol-icon.capital .symbol{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#d7a735;
+  color:#073f31;
+  border-color:#fff1b7;
+  font-size:16px;
+}
+.map-symbol-icon.town .symbol{
+  width:14px;
+  height:14px;
+  font-size:0;
+  background:#e5b840;
+  border-width:2px;
+}
+
+.leaflet-control-zoom{
+  border:1px solid #cba451 !important;
+  box-shadow:0 2px 10px rgba(0,0,0,.15) !important;
+}
+.leaflet-control-zoom a{
+  background:#fffaf0 !important;
+  color:#073f31 !important;
+}
+.leaflet-control-zoom a:hover{
+  background:#efe4cd !important;
+}
+
+.map-place-panel{
+  background:#fffaf0;
+}
+
+
+/* === CINEMATIC SHIFTING LANDS ATLAS === */
+.cinematic-atlas-modal{
+  position:fixed;
+  inset:0;
+  z-index:180;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  background:#061f1a;
+}
+.cinematic-atlas-modal.show{display:flex}
+
+.cinematic-atlas-card{
+  width:100vw;
+  height:100vh;
+  background:#062b26;
+  color:#f4ead7;
+  display:grid;
+  grid-template-rows:84px 1fr 46px;
+  overflow:hidden;
+  border:1px solid #c99a34;
+  box-shadow:inset 0 0 0 1px rgba(224,183,76,.25);
+}
+.atlas-header{
+  display:grid;
+  grid-template-columns:minmax(330px,1fr) auto minmax(330px,1fr);
+  align-items:center;
+  gap:24px;
+  padding:0 26px;
+  background:linear-gradient(180deg,#082f2b,#06241f);
+  border-bottom:1px solid #c99a34;
+  position:relative;
+}
+.atlas-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.atlas-brand-mark{
+  width:48px;height:48px;border:2px solid #d5aa45;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#d5aa45;font-size:28px;
+}
+.atlas-country{
+  color:#e3b450;
+  font:400 30px/1 Georgia,serif;
+  letter-spacing:.12em;
+}
+.atlas-tagline{
+  color:#f5e9d0;
+  margin-top:6px;
+  font:11px/1 Arial,sans-serif;
+  letter-spacing:.18em;
+}
+.atlas-title{
+  color:#e0b85e;
+  font:400 22px/1 Georgia,serif;
+  letter-spacing:.28em;
+  white-space:nowrap;
+}
+.atlas-header-links{
+  justify-self:end;
+  padding-right:56px;
+  color:#e8dcc8;
+  font:11px/1 Arial,sans-serif;
+  letter-spacing:.22em;
+  white-space:nowrap;
+}
+.atlas-close{
+  position:absolute;right:16px;top:16px;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid #d5aa45;background:transparent;color:#f2e7d1;
+  font-size:28px;cursor:pointer;
+}
+.atlas-body{
+  min-height:0;
+  display:grid;
+  grid-template-columns:205px minmax(0,1fr) 310px;
+}
+.atlas-legend{
+  background:#062d28;
+  border-right:1px solid #c99a34;
+  padding:18px 12px;
+  overflow:auto;
+}
+.atlas-section-title{
+  color:#e6bc57;
+  font:700 16px/1 Georgia,serif;
+  margin:0 8px 14px;
+}
+.atlas-legend button{
+  width:100%;
+  min-height:34px;
+  display:grid;
+  grid-template-columns:32px 1fr;
+  align-items:center;
+  gap:6px;
+  border:0;
+  border-radius:5px;
+  background:transparent;
+  color:#f5ecdd;
+  text-align:left;
+  padding:5px 8px;
+  cursor:pointer;
+  font:13px/1.1 Georgia,serif;
+}
+.atlas-legend button span{
+  color:#e3b23d;
+  font-size:18px;
+  text-align:center;
+}
+.atlas-legend button:hover,
+.atlas-legend button.active{
+  background:rgba(224,177,61,.13);
+  color:#fff6df;
+}
+.atlas-map-wrap{
+  position:relative;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+  background:#082d37;
+}
+.cinematic-leaflet{
+  width:100%;
+  height:100%;
+  background:#082d37 !important;
+}
+.atlas-info-panel{
+  border-left:1px solid #c99a34;
+  background:linear-gradient(180deg,#07302b,#052721);
+  overflow:auto;
+}
+.atlas-place-image{
+  height:205px;
+  margin:16px 14px 0;
+  border:1px solid #c99a34;
+  border-radius:4px;
+  background:
+    linear-gradient(180deg,rgba(3,25,21,.08),rgba(3,25,21,.18)),
+    url('assets/hero.jpg') center/cover no-repeat;
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+}
+.atlas-info-content{
+  padding:20px 22px 26px;
+}
+.atlas-place-kicker{
+  color:#e1b64f;
+  font:700 10px/1 Arial,sans-serif;
+  letter-spacing:.16em;
+}
+.atlas-info-content h3{
+  color:#fff0d4;
+  margin:9px 0 2px;
+  font:400 31px/1.1 Georgia,serif;
+}
+.atlas-place-subtitle{
+  color:#e3b64d;
+  font:400 20px/1.1 Georgia,serif;
+  margin-bottom:14px;
+}
+.atlas-info-content p{
+  margin:0;
+  color:#f3eadb;
+  font:15px/1.55 Georgia,serif;
+}
+.atlas-meta{
+  margin-top:18px;
+}
+.atlas-meta .map-meta-row{
+  border-top:1px solid rgba(209,171,82,.42);
+  padding:10px 0 0;
+}
+.atlas-meta .map-meta-row small{
+  color:#d8aa42;
+}
+.atlas-meta .map-meta-row strong{
+  color:#fff3d7;
+}
+.atlas-learn-more{
+  width:100%;
+  margin-top:22px;
+  height:44px;
+  border:1px solid #d9ab45;
+  border-radius:6px;
+  background:linear-gradient(180deg,#9f762d,#7a5521);
+  color:#fff3d5;
+  font:14px Georgia,serif;
+  cursor:pointer;
+}
+.atlas-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 24px;
+  border-top:1px solid #c99a34;
+  background:#06231f;
+  color:#f2e9d8;
+  font:11px/1 Georgia,serif;
+  letter-spacing:.12em;
+}
+.atlas-compass{
+  position:absolute;
+  right:28px;
+  top:22px;
+  width:112px;
+  height:112px;
+  z-index:700;
+  pointer-events:none;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.4));
+}
+.compass-ring{
+  position:absolute;left:18px;top:18px;width:76px;height:76px;
+  border:2px solid #e0b64e;border-radius:50%;
+}
+.compass-ring:before,.compass-ring:after{
+  content:"";position:absolute;background:#e0b64e;
+}
+.compass-ring:before{left:37px;top:-10px;width:2px;height:96px}
+.compass-ring:after{left:-10px;top:37px;width:96px;height:2px}
+.compass-needle{
+  position:absolute;left:47px;top:20px;width:18px;height:72px;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  background:linear-gradient(180deg,#f0c259 0 50%,#f5eee1 50% 100%);
+  border:1px solid #e0b64e;
+  transform-origin:50% 50%;
+  transition:transform .2s ease;
+}
+.compass-n,.compass-e,.compass-s,.compass-w{
+  position:absolute;color:#f2e8d2;font:700 13px Georgia,serif;
+}
+.compass-n{top:0;left:51px}
+.compass-s{bottom:0;left:51px}
+.compass-e{right:0;top:48px}
+.compass-w{left:0;top:48px}
+.atlas-scale{
+  position:absolute;
+  left:22px;
+  bottom:18px;
+  z-index:650;
+  color:#f5ead7;
+  text-shadow:0 1px 3px #000;
+  pointer-events:none;
+}
+.scale-bar{
+  width:245px;height:10px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:2px solid #f4ead7;
+}
+.scale-bar span{border-left:2px solid #f4ead7}
+.scale-bar span:last-child{border-right:2px solid #f4ead7}
+.scale-labels{
+  width:265px;display:flex;justify-content:space-between;
+  margin-top:4px;font:10px Arial,sans-serif;
+}
+
+/* Map labels in the cinematic theme */
+.cinematic-leaflet .map-region-label div{
+  background:rgba(4,38,32,.78);
+  border:1px solid rgba(236,198,100,.4);
+  color:#fff5df;
+  padding:4px 8px;
+  font:700 14px Georgia,serif;
+}
+.cinematic-leaflet .map-place-label div{
+  background:rgba(5,42,36,.9);
+  color:#fff5df;
+  border:1px solid #dcb349;
+}
+.cinematic-leaflet .map-place-label.capital div{
+  background:#0b5a4c;
+  border-color:#f3c94f;
+  color:#fff1bb;
+}
+.cinematic-leaflet .leaflet-control-zoom{
+  margin-left:16px !important;
+  margin-top:16px !important;
+  border:1px solid #d6aa42 !important;
+}
+.cinematic-leaflet .leaflet-control-zoom a{
+  background:#062a25 !important;
+  color:#fff2cf !important;
+  border-color:#d6aa42 !important;
+}
+
+/* Highlighted selected territory */
+.selected-territory{
+  stroke:#ffd95e !important;
+  stroke-width:4 !important;
+  fill:#45c9aa !important;
+  fill-opacity:.28 !important;
+  filter:drop-shadow(0 0 6px rgba(255,217,94,.85));
+}
+
+@media(max-width:1100px){
+  .atlas-body{grid-template-columns:170px minmax(0,1fr)}
+  .atlas-info-panel{display:none}
+  .atlas-header-links{display:none}
+}
+
+
+/* === CLEAN PROTOTYPE FIXES === */
+
+/* No ugly always-visible polygon/hex outlines. */
+.cinematic-leaflet .leaflet-interactive{
+  outline:none !important;
+}
+.cinematic-leaflet path.leaflet-interactive{
+  stroke:transparent !important;
+  fill:transparent !important;
+}
+
+/* Only the actively selected area is visible. */
+.cinematic-leaflet path.selected-territory{
+  stroke:#ffd65b !important;
+  stroke-width:3 !important;
+  fill:#32c4a2 !important;
+  fill-opacity:.22 !important;
+  filter:drop-shadow(0 0 5px rgba(255,214,91,.55));
+}
+
+/* Labels stay compact and aligned. */
+.cinematic-leaflet .map-region-label div,
+.cinematic-leaflet .map-place-label div{
+  transform:translate(-50%,-50%);
+  pointer-events:auto;
+}
+
+/* Hide any stray town dots from earlier versions. */
+.cinematic-leaflet .map-symbol-icon.town{
+  display:none !important;
+}
+
+
+/* Correct Urukhomba emblem in atlas header */
+.atlas-brand-mark{
+  overflow:hidden;
+  background:#06372e !important;
+}
+.atlas-brand-mark img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  display:block;
+}
+
+/* Selection area should look like a proper mapped territory */
+.cinematic-leaflet path.proto-selected-area{
+  stroke:#ffd45a !important;
+  stroke-width:3 !important;
+  stroke-linejoin:round !important;
+  fill:#31c4a3 !important;
+  fill-opacity:.24 !important;
+  filter:drop-shadow(0 0 5px rgba(255,212,90,.5));
+}
+
+
+/* Natural cartographic selection — no hexagon/octagon look */
+.cinematic-leaflet path.proto-selected-area{
+  stroke:#f2c94c !important;
+  stroke-width:2.5 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+  fill:#3fc5aa !important;
+  fill-opacity:.16 !important;
+  filter:drop-shadow(0 0 4px rgba(242,201,76,.35));
+}
+
+/* Softer, terrain-following selection */
+.cinematic-leaflet path.proto-selected-area{
+  stroke:#f2c94c !important;
+  stroke-width:2.2 !important;
+  fill:#31c4a3 !important;
+  fill-opacity:.14 !important;
+  filter:drop-shadow(0 0 3px rgba(242,201,76,.28));
+}
+
+
+/* Terrain mask selection: no geometric polygon outlines */
+.cinematic-leaflet path.proto-selected-area,
+.cinematic-leaflet path.selected-territory{
+  stroke:transparent !important;
+  fill:transparent !important;
+  filter:none !important;
+}
+
+
+/* Fix the bottom of the full-screen atlas: no extra footer strip */
+.cinematic-atlas-card{
+  grid-template-rows:84px minmax(0,1fr) !important;
+}
+.atlas-footer{
+  display:none !important;
+}
+.atlas-body{
+  min-height:0;
+  height:100%;
+}

@@ -7,6 +7,7 @@
 <meta name="description" content="Official fictional website of Urukhomba — a country of imagination, creativity and unity.">
 <link rel="icon" href="assets/emblem.png">
 <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
 <header class="topbar">
@@ -82,27 +83,27 @@
 <section class="section" id="history"><div class="shell">
   <div class="sectionhead"><span>THE STORY</span><h2>History of Urukhomba</h2><p>What began as a mysterious invented name grew into a fictional republic with its own visual identity, places, symbols and myths.</p></div>
   <div class="cards">
-    <article><img src="assets/hero.jpg"><div><h4>The First Story</h4><p>Urukhomba began as an imaginary place and gradually became a world-building project.</p></div></article>
-    <article><img src="assets/flag.png"><div><h4>National Symbols</h4><p>The flag combines green, cream, navy and gold to represent imagination, peace and courage.</p></div></article>
-    <article><img src="assets/fauna.jpg"><div><h4>Myths & Legends</h4><p>Urukhomban folklore contains creatures and landscapes that deliberately break the rules of reality.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="The First Story" data-world-eyebrow="HISTORY · ORIGIN"><img src="assets/hero.jpg"><div><h4>The First Story</h4><p>Urukhomba began as an imaginary place and gradually became a world-building project.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="National Symbols" data-world-eyebrow="HISTORY · NATIONAL IDENTITY"><img src="assets/flag.png"><div><h4>National Symbols</h4><p>The flag combines green, cream, navy and gold to represent imagination, peace and courage.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="Myths &amp; Legends" data-world-eyebrow="HISTORY · FOLKLORE"><img src="assets/fauna.jpg"><div><h4>Myths & Legends</h4><p>Urukhomban folklore contains creatures and landscapes that deliberately break the rules of reality.</p></div></article>
   </div>
 </div></section>
 
 <section class="section pale" id="culture"><div class="shell">
   <div class="sectionhead"><span>IDENTITY</span><h2>Culture & Symbols</h2><p>Urukhomban culture celebrates imagination, curiosity, dignity, humor and the freedom to build stories beyond ordinary borders.</p></div>
   <div class="cards">
-    <article><img src="assets/flag.png"><div><h4>The Flag</h4><p>Green for life and imagination, cream for peace, navy for depth and gold for aspiration.</p></div></article>
-    <article><img class="contain dark" src="assets/emblem.png"><div><h4>The Emblem</h4><p>Mountains, waves and a golden sun represent ambition, journeys and an open horizon.</p></div></article>
-    <article><img src="assets/fauna.jpg"><div><h4>Impossible Fauna</h4><p>Some legendary animals feed on echoes, lightning, emotions or even possible futures.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="The Flag" data-world-eyebrow="CULTURE · NATIONAL FLAG"><img src="assets/flag.png"><div><h4>The Flag</h4><p>Green for life and imagination, cream for peace, navy for depth and gold for aspiration.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="The Emblem" data-world-eyebrow="CULTURE · NATIONAL EMBLEM"><img class="contain dark" src="assets/emblem.png"><div><h4>The Emblem</h4><p>Mountains, waves and a golden sun represent ambition, journeys and an open horizon.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="Impossible Fauna" data-world-eyebrow="CULTURE · NATURAL MYTHOLOGY"><img src="assets/fauna.jpg"><div><h4>Impossible Fauna</h4><p>Some legendary animals feed on echoes, lightning, emotions or even possible futures.</p></div></article>
   </div>
 </div></section>
 
 <section class="section" id="places"><div class="shell">
   <div class="sectionhead"><span>EXPLORE</span><h2>Places of Urukhomba</h2><p>A country made of imagined geography: mountain capitals, mirrored lakes and lands that refuse to stay in one place.</p></div>
   <div class="cards">
-    <article><img src="assets/hero.jpg"><div><h4>Khombasa</h4><p>The capital of Urukhomba, set in a high mountain basin of towers, gardens and archives.</p></div></article>
-    <article><img src="assets/anthem.jpg"><div><h4>Lake Navar</h4><p>A legendary lake said to reflect the sky a visitor remembers rather than the sky above.</p></div></article>
-    <article><img src="assets/fauna.jpg"><div><h4>The Shifting Lands</h4><p>A region whose valleys, rivers and roads are never found in exactly the same place twice.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="Khombasa" data-world-eyebrow="PLACES · CAPITAL"><img src="assets/hero.jpg"><div><h4>Khombasa</h4><p>The capital of Urukhomba, set in a high mountain basin of towers, gardens and archives.</p></div></article>
+    <article class="world-folder" tabindex="0" role="button" data-world-title="Lake Navar" data-world-eyebrow="PLACES · LEGENDARY LAKE"><img src="assets/anthem.jpg"><div><h4>Lake Navar</h4><p>A legendary lake said to reflect the sky a visitor remembers rather than the sky above.</p></div></article>
+    <article class="world-folder-shifting" tabindex="0" role="button" data-world-title="The Shifting Lands" data-world-eyebrow="PLACES · UNSTABLE GEOGRAPHY"><img src="assets/fauna.jpg"><div><h4>The Shifting Lands</h4><p>A region whose valleys, rivers and roads are never found in exactly the same place twice.</p></div></article>
   </div>
 </div></section>
 
@@ -244,6 +245,91 @@
   <div class="shell copy">© 2026 Urukhomba. Fictional world-building project.</div>
 </footer>
 
+
+
+
+<div class="world-folder-modal" id="worldFolderModal" aria-hidden="true">
+  <div class="world-folder-card" role="dialog" aria-modal="true" aria-labelledby="worldFolderTitle">
+    <button class="world-folder-close" id="closeWorldFolder" aria-label="Close">×</button>
+    <div class="world-folder-eyebrow" id="worldFolderEyebrow"></div>
+    <h2 id="worldFolderTitle"></h2>
+    <div class="world-folder-rule"></div>
+    <div class="world-folder-body" id="worldFolderBody"></div>
+  </div>
+</div>
+
+
+
+
+<div class="shifting-map-modal cinematic-atlas-modal" id="shiftingMapModal" aria-hidden="true">
+  <div class="cinematic-atlas-card" role="dialog" aria-modal="true" aria-labelledby="shiftingMapTitle">
+    <header class="atlas-header">
+      <div class="atlas-brand">
+        <div class="atlas-brand-mark"><img src="assets/emblem.png" alt="Urukhomba emblem"></div>
+        <div>
+          <div class="atlas-country">URUKHOMBA</div>
+          <div class="atlas-tagline">A WORLD OF MANY HORIZONS</div>
+        </div>
+      </div>
+      <div class="atlas-title" id="shiftingMapTitle">THE SHIFTING LANDS</div>
+      <div class="atlas-header-links">EXPLORE &nbsp;·&nbsp; LEARN &nbsp;·&nbsp; DISCOVER</div>
+      <button class="atlas-close" id="closeShiftingMap" aria-label="Close map">×</button>
+    </header>
+
+    <div class="atlas-body">
+      <aside class="atlas-legend" id="fixedMapLegend">
+        <div class="atlas-section-title">MAP KEY</div>
+        <button data-feature="Capital City"><span>★</span>Capital City</button>
+        <button data-feature="Major City"><span>○</span>Major City</button>
+        <button data-feature="City / Town"><span>•</span>City / Town</button>
+        <button data-feature="Region Border"><span>┄</span>Region Border</button>
+        <button data-feature="River"><span>〰</span>River</button>
+        <button data-feature="Lake"><span>⬭</span>Lake</button>
+        <button data-feature="Mountain Peak"><span>▲</span>Mountain Peak</button>
+        <button data-feature="Forest"><span>♠</span>Forest</button>
+        <button data-feature="Desert"><span>◒</span>Desert</button>
+        <button data-feature="Coastline"><span>━</span>Coastline</button>
+        <button data-feature="Road"><span>─</span>Road</button>
+        <button data-feature="Trade Route"><span>┄</span>Trade Route</button>
+        <button data-feature="Port"><span>⚓</span>Port</button>
+        <button data-feature="Ruins / Landmark"><span>▣</span>Ruins / Landmark</button>
+      </aside>
+
+      <main class="atlas-map-wrap">
+        <div id="urukhombaLeafletMap" class="urukhomba-leaflet-map cinematic-leaflet" aria-label="Interactive geographical map of Urukhomba"></div>
+        <div class="atlas-compass" id="atlasCompass" aria-label="Compass">
+          <div class="compass-n">N</div>
+          <div class="compass-e">E</div>
+          <div class="compass-s">S</div>
+          <div class="compass-w">W</div>
+          <div class="compass-ring"></div>
+          <div class="compass-needle"></div>
+        </div>
+        <div class="atlas-scale">
+          <div class="scale-bar"><span></span><span></span><span></span><span></span></div>
+          <div class="scale-labels"><span>0</span><span>50</span><span>100</span><span>200</span><span>300 km</span></div>
+        </div>
+      </main>
+
+      <aside class="atlas-info-panel">
+        <div class="atlas-place-image" id="atlasPlaceImage"></div>
+        <div class="atlas-info-content">
+          <div class="atlas-place-kicker" id="atlasPlaceKicker">INTERACTIVE ATLAS</div>
+          <h3 id="mapPlaceTitle">Khombasa</h3>
+          <div class="atlas-place-subtitle" id="atlasPlaceSubtitle">The Heart</div>
+          <p id="mapPlaceText">Khombasa is the capital of Urukhomba, located on the eastern coast. It is the political, cultural and economic heart of the republic.</p>
+          <div class="map-place-meta atlas-meta" id="mapPlaceMeta"></div>
+          <button class="atlas-learn-more" id="atlasLearnMore">LEARN MORE →</button>
+        </div>
+      </aside>
+    </div>
+
+    
+  </div>
+</div>
+
+
+    
 
 
 <div class="anthem-lyrics-modal" id="anthemLyricsModal" aria-hidden="true">
@@ -425,5 +511,6 @@ A home for everyone...
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="script.js"></script>
 </body></html>
