@@ -3,14 +3,40 @@ const hamb=document.getElementById('hamb'), nav=document.getElementById('nav');
 hamb?.addEventListener('click',()=>nav.classList.toggle('open'));
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-const play=document.getElementById('play'), progress=document.getElementById('progress'), time=document.getElementById('time');
-let playing=false, sec=0, timer=null;
-play?.addEventListener('click',()=>{
-  playing=!playing; play.textContent=playing?'❚❚':'▶';
-  if(playing){
-    timer=setInterval(()=>{sec=(sec+1)%166; progress.style.width=((sec/165)*100)+'%';
-      const m=String(Math.floor(sec/60)).padStart(2,'0'), s=String(sec%60).padStart(2,'0'); time.textContent=`${m}:${s} / 02:45`;},1000);
-  } else clearInterval(timer);
+const play = document.getElementById('play');
+const progress = document.getElementById('progress');
+const time = document.getElementById('time');
+const anthemAudio = document.getElementById('anthemAudio');
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+}
+
+play.addEventListener('click', () => {
+  if (anthemAudio.paused) {
+    anthemAudio.play();
+    play.textContent = '❚❚';
+  } else {
+    anthemAudio.pause();
+    play.textContent = '▶';
+  }
+});
+
+anthemAudio.addEventListener('timeupdate', () => {
+  if (!anthemAudio.duration) return;
+
+  const percent = (anthemAudio.currentTime / anthemAudio.duration) * 100;
+  progress.style.width = `${percent}%`;
+
+  time.textContent =
+    `${formatTime(anthemAudio.currentTime)} / ${formatTime(anthemAudio.duration)}`;
+});
+
+anthemAudio.addEventListener('ended', () => {
+  play.textContent = '▶';
+  progress.style.width = '0%';
 });
 
 document.getElementById('citizenForm')?.addEventListener('submit',e=>{
