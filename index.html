@@ -18,7 +18,7 @@
     <button class="hamb" id="hamb">☰</button>
     <nav id="nav">
       <a class="active" href="#home">HOME</a><a href="#about">ABOUT</a><a href="#history">HISTORY</a>
-      <a href="#culture">CULTURE</a><a href="#places">PLACES</a><a href="#government">GOVERNMENT</a>
+      <a href="#culture">CULTURE</a><a href="#places">PLACES</a><a href="#government">GOVERNMENT</a><a href="#archives">ARCHIVES</a>
       <a href="#news">NEWS</a><a href="#contact">CONTACT</a>
     </nav>
     <div class="lang">EN⌄</div>
@@ -65,9 +65,8 @@
       <div class="player">
         <img src="assets/anthem.jpg" alt="">
         <div class="ptext"><strong>Anthem of Urukhomba</strong><span>Official National Anthem</span></div>
-        <button id="play">▶</button><div class="track"><div id="progress"></div></div><span class="time" id="time">00:00 / 02:45</span>
+        <button id="play">▶</button><div class="track"><div id="progress"></div></div><span class="time" id="time">00:00 / 00:00</span><audio id="anthemAudio" src="Urukhomba.mp3" preload="metadata"></audio>
       </div>
-      <audio id="anthemAudio" src="Urukhomba.mp3"></audio>
       <a class="textlink" href="#culture">LYRICS →</a>
     </article>
     <article class="panel" id="news">
@@ -106,6 +105,124 @@
     <article><img src="assets/fauna.jpg"><div><h4>The Shifting Lands</h4><p>A region whose valleys, rivers and roads are never found in exactly the same place twice.</p></div></article>
   </div>
 </div></section>
+
+
+<section class="section archive-section" id="archives">
+  <div class="shell">
+    <div class="sectionhead">
+      <span>THE URUKHOMBA ARCHIVES</span>
+      <h2>Every Language Carries Another World</h2>
+      <p>A public archive of fictional stories, impossible memories, dreams, legends and places written by citizens of imagination from around the world.</p>
+    </div>
+
+    <div class="archive-stats">
+      <div><small>STORIES</small><strong id="archiveStatStories">0</strong><span>approved stories</span></div>
+      <div><small>LANGUAGES</small><strong id="archiveStatLanguages">0</strong><span>with approved stories</span></div>
+      <div><small>CITIZENS</small><strong>∞</strong><span>everyone can belong</span></div>
+      <div><small>NEW THIS WEEK</small><strong id="archiveStatWeek">0</strong><span>approved this week</span></div>
+    </div>
+
+    <div class="archive-layout">
+      <aside class="archive-sidebar">
+        <div class="archive-sidebar-title">Language Folders</div>
+        <div id="archiveLanguageFolders">
+          <button class="archive-lang active" data-lang="all"><span>🌐 All Stories</span><b>0</b></button>
+          <div class="archive-more">More language folders appear automatically as approved stories are added.</div>
+        </div>
+      </aside>
+
+      <div class="archive-main">
+        <div class="archive-toolbar">
+          <input id="archiveSearch" placeholder="Search stories, authors, myths, places...">
+          <button class="archive-submit-btn" id="archiveSubmit">＋ SUBMIT A STORY</button>
+        </div>
+        <div class="archive-grid" id="archiveGrid"></div>
+      </div>
+    </div>
+
+    <div class="archive-callout">
+      <div>
+        <span>WRITE YOUR OWN WORLD</span>
+        <h3>Your imagination can become part of Urukhomba.</h3>
+        <p>Write in the language you think, dream or remember in. Your story can be a myth, memory, horror story, strange village, philosophical tale, lost place, impossible creature, or something nobody has named yet.</p>
+        <button class="archive-submit-btn gold" id="archiveSubmitBottom">SUBMIT YOUR STORY</button>
+      </div>
+      <div class="archive-process">
+        <b>How publishing will work</b>
+        <p>① Submit your story and language.</p>
+        <p>② It enters a private moderation queue.</p>
+        <p>③ You approve, edit or reject it.</p>
+        <p>④ Approved stories appear in their language folder.</p>
+        <p>⑤ Selected stories can become Urukhomba social posts or narrated videos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="archive-modal" id="archiveSubmitModal">
+  <div class="archive-modal-card">
+    <button class="archive-close" data-archive-close>×</button>
+    <span class="archive-kicker">THE URUKHOMBA ARCHIVES</span>
+    <h2>Submit Your Story</h2>
+    <p class="archive-intro">Tell us a story from somewhere that may never have existed.</p>
+    <form id="archiveStoryForm">
+      <div class="archive-form-grid">
+        <div class="archive-field">
+          <label>STORY TITLE</label>
+          <input id="archiveTitle" required placeholder="The Village Without Shadows">
+        </div>
+        <div class="archive-field">
+          <label>AUTHOR</label>
+          <input id="archiveAuthor" placeholder="Your name or Anonymous">
+        </div>
+        <div class="archive-field">
+          <label>LANGUAGE</label>
+          <input id="archiveLanguage" list="worldLanguages" required placeholder="Start typing your language...">
+          <datalist id="worldLanguages">
+            <option>Afrikaans</option><option>Albanian</option><option>Amharic</option><option>Arabic</option><option>Armenian</option><option>Assamese</option><option>Azerbaijani</option>
+            <option>Basque</option><option>Belarusian</option><option>Bengali</option><option>Bosnian</option><option>Bulgarian</option><option>Burmese</option>
+            <option>Catalan</option><option>Chinese</option><option>Croatian</option><option>Czech</option><option>Danish</option><option>Dutch</option>
+            <option>English</option><option>Estonian</option><option>Filipino / Tagalog</option><option>Finnish</option><option>French</option>
+            <option>Georgian</option><option>German</option><option>Greek</option><option>Gujarati</option><option>Haitian Creole</option><option>Hausa</option><option>Hebrew</option><option>Hindi</option><option>Hungarian</option>
+            <option>Icelandic</option><option>Igbo</option><option>Indonesian</option><option>Irish</option><option>Italian</option><option>Japanese</option><option>Javanese</option>
+            <option>Kannada</option><option>Kazakh</option><option>Khmer</option><option>Korean</option><option>Kurdish</option><option>Lao</option><option>Latin</option><option>Latvian</option><option>Lithuanian</option>
+            <option>Macedonian</option><option>Malay</option><option>Malayalam</option><option>Marathi</option><option>Mongolian</option><option>Nepali</option><option>Norwegian</option>
+            <option>Pashto</option><option>Persian</option><option>Polish</option><option>Portuguese</option><option>Punjabi</option><option>Romanian</option><option>Russian</option>
+            <option>Serbian</option><option>Sinhala</option><option>Slovak</option><option>Slovenian</option><option>Somali</option><option>Spanish</option><option>Swahili</option><option>Swedish</option>
+            <option>Tamil</option><option>Telugu</option><option>Thai</option><option>Tibetan</option><option>Turkish</option><option>Ukrainian</option><option>Urdu</option><option>Uzbek</option>
+            <option>Vietnamese</option><option>Welsh</option><option>Xhosa</option><option>Yiddish</option><option>Yoruba</option><option>Zulu</option><option>Other / Not listed</option>
+          </datalist>
+        </div>
+        <div class="archive-field">
+          <label>STORY TYPE / TAGS <span>(optional)</span></label>
+          <input id="archiveCategory" list="storyTypes" placeholder="Dream, mystery, sci-fi, memory...">
+          <datalist id="storyTypes">
+            <option>Dream</option><option>Legend</option><option>Myth</option><option>Mystery</option><option>Horror</option><option>Fantasy</option>
+            <option>Science Fiction</option><option>Philosophy</option><option>Love</option><option>Adventure</option><option>Folklore</option>
+            <option>Strange Encounter</option><option>Lost Place</option><option>Mythical Creature</option><option>Future World</option>
+            <option>Letter From Another Reality</option><option>Memory</option><option>Spiritual</option><option>Surreal</option><option>Comedy</option>
+          </datalist>
+        </div>
+        <div class="archive-field full">
+          <label>YOUR STORY</label>
+          <textarea id="archiveBody" required placeholder="Write your story here..."></textarea>
+        </div>
+      </div>
+      <div class="archive-note">Your story will be sent privately to the Urukhomba moderation queue. It will not appear publicly until it is approved.</div>
+      <button class="archive-submit-btn" type="submit">SUBMIT STORY</button>
+    </form>
+  </div>
+</div>
+
+<div class="archive-modal" id="archiveReaderModal">
+  <div class="archive-modal-card reader">
+    <button class="archive-close" data-archive-close>×</button>
+    <span class="archive-kicker" id="archiveReaderLang"></span>
+    <h2 id="archiveReaderTitle"></h2>
+    <div class="archive-reader-meta" id="archiveReaderMeta"></div>
+    <div class="archive-reader-text" id="archiveReaderText"></div>
+  </div>
+</div>
 
 <section class="section pale" id="government"><div class="shell">
   <div class="sectionhead"><span>THE REPUBLIC</span><h2>Government of Urukhomba</h2><p>A fictional government built around curiosity, creativity and playful civic traditions.</p></div>
