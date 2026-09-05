@@ -304,7 +304,7 @@ function hideWorldFolder(){
 
 document.querySelectorAll('.world-folder').forEach(card=>{
   card.addEventListener('click',()=>{
-    if(card.dataset.worldTitle==='Impossible Fauna') return;
+    if(card.dataset.worldTitle==='Impossible Fauna' || card.dataset.worldTitle==='National Symbols') return;
     openWorldFolder(card);
   });
 
@@ -312,10 +312,10 @@ document.querySelectorAll('.world-folder').forEach(card=>{
     if(e.key==='Enter' || e.key===' '){
       e.preventDefault();
 
-      if(card.dataset.worldTitle==='Impossible Fauna'){
-        card.click();
-        return;
-      }
+      if(card.dataset.worldTitle==='Impossible Fauna' || card.dataset.worldTitle==='National Symbols'){
+  card.click();
+  return;
+}
 
       openWorldFolder(card);
     }
@@ -527,3 +527,53 @@ shiftingMapModal?.addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&shiftingMapModal?.classList.contains('show'))closeTerrainAtlas();
 });
+
+// === NATIONAL SYMBOLS ARCHIVE ===
+
+const nationalSymbolsArchive = document.getElementById('nationalSymbolsArchive');
+const nationalSymbolsCard = document.querySelector('[data-world-title="National Symbols"]');
+const closeNationalSymbols = document.getElementById('closeNationalSymbols');
+
+function openNationalSymbolsArchive(){
+  if(!nationalSymbolsArchive) return;
+
+  nationalSymbolsArchive.classList.add('open');
+  nationalSymbolsArchive.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+
+function closeNationalSymbolsArchive(){
+  if(!nationalSymbolsArchive) return;
+
+  nationalSymbolsArchive.classList.remove('open');
+  nationalSymbolsArchive.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
+if(nationalSymbolsCard){
+  nationalSymbolsCard.addEventListener('click',openNationalSymbolsArchive);
+}
+
+if(closeNationalSymbols){
+  closeNationalSymbols.addEventListener('click',closeNationalSymbolsArchive);
+}
+
+if(nationalSymbolsArchive){
+  nationalSymbolsArchive.addEventListener('click',e=>{
+    if(e.target===nationalSymbolsArchive){
+      closeNationalSymbolsArchive();
+    }
+  });
+}
+
+document.addEventListener('keydown',e=>{
+  if(
+    e.key==='Escape' &&
+    nationalSymbolsArchive &&
+    nationalSymbolsArchive.classList.contains('open')
+  ){
+    closeNationalSymbolsArchive();
+  }
+});
+
+// === END NATIONAL SYMBOLS ARCHIVE ===
