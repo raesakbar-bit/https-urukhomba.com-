@@ -1225,7 +1225,7 @@ body.shifting-map-open{overflow:hidden}
 .national-symbol-detail{
   position:fixed;
   inset:0;
-  z-index:10000;
+  z-index:100000;
   background:#031f18;
   color:#f5f0e7;
   overflow-y:auto;
