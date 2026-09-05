@@ -1738,3 +1738,276 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END KHOMBASA PLACE DETAIL === */
+
+/* === LAKE NAVAR ARCHIVE === */
+
+.lake-navar-archive{
+  position:fixed;
+  inset:0;
+  z-index:100001;
+  background:#04121a;
+  color:#f3ead6;
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+
+.lake-navar-archive.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.lake-navar-shell{
+  width:min(1450px,95%);
+  margin:0 auto;
+  padding:28px 0 65px;
+}
+
+.lake-navar-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100002;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(201,163,91,.7);
+  background:rgba(3,14,21,.82);
+  color:#e7c98e;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.lake-navar-hero{
+  position:relative;
+  height:650px;
+  overflow:hidden;
+  border:1px solid rgba(190,151,79,.4);
+  background:#061722;
+}
+
+.lake-navar-hero > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.lake-navar-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2,13,19,.96) 0%,
+      rgba(2,13,19,.78) 27%,
+      rgba(2,13,19,.25) 53%,
+      rgba(2,13,19,.08) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2,13,19,.65) 0%,
+      transparent 45%
+    );
+}
+
+.lake-navar-hero-overlay{
+  position:absolute;
+  z-index:2;
+  left:55px;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(520px,80%);
+}
+
+.lake-navar-hero-overlay > span{
+  color:#c8a468;
+  font-size:10px;
+  letter-spacing:4px;
+}
+
+.lake-navar-hero-overlay h2{
+  margin:13px 0 5px;
+  font-family:Georgia,serif;
+  font-size:clamp(58px,7vw,96px);
+  font-weight:400;
+  line-height:.95;
+  color:#e9c98f;
+}
+
+.lake-navar-subtitle{
+  margin:18px 0 25px;
+  color:#eee2ca;
+  font-size:12px;
+  letter-spacing:5px;
+}
+
+.lake-navar-hero-overlay p{
+  margin:0;
+  max-width:500px;
+  color:#ddd5c5;
+  font-family:Georgia,serif;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.lake-navar-hero-overlay blockquote{
+  margin:30px 0 0;
+  padding-top:25px;
+  border-top:1px solid rgba(194,157,88,.65);
+  color:#dbb979;
+  font-family:Georgia,serif;
+  font-size:18px;
+  font-style:italic;
+}
+
+.lake-navar-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+
+.lake-navar-card{
+  position:relative;
+  min-height:470px;
+  overflow:hidden;
+  border:1px solid rgba(194,157,88,.45);
+  background:#061720;
+  cursor:pointer;
+}
+
+.lake-navar-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+
+.lake-navar-card:hover img{
+  transform:scale(1.035);
+}
+
+.lake-navar-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(2,14,20,.98) 0%,
+      rgba(2,14,20,.92) 27%,
+      rgba(2,14,20,.18) 67%,
+      transparent 100%
+    );
+}
+
+.lake-navar-card > div{
+  position:absolute;
+  z-index:2;
+  left:28px;
+  right:28px;
+  bottom:27px;
+}
+
+.lake-navar-card span{
+  color:#c8a468;
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+.lake-navar-card h3{
+  margin:8px 0 9px;
+  font-family:Georgia,serif;
+  font-size:29px;
+  font-weight:400;
+  color:#f0dfbd;
+}
+
+.lake-navar-card p{
+  margin:0;
+  color:#cbc3b4;
+  line-height:1.6;
+}
+
+.lake-navar-card strong{
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 13px;
+  border:1px solid rgba(194,157,88,.6);
+  color:#d7bb82;
+  font-size:9px;
+  font-weight:400;
+  letter-spacing:2px;
+}
+
+@media(max-width:900px){
+
+  .lake-navar-grid{
+    grid-template-columns:1fr;
+  }
+
+  .lake-navar-card{
+    min-height:420px;
+  }
+
+  .lake-navar-hero{
+    height:570px;
+  }
+}
+
+@media(max-width:560px){
+
+  .lake-navar-shell{
+    width:95%;
+    padding-top:18px;
+  }
+
+  .lake-navar-close{
+    top:12px;
+    right:12px;
+  }
+
+  .lake-navar-hero{
+    height:600px;
+  }
+
+  .lake-navar-hero::after{
+    background:
+      linear-gradient(
+        to top,
+        rgba(2,13,19,.96) 0%,
+        rgba(2,13,19,.68) 55%,
+        rgba(2,13,19,.15) 100%
+      );
+  }
+
+  .lake-navar-hero-overlay{
+    left:24px;
+    right:24px;
+    top:auto;
+    bottom:35px;
+    width:auto;
+    transform:none;
+  }
+
+  .lake-navar-hero-overlay h2{
+    font-size:54px;
+  }
+
+  .lake-navar-hero-overlay p{
+    font-size:16px;
+  }
+
+  .lake-navar-card{
+    min-height:390px;
+  }
+}
+
+/* === END LAKE NAVAR ARCHIVE === */
