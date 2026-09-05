@@ -579,25 +579,20 @@ document.addEventListener('keydown',e=>{
   }
 });
 // Individual National Symbol cards
-document.querySelectorAll('.national-symbol-card[data-symbol]').forEach(card=>{
-  card.addEventListener('click',()=>{
-  const symbol=card.dataset.symbol;
-const detail=document.getElementById('nationalSymbolDetail');
+if(nationalSymbolsArchive){
+  nationalSymbolsArchive.addEventListener('click',e=>{
+    const card=e.target.closest('.national-symbol-card[data-symbol]');
 
-if(detail){
-  detail.classList.add('open');
-  detail.setAttribute('aria-hidden','false');
-}
-  
-});
+    if(!card) return;
 
-  card.addEventListener('keydown',e=>{
-    if(e.key==='Enter' || e.key===' '){
-      e.preventDefault();
-      card.click();
+    const detail=document.getElementById('nationalSymbolDetail');
+
+    if(detail){
+      detail.classList.add('open');
+      detail.setAttribute('aria-hidden','false');
     }
   });
-});
+}
 const nationalSymbolDetail=document.getElementById('nationalSymbolDetail');
 const closeNationalSymbolDetail=document.getElementById('closeNationalSymbolDetail');
 
