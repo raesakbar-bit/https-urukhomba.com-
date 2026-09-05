@@ -2504,3 +2504,315 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END THE FIRST STORY ARCHIVE === */
+
+/* === THE FLAG ARCHIVE === */
+
+.flag-archive{
+  position:fixed;
+  inset:0;
+  z-index:100009;
+  background:#061218;
+  color:#efe4d0;
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+
+.flag-archive.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.flag-archive-shell{
+  width:min(1450px,95%);
+  margin:0 auto;
+  padding:28px 0 70px;
+}
+
+.flag-archive-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100010;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(198,158,84,.7);
+  background:rgba(3,14,19,.9);
+  color:#e5c37d;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.flag-archive-hero{
+  position:relative;
+  min-height:700px;
+  overflow:hidden;
+  border:1px solid rgba(194,154,82,.42);
+  background:#07171d;
+}
+
+.flag-archive-hero > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.flag-archive-hero-shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2,12,17,.15) 0%,
+      rgba(2,12,17,.05) 45%,
+      rgba(2,12,17,.78) 78%,
+      rgba(2,12,17,.95) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2,12,17,.62) 0%,
+      transparent 45%
+    );
+}
+
+.flag-archive-title{
+  position:absolute;
+  z-index:2;
+  right:55px;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(470px,42%);
+  text-align:center;
+}
+
+.flag-archive-title > span{
+  display:block;
+  color:#c8a15c;
+  font-size:10px;
+  letter-spacing:4px;
+}
+
+.flag-archive-title h2{
+  margin:12px 0 4px;
+  font-family:Georgia,serif;
+  font-size:clamp(62px,7vw,100px);
+  font-weight:400;
+  line-height:.95;
+  color:#efd09a;
+}
+
+.flag-archive-title > div{
+  color:#ead7b5;
+  font-size:12px;
+  letter-spacing:7px;
+}
+
+.flag-archive-title blockquote{
+  margin:34px 0 0;
+  padding-top:28px;
+  border-top:1px solid rgba(198,158,84,.55);
+  color:#dfceb4;
+  font-family:Georgia,serif;
+  font-size:20px;
+  font-style:italic;
+  line-height:1.6;
+}
+
+.flag-archive-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+.flag-official,
+.flag-colours{
+  border:1px solid rgba(194,154,82,.42);
+  background:#08171d;
+  padding:28px;
+}
+
+.flag-official > span,
+.flag-colours > span{
+  display:block;
+  margin-bottom:22px;
+  color:#d2ad69;
+  font-size:11px;
+  letter-spacing:4px;
+  text-align:center;
+}
+
+.flag-official-image{
+  border:1px solid rgba(199,160,86,.45);
+  overflow:hidden;
+  background:#031016;
+}
+
+.flag-official-image img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.flag-official > p{
+  margin:25px 0 0;
+  color:#ddc28e;
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-style:italic;
+  text-align:center;
+  letter-spacing:1px;
+}
+
+.flag-colour-row{
+  display:grid;
+  grid-template-columns:86px 1fr;
+  gap:20px;
+  align-items:center;
+  padding:15px 0;
+  border-top:1px solid rgba(184,148,80,.25);
+}
+
+.flag-colour-row:first-of-type{
+  border-top:none;
+}
+
+.flag-colour{
+  display:block;
+  width:86px;
+  height:58px;
+  border:1px solid rgba(210,177,112,.42);
+}
+
+.flag-colour.green{
+  background:#0b4b3c;
+}
+
+.flag-colour.cream{
+  background:#eee8dc;
+}
+
+.flag-colour.navy{
+  background:#173152;
+}
+
+.flag-colour.gold{
+  background:#c99a3f;
+}
+
+.flag-colour-row h3{
+  margin:0 0 5px;
+  color:#edcf99;
+  font-family:Georgia,serif;
+  font-size:20px;
+  font-weight:400;
+}
+
+.flag-colour-row p{
+  margin:0;
+  color:#cec3b1;
+  font-family:Georgia,serif;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.flag-archive-ending{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  padding:35px 0 5px;
+}
+
+.flag-archive-ending span{
+  display:block;
+  width:145px;
+  height:1px;
+  background:rgba(194,154,82,.48);
+}
+
+.flag-archive-ending p{
+  margin:0;
+  color:#d7b46f;
+  font-family:Georgia,serif;
+  font-size:16px;
+  font-style:italic;
+  text-align:center;
+}
+
+@media(max-width:900px){
+
+  .flag-archive-info{
+    grid-template-columns:1fr;
+  }
+
+  .flag-archive-hero{
+    min-height:650px;
+  }
+
+  .flag-archive-title{
+    right:30px;
+    width:min(430px,55%);
+  }
+}
+
+@media(max-width:650px){
+
+  .flag-archive-shell{
+    width:95%;
+    padding-top:18px;
+  }
+
+  .flag-archive-close{
+    top:12px;
+    right:12px;
+  }
+
+  .flag-archive-hero{
+    min-height:700px;
+  }
+
+  .flag-archive-hero-shade{
+    background:
+      linear-gradient(
+        to top,
+        rgba(2,12,17,.96) 0%,
+        rgba(2,12,17,.72) 52%,
+        rgba(2,12,17,.08) 100%
+      );
+  }
+
+  .flag-archive-title{
+    left:24px;
+    right:24px;
+    top:auto;
+    bottom:40px;
+    width:auto;
+    transform:none;
+  }
+
+  .flag-archive-title h2{
+    font-size:58px;
+  }
+
+  .flag-colour-row{
+    grid-template-columns:65px 1fr;
+    gap:14px;
+  }
+
+  .flag-colour{
+    width:65px;
+    height:48px;
+  }
+
+  .flag-archive-ending span{
+    width:50px;
+  }
+}
+
+/* === END THE FLAG ARCHIVE === */
