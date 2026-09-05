@@ -2816,3 +2816,362 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END THE FLAG ARCHIVE === */
+
+/* === THE EMBLEM ARCHIVE === */
+
+.emblem-archive{
+  position:fixed;
+  inset:0;
+  z-index:100011;
+  background:#061218;
+  color:#efe4d0;
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+
+.emblem-archive.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.emblem-archive-shell{
+  width:min(1450px,95%);
+  margin:0 auto;
+  padding:28px 0 70px;
+}
+
+.emblem-archive-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100012;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(198,158,84,.7);
+  background:rgba(3,14,19,.9);
+  color:#e5c37d;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.emblem-archive-hero{
+  position:relative;
+  min-height:700px;
+  overflow:hidden;
+  border:1px solid rgba(194,154,82,.42);
+  background:#07171d;
+}
+
+.emblem-archive-hero > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.emblem-archive-shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2,12,17,.05) 0%,
+      rgba(2,12,17,.08) 42%,
+      rgba(2,12,17,.78) 73%,
+      rgba(2,12,17,.96) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2,12,17,.55) 0%,
+      transparent 45%
+    );
+}
+
+.emblem-archive-title{
+  position:absolute;
+  z-index:2;
+  right:55px;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(520px,44%);
+  text-align:center;
+}
+
+.emblem-archive-title > span{
+  display:block;
+  color:#c8a15c;
+  font-size:10px;
+  letter-spacing:4px;
+}
+
+.emblem-archive-title h2{
+  margin:12px 0 5px;
+  font-family:Georgia,serif;
+  font-size:clamp(58px,6.5vw,94px);
+  font-weight:400;
+  line-height:1;
+  color:#efd09a;
+}
+
+.emblem-archive-title > div{
+  color:#ead7b5;
+  font-size:12px;
+  letter-spacing:7px;
+}
+
+.emblem-archive-title blockquote{
+  margin:34px 0 0;
+  padding-top:28px;
+  border-top:1px solid rgba(198,158,84,.55);
+  color:#dfceb4;
+  font-family:Georgia,serif;
+  font-size:20px;
+  font-style:italic;
+  line-height:1.6;
+}
+
+.emblem-archive-info{
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+.emblem-official,
+.emblem-elements{
+  border:1px solid rgba(194,154,82,.42);
+  background:#08171d;
+  padding:30px;
+}
+
+.emblem-official > span,
+.emblem-elements > span{
+  display:block;
+  margin-bottom:25px;
+  color:#d2ad69;
+  font-size:11px;
+  letter-spacing:4px;
+  text-align:center;
+}
+
+.emblem-official-image{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:330px;
+  padding:25px;
+  border:1px solid rgba(199,160,86,.28);
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(20,71,60,.42),
+      rgba(3,16,22,.9) 70%
+    );
+}
+
+.emblem-official-image img{
+  display:block;
+  max-width:100%;
+  max-height:310px;
+  object-fit:contain;
+}
+
+.emblem-official > p{
+  margin:25px 0 0;
+  color:#ddc28e;
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-style:italic;
+  text-align:center;
+}
+
+.emblem-elements-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  min-height:390px;
+}
+
+.emblem-element{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 18px;
+  text-align:center;
+  border-left:1px solid rgba(194,154,82,.3);
+}
+
+.emblem-element:first-child{
+  border-left:none;
+}
+
+.emblem-element strong{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:65px;
+  margin-bottom:15px;
+  color:#d7aa53;
+  font-family:Georgia,serif;
+  font-size:39px;
+  font-weight:400;
+  letter-spacing:4px;
+}
+
+.emblem-element h3{
+  margin:0 0 16px;
+  color:#edcf99;
+  font-family:Georgia,serif;
+  font-size:18px;
+  font-weight:400;
+}
+
+.emblem-element h3::after{
+  content:"";
+  display:block;
+  width:28px;
+  height:1px;
+  margin:13px auto 0;
+  background:rgba(201,159,77,.75);
+}
+
+.emblem-element p{
+  margin:0;
+  color:#cec3b1;
+  font-family:Georgia,serif;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.emblem-archive-ending{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:25px;
+  padding:38px 0 5px;
+}
+
+.emblem-archive-ending span{
+  display:block;
+  width:180px;
+  height:1px;
+  background:rgba(194,154,82,.48);
+}
+
+.emblem-archive-ending p{
+  margin:0;
+  color:#d7b46f;
+  font-family:Georgia,serif;
+  font-size:18px;
+  font-style:italic;
+  letter-spacing:5px;
+  text-align:center;
+}
+
+@media(max-width:1050px){
+
+  .emblem-archive-info{
+    grid-template-columns:1fr;
+  }
+
+  .emblem-elements-grid{
+    min-height:auto;
+  }
+}
+
+@media(max-width:800px){
+
+  .emblem-archive-hero{
+    min-height:650px;
+  }
+
+  .emblem-archive-title{
+    right:30px;
+    width:min(470px,55%);
+  }
+
+  .emblem-elements-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .emblem-element{
+    border-top:1px solid rgba(194,154,82,.3);
+  }
+
+  .emblem-element:nth-child(odd){
+    border-left:none;
+  }
+}
+
+@media(max-width:650px){
+
+  .emblem-archive-shell{
+    width:95%;
+    padding-top:18px;
+  }
+
+  .emblem-archive-close{
+    top:12px;
+    right:12px;
+  }
+
+  .emblem-archive-hero{
+    min-height:700px;
+  }
+
+  .emblem-archive-shade{
+    background:
+      linear-gradient(
+        to top,
+        rgba(2,12,17,.97) 0%,
+        rgba(2,12,17,.76) 52%,
+        rgba(2,12,17,.08) 100%
+      );
+  }
+
+  .emblem-archive-title{
+    left:22px;
+    right:22px;
+    top:auto;
+    bottom:38px;
+    width:auto;
+    transform:none;
+  }
+
+  .emblem-archive-title h2{
+    font-size:53px;
+  }
+
+  .emblem-elements-grid{
+    grid-template-columns:1fr;
+  }
+
+  .emblem-element{
+    border-left:none;
+    border-top:1px solid rgba(194,154,82,.3);
+  }
+
+  .emblem-element:first-child{
+    border-top:none;
+  }
+
+  .emblem-archive-ending{
+    gap:12px;
+  }
+
+  .emblem-archive-ending span{
+    width:45px;
+  }
+
+  .emblem-archive-ending p{
+    font-size:14px;
+    letter-spacing:3px;
+  }
+}
+
+/* === END THE EMBLEM ARCHIVE === */
