@@ -1351,3 +1351,262 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END NATIONAL SYMBOL DETAIL VIEW === */
+
+/* === KHOMBASA CITY ARCHIVE === */
+
+.khombasa-archive{
+  position:fixed;
+  inset:0;
+  z-index:100001;
+  background:#06131b;
+  color:#f3ead6;
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .25s ease, visibility .25s ease;
+}
+
+.khombasa-archive.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.khombasa-shell{
+  width:min(1180px,94%);
+  margin:0 auto;
+  padding:34px 0 70px;
+}
+
+.khombasa-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100002;
+  border:1px solid rgba(205,170,98,.65);
+  background:rgba(4,15,22,.82);
+  color:#f1d9a8;
+  width:46px;
+  height:46px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.khombasa-hero{
+  position:relative;
+  min-height:560px;
+  overflow:hidden;
+  border:1px solid rgba(201,165,92,.45);
+}
+
+.khombasa-hero img{
+  width:100%;
+  height:560px;
+  object-fit:cover;
+  display:block;
+}
+
+.khombasa-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top,rgba(3,15,22,.82),transparent 48%),
+    linear-gradient(to right,rgba(3,15,22,.45),transparent 45%);
+}
+
+.khombasa-hero-text{
+  position:absolute;
+  z-index:2;
+  left:50px;
+  bottom:45px;
+  max-width:620px;
+}
+
+.khombasa-hero-text span,
+.khombasa-intro span,
+.khombasa-place span{
+  color:#c4a15f;
+  letter-spacing:2.6px;
+  font-size:10px;
+}
+
+.khombasa-hero-text h2{
+  margin:8px 0 8px;
+  font-family:Georgia,serif;
+  font-size:clamp(48px,7vw,90px);
+  font-weight:400;
+  letter-spacing:4px;
+  color:#f4e5c3;
+}
+
+.khombasa-hero-text p{
+  margin:0;
+  max-width:560px;
+  font-family:Georgia,serif;
+  font-size:20px;
+  line-height:1.6;
+  color:#e1d4bd;
+}
+
+.khombasa-intro{
+  text-align:center;
+  max-width:760px;
+  margin:42px auto 32px;
+}
+
+.khombasa-intro h3{
+  margin:8px 0 10px;
+  font-family:Georgia,serif;
+  font-size:38px;
+  font-weight:400;
+  color:#f0dfbb;
+}
+
+.khombasa-intro p{
+  margin:0;
+  color:#c9c1b2;
+  line-height:1.8;
+}
+
+.khombasa-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.khombasa-place{
+  position:relative;
+  min-height:330px;
+  overflow:hidden;
+  border:1px solid rgba(194,157,88,.42);
+  background:#081923;
+  cursor:pointer;
+}
+
+.khombasa-place img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s ease;
+}
+
+.khombasa-place:hover img{
+  transform:scale(1.035);
+}
+
+.khombasa-place::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(3,15,22,.96),rgba(3,15,22,.12) 65%);
+}
+
+.khombasa-place > div{
+  position:absolute;
+  z-index:2;
+  left:25px;
+  right:25px;
+  bottom:23px;
+}
+
+.khombasa-place h3{
+  margin:7px 0 7px;
+  font-family:Georgia,serif;
+  font-size:28px;
+  font-weight:400;
+  color:#f2dfb7;
+}
+
+.khombasa-place p{
+  margin:0;
+  color:#cbc3b3;
+  line-height:1.55;
+}
+
+.khombasa-explore{
+  background:
+    radial-gradient(circle at 70% 40%,rgba(191,151,75,.16),transparent 32%),
+    linear-gradient(135deg,#0b2430,#06141b);
+}
+
+.khombasa-explore::after{
+  background:
+    linear-gradient(135deg,rgba(5,18,25,.2),rgba(5,18,25,.85)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(194,157,88,.04) 0,
+      rgba(194,157,88,.04) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+}
+
+.khombasa-explore-inner{
+  top:50%;
+  bottom:auto!important;
+  transform:translateY(-50%);
+}
+
+.khombasa-explore strong{
+  display:inline-block;
+  margin-top:18px;
+  color:#d8b873;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+@media(max-width:800px){
+  .khombasa-grid{
+    grid-template-columns:1fr;
+  }
+
+  .khombasa-hero,
+  .khombasa-hero img{
+    min-height:430px;
+    height:430px;
+  }
+
+  .khombasa-hero-text{
+    left:25px;
+    right:25px;
+    bottom:30px;
+  }
+
+  .khombasa-place{
+    min-height:300px;
+  }
+}
+
+@media(max-width:520px){
+  .khombasa-shell{
+    width:95%;
+    padding-top:18px;
+  }
+
+  .khombasa-close{
+    top:12px;
+    right:12px;
+  }
+
+  .khombasa-hero,
+  .khombasa-hero img{
+    min-height:380px;
+    height:380px;
+  }
+
+  .khombasa-hero-text h2{
+    font-size:46px;
+  }
+
+  .khombasa-hero-text p{
+    font-size:16px;
+  }
+
+  .khombasa-intro h3{
+    font-size:31px;
+  }
+}
