@@ -321,7 +321,6 @@ document.querySelectorAll('.world-folder').forEach(card=>{
     }
   });
 });
-});
 closeWorldFolder?.addEventListener('click',hideWorldFolder);
 worldFolderModal?.addEventListener('click',e=>{
   if(e.target===worldFolderModal)hideWorldFolder();
