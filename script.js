@@ -1003,3 +1003,63 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END LAKE NAVAR ARCHIVE ===
+
+// === MYTHS & LEGENDS ARCHIVE ===
+(function(){
+
+  const mythsArchive = document.getElementById('mythsArchive');
+  const closeMyths = document.getElementById('closeMyths');
+
+  function openMythsArchive(){
+    if(!mythsArchive) return;
+
+    mythsArchive.classList.add('open');
+    mythsArchive.setAttribute('aria-hidden','false');
+    mythsArchive.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMythsArchive(){
+    if(!mythsArchive) return;
+
+    mythsArchive.classList.remove('open');
+    mythsArchive.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  const mythsCard =
+    document.querySelector('[data-world-title="Myths & Legends"]');
+
+  if(mythsCard){
+
+    mythsCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openMythsArchive();
+    },true);
+
+    mythsCard.addEventListener('keydown',function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openMythsArchive();
+      }
+    },true);
+  }
+
+  if(closeMyths){
+    closeMyths.addEventListener('click',closeMythsArchive);
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(
+      e.key === 'Escape' &&
+      mythsArchive &&
+      mythsArchive.classList.contains('open')
+    ){
+      closeMythsArchive();
+    }
+  });
+
+})();
+// === END MYTHS & LEGENDS ARCHIVE ===
