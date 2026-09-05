@@ -752,3 +752,194 @@ if(closeNationalSymbolDetail){
 }
 
 // === END NATIONAL SYMBOLS ARCHIVE ===
+
+// === KHOMBASA CITY ARCHIVE ===
+(function(){
+
+  const khombasaArchive = document.getElementById('khombasaArchive');
+  const closeKhombasa = document.getElementById('closeKhombasa');
+
+  const khombasaDetail = document.getElementById('khombasaDetail');
+  const detailBack = document.getElementById('khombasaDetailBack');
+  const detailClose = document.getElementById('khombasaDetailClose');
+
+  const detailImage = document.getElementById('khombasaDetailImage');
+  const detailKicker = document.getElementById('khombasaDetailKicker');
+  const detailTitle = document.getElementById('khombasaDetailTitle');
+  const detailIntro = document.getElementById('khombasaDetailIntro');
+  const detailText = document.getElementById('khombasaDetailText');
+
+  const places = {
+
+    old:{
+      image:'assets/old-khombasa.png',
+      kicker:'01 · OLD CITY',
+      title:'Old Khombasa',
+      intro:'The oldest surviving quarter of the capital, where narrow streets descend toward the water.',
+      text:[
+        'Old Khombasa grew long before the modern capital took its present form. Stone passages, covered markets and quiet courtyards preserve the memory of generations that lived beside the harbour.',
+        'Its streets were never designed as a perfect grid. They followed the slope of the land, old waterways and paths whose original destinations have long been forgotten.'
+      ]
+    },
+
+    archive:{
+      image:'assets/grand-archive.png',
+      kicker:'02 · KNOWLEDGE',
+      title:'The Grand Archive',
+      intro:'The great repository of Urukhomban knowledge, memory and imagination.',
+      text:[
+        'The Grand Archive contains maps, manuscripts, letters, observations and stories gathered from across Urukhomba.',
+        'Its oldest halls make no strict distinction between history, legend and imagination. Archivists preserve each carefully, believing that even an impossible story can reveal something true about the people who told it.'
+      ]
+    },
+
+    observatory:{
+      image:'assets/observatory.png',
+      kicker:'03 · THE SKIES',
+      title:'The Observatory',
+      intro:'High above Khombasa, the observatory watches a sky that is never entirely predictable.',
+      text:[
+        'Built on the cliffs overlooking the capital, the Observatory studies stars, wandering lights and celestial events recorded nowhere beyond Urukhomba.',
+        'Its astronomers are famous for keeping two sets of charts: one showing the sky as it is, and another showing the sky as witnesses remember it.'
+      ]
+    }
+
+  };
+
+  function openKhombasa(){
+    if(!khombasaArchive) return;
+
+    khombasaArchive.classList.add('open');
+    khombasaArchive.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    khombasaArchive.scrollTop=0;
+  }
+
+  function closeKhombasaArchive(){
+    if(!khombasaArchive) return;
+
+    khombasaArchive.classList.remove('open');
+    khombasaArchive.setAttribute('aria-hidden','true');
+
+    if(khombasaDetail){
+      khombasaDetail.classList.remove('open');
+      khombasaDetail.setAttribute('aria-hidden','true');
+    }
+
+    document.body.style.overflow='';
+  }
+
+  function openPlace(id){
+
+    const place = places[id];
+
+    if(!place || !khombasaDetail) return;
+
+    detailImage.src = place.image;
+    detailImage.alt = place.title;
+    detailKicker.textContent = place.kicker;
+    detailTitle.textContent = place.title;
+    detailIntro.textContent = place.intro;
+
+    detailText.innerHTML = '';
+
+    place.text.forEach(paragraph=>{
+      const p = document.createElement('p');
+      p.textContent = paragraph;
+      detailText.appendChild(p);
+    });
+
+    khombasaDetail.classList.add('open');
+    khombasaDetail.setAttribute('aria-hidden','false');
+    khombasaDetail.scrollTop=0;
+  }
+
+  function closePlace(){
+    if(!khombasaDetail) return;
+
+    khombasaDetail.classList.remove('open');
+    khombasaDetail.setAttribute('aria-hidden','true');
+  }
+
+  const khombasaCard =
+    document.querySelector('[data-world-title="Khombasa"]');
+
+  if(khombasaCard){
+
+    khombasaCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openKhombasa();
+    },true);
+
+    khombasaCard.addEventListener('keydown',function(e){
+
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openKhombasa();
+      }
+
+    },true);
+  }
+
+  if(closeKhombasa){
+    closeKhombasa.addEventListener('click',closeKhombasaArchive);
+  }
+
+  document.querySelectorAll('[data-khombasa-place]').forEach(card=>{
+
+    card.addEventListener('click',()=>{
+
+      const id = card.dataset.khombasaPlace;
+
+      if(id === 'map'){
+
+        closeKhombasaArchive();
+
+        if(typeof openTerrainAtlas === 'function'){
+          openTerrainAtlas();
+        }
+
+        return;
+      }
+
+      openPlace(id);
+    });
+
+    card.addEventListener('keydown',e=>{
+
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        card.click();
+      }
+
+    });
+
+  });
+
+  if(detailBack){
+    detailBack.addEventListener('click',closePlace);
+  }
+
+  if(detailClose){
+    detailClose.addEventListener('click',closeKhombasaArchive);
+  }
+
+  document.addEventListener('keydown',e=>{
+
+    if(e.key!=='Escape') return;
+
+    if(khombasaDetail && khombasaDetail.classList.contains('open')){
+      closePlace();
+      return;
+    }
+
+    if(khombasaArchive && khombasaArchive.classList.contains('open')){
+      closeKhombasaArchive();
+    }
+
+  });
+
+})();
+// === END KHOMBASA CITY ARCHIVE ===
