@@ -673,13 +673,21 @@ if(info && detail){
   const sectionEls=detail.querySelectorAll('.national-symbol-detail-section');
 
 if(info.sections){
+  sectionEls.forEach(section=>{
+    section.style.display='none';
+  });
+
   info.sections.forEach((section,index)=>{
     if(sectionEls[index]){
+      sectionEls[index].style.display='';
       sectionEls[index].querySelector('h3').textContent=section[0];
       sectionEls[index].querySelector('p').textContent=section[1];
     }
   });
-}
+} else {
+  sectionEls.forEach(section=>{
+    section.style.display='none';
+  });
 }
 
 
