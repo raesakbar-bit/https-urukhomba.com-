@@ -587,14 +587,86 @@ if(nationalSymbolsArchive){
 
     const detail=document.getElementById('nationalSymbolDetail');
     const symbol=card.dataset.symbol;
+    const SYMBOL_DETAILS={
+  flag:{
+    number:'01 · NATIONAL FLAG',
+    title:'The Flag of Urukhomba',
+    image:'assets/flag.png',
+    alt:'National Flag of Urukhomba',
+    intro:'The national flag is one of the principal symbols of the Republic of Urukhomba. Its four colours represent the ideas upon which the imagined nation was founded.'
+  },
 
-if(symbol==='flower'){
-  detail.querySelector('.national-symbol-detail-number').textContent='05 · NATIONAL FLOWER';
-  detail.querySelector('h2').textContent='Zarmina';
-  detail.querySelector('.national-symbol-detail-image img').src='assets/zarmina.png';
-  detail.querySelector('.national-symbol-detail-image img').alt='Zarmina, National Flower of Urukhomba';
-  detail.querySelector('.national-symbol-detail-intro').textContent='Zarmina is the national flower of Urukhomba, known for its luminous blue, ivory and golden petals.';
+  emblem:{
+    number:'02 · NATIONAL EMBLEM',
+    title:'The National Emblem',
+    image:'assets/emblem.png',
+    alt:'National Emblem of Urukhomba',
+    intro:'The emblem represents the mountains, waters, light and enduring identity of Urukhomba.'
+  },
+
+  anthem:{
+    number:'03 · NATIONAL ANTHEM',
+    title:'The National Anthem',
+    image:'assets/anthem.jpg',
+    alt:'National Anthem of Urukhomba',
+    intro:'The national anthem is a musical expression of belonging, hope and the shared imagination of the Urukhomban people.'
+  },
+
+  motto:{
+    number:'04 · NATIONAL MOTTO',
+    title:'Imagination Is Our Greatest Territory.',
+    image:'assets/flag.png',
+    alt:'National Motto of Urukhomba',
+    intro:'The national motto expresses the central idea of Urukhomba: land may have borders, but imagination does not.'
+  },
+
+  flower:{
+    number:'05 · NATIONAL FLOWER',
+    title:'Zarmina',
+    image:'assets/zarmina.png',
+    alt:'Zarmina, National Flower of Urukhomba',
+    intro:'Zarmina is the national flower of Urukhomba, known for its luminous blue, ivory and golden petals and its association with serenity and renewal.'
+  },
+
+  tree:{
+    number:'06 · NATIONAL TREE',
+    title:'The Glowing Tree',
+    image:'assets/glowing-tree.png',
+    alt:'Glowing Tree, National Tree of Urukhomba',
+    intro:'The Glowing Tree is an ancient radiant tree symbolising memory, wisdom, continuity and the unseen energy of the land.'
+  },
+
+  animal:{
+    number:'07 · NATIONAL ANIMAL',
+    title:'The National Guardian',
+    image:'assets/national-animal.png',
+    alt:'National Animal of Urukhomba',
+    intro:'The National Guardian is an eagle-faced creature of grace and strength, regarded as a protector of Urukhomba’s mountains and high valleys.'
+  },
+
+  colours:{
+    number:'08 · NATIONAL COLOURS',
+    title:'The Four National Colours',
+    image:'assets/flag.png',
+    alt:'National Colours of Urukhomba',
+    intro:'Emerald Green, Ivory Cream, Navy Blue and Royal Gold form the official national colour palette of Urukhomba.'
+  }
+};
+
+const info=SYMBOL_DETAILS[symbol];
+
+if(info && detail){
+  detail.querySelector('.national-symbol-detail-number').textContent=info.number;
+  detail.querySelector('h2').textContent=info.title;
+
+  const img=detail.querySelector('.national-symbol-detail-image img');
+  img.src=info.image;
+  img.alt=info.alt;
+
+  detail.querySelector('.national-symbol-detail-intro').textContent=info.intro;
 }
+
+
 
     if(detail){
       detail.classList.add('open');
