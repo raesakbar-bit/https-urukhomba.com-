@@ -586,6 +586,15 @@ if(nationalSymbolsArchive){
     if(!card) return;
 
     const detail=document.getElementById('nationalSymbolDetail');
+    const symbol=card.dataset.symbol;
+
+if(symbol==='flower'){
+  detail.querySelector('.national-symbol-detail-number').textContent='05 · NATIONAL FLOWER';
+  detail.querySelector('h2').textContent='Zarmina';
+  detail.querySelector('.national-symbol-detail-image img').src='assets/zarmina.png';
+  detail.querySelector('.national-symbol-detail-image img').alt='Zarmina, National Flower of Urukhomba';
+  detail.querySelector('.national-symbol-detail-intro').textContent='Zarmina is the national flower of Urukhomba, known for its luminous blue, ivory and golden petals.';
+}
 
     if(detail){
       detail.classList.add('open');
