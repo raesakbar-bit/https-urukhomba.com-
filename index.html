@@ -511,6 +511,509 @@ A home for everyone...
   </div>
 </div>
 
+<!-- IMPOSSIBLE FAUNA ARCHIVE -->
+<style>
+.fauna-archive-overlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(3,17,24,.96);
+  display:none;
+  overflow-y:auto;
+  color:#f3ead6;
+}
+
+.fauna-archive-overlay.open{display:block;}
+
+.fauna-archive-shell{
+  width:min(1200px,92%);
+  margin:0 auto;
+  padding:40px 0 70px;
+}
+
+.fauna-archive-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:32px;
+}
+
+.fauna-archive-top small{
+  display:block;
+  color:#b99a5d;
+  letter-spacing:3px;
+  font-size:11px;
+  margin-bottom:7px;
+}
+
+.fauna-archive-top h2{
+  margin:0;
+  font-size:clamp(30px,5vw,55px);
+  font-family:Georgia,serif;
+  font-weight:400;
+}
+
+.fauna-close,
+.fauna-back{
+  border:1px solid #a8874c;
+  background:transparent;
+  color:#e7cf9b;
+  padding:11px 17px;
+  cursor:pointer;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+.fauna-intro{
+  max-width:700px;
+  color:#c9c1af;
+  line-height:1.7;
+  margin-bottom:35px;
+}
+
+.fauna-quote{
+  font-family:Georgia,serif;
+  font-style:italic;
+  color:#d8c59c;
+  border-left:2px solid #a8874c;
+  padding-left:18px;
+}
+
+.fauna-grid-real{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+
+.fauna-entry{
+  position:relative;
+  min-height:460px;
+  overflow:hidden;
+  border:1px solid rgba(194,157,88,.45);
+  background:#071923;
+  cursor:pointer;
+}
+
+.fauna-entry img{
+  width:100%;
+  height:100%;
+  position:absolute;
+  inset:0;
+  object-fit:cover;
+  transition:transform .55s ease;
+}
+
+.fauna-entry:hover img{
+  transform:scale(1.045);
+}
+
+.fauna-entry::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    transparent 38%,
+    rgba(3,15,22,.42) 58%,
+    rgba(3,15,22,.97) 100%
+  );
+}
+
+.fauna-entry-info{
+  position:absolute;
+  z-index:2;
+  left:20px;
+  right:20px;
+  bottom:20px;
+}
+
+.fauna-entry-info small{
+  color:#c3a46c;
+  letter-spacing:2px;
+  font-size:10px;
+}
+
+.fauna-entry-info h3{
+  margin:7px 0 0;
+  font-family:Georgia,serif;
+  font-size:30px;
+  font-weight:400;
+  color:#f3dfb3;
+}
+
+.fauna-dossier{
+  display:none;
+}
+
+.fauna-dossier.show{
+  display:block;
+}
+
+.fauna-dossier-layout{
+  display:grid;
+  grid-template-columns:1.55fr .75fr;
+  border:1px solid rgba(194,157,88,.4);
+  background:#061720;
+  overflow:hidden;
+}
+
+.fauna-dossier-image{
+  min-height:650px;
+}
+
+.fauna-dossier-image img{
+  width:100%;
+  height:100%;
+  min-height:650px;
+  object-fit:cover;
+  display:block;
+}
+
+.fauna-dossier-info{
+  padding:42px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.fauna-dossier-info .label{
+  color:#b79760;
+  letter-spacing:2.5px;
+  font-size:10px;
+  margin-bottom:8px;
+}
+
+.fauna-dossier-info h2{
+  font-family:Georgia,serif;
+  font-size:48px;
+  font-weight:400;
+  margin:0 0 28px;
+  color:#f2dfb3;
+}
+
+.fauna-fact{
+  padding:12px 0;
+  border-top:1px solid rgba(194,157,88,.2);
+}
+
+.fauna-fact span{
+  display:block;
+  color:#937b53;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+
+.fauna-fact strong{
+  font-weight:400;
+  color:#e7decc;
+}
+
+.fauna-lore{
+  margin-top:25px;
+  color:#c8c0ae;
+  line-height:1.75;
+  font-family:Georgia,serif;
+}
+
+.fauna-view-list{
+  display:block;
+}
+
+.fauna-view-list.hidden{
+  display:none;
+}
+
+@media(max-width:900px){
+  .fauna-grid-real{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .fauna-entry{
+    min-height:380px;
+  }
+
+  .fauna-dossier-layout{
+    grid-template-columns:1fr;
+  }
+
+  .fauna-dossier-image,
+  .fauna-dossier-image img{
+    min-height:420px;
+  }
+}
+
+@media(max-width:560px){
+  .fauna-archive-shell{
+    width:94%;
+    padding-top:22px;
+  }
+
+  .fauna-grid-real{
+    grid-template-columns:1fr;
+  }
+
+  .fauna-entry{
+    min-height:460px;
+  }
+
+  .fauna-dossier-info{
+    padding:28px 22px;
+  }
+
+  .fauna-dossier-info h2{
+    font-size:39px;
+  }
+}
+</style>
+
+<div class="fauna-archive-overlay" id="faunaArchive">
+
+  <div class="fauna-archive-shell">
+
+    <div class="fauna-view-list" id="faunaList">
+
+      <div class="fauna-archive-top">
+        <div>
+          <small>MINISTRY OF NATURAL WONDERS</small>
+          <h2>Impossible Fauna</h2>
+        </div>
+
+        <button class="fauna-close" id="closeFauna">
+          CLOSE ×
+        </button>
+      </div>
+
+      <div class="fauna-intro">
+        <p class="fauna-quote">
+          “Humans named most animals. These five were already named when humans found them.”
+        </p>
+      </div>
+
+      <div class="fauna-grid-real">
+
+        <article class="fauna-entry" data-creature="ozhq">
+          <img src="assets/ozhq.png.png" alt="Ōzhq">
+          <div class="fauna-entry-info">
+            <small>DOCUMENT I</small>
+            <h3>Ōzhq</h3>
+          </div>
+        </article>
+
+        <article class="fauna-entry" data-creature="khraei">
+          <img src="assets/khraei.png.png" alt="Khræi">
+          <div class="fauna-entry-info">
+            <small>DOCUMENT II</small>
+            <h3>Khræi</h3>
+          </div>
+        </article>
+
+        <article class="fauna-entry" data-creature="nuvraqh">
+          <img src="assets/nuvraqh.png.png" alt="Nūvraqh">
+          <div class="fauna-entry-info">
+            <small>DOCUMENT III</small>
+            <h3>Nūvraqh</h3>
+          </div>
+        </article>
+
+        <article class="fauna-entry" data-creature="eilth">
+          <img src="assets/eilth.png.png" alt="Eïl’th">
+          <div class="fauna-entry-info">
+            <small>DOCUMENT IV</small>
+            <h3>Eïl’th</h3>
+          </div>
+        </article>
+
+        <article class="fauna-entry" data-creature="ora">
+          <img src="assets/ora.png.png" alt="∅RA">
+          <div class="fauna-entry-info">
+            <small>DOCUMENT V</small>
+            <h3>∅RA</h3>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="fauna-dossier" id="faunaDossier">
+
+      <div class="fauna-archive-top">
+        <button class="fauna-back" id="faunaBack">
+          ← ALL CREATURES
+        </button>
+
+        <button class="fauna-close" id="closeFauna2">
+          CLOSE ×
+        </button>
+      </div>
+
+      <div class="fauna-dossier-layout">
+
+        <div class="fauna-dossier-image">
+          <img id="faunaDetailImage" src="" alt="">
+        </div>
+
+        <div class="fauna-dossier-info">
+
+          <div class="label">
+            URUKHOMBA · IMPOSSIBLE FAUNA ARCHIVE
+          </div>
+
+          <h2 id="faunaDetailName"></h2>
+
+          <div class="fauna-fact">
+            <span>Classification</span>
+            <strong>Unknown</strong>
+          </div>
+
+          <div class="fauna-fact">
+            <span>Habitat</span>
+            <strong id="faunaDetailHabitat"></strong>
+          </div>
+
+          <div class="fauna-fact">
+            <span>Estimated Size</span>
+            <strong id="faunaDetailSize"></strong>
+          </div>
+
+          <div class="fauna-fact">
+            <span>Archive Status</span>
+            <strong>Documented · Unexplained</strong>
+          </div>
+
+          <p class="fauna-lore" id="faunaDetailLore"></p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+
+const creatures = {
+
+  ozhq:{
+    name:"Ōzhq",
+    image:"assets/ozhq.png.png",
+    habitat:"River valleys · Sky-island regions",
+    size:"Approx. 200 metres",
+    lore:"Entire ecosystems grow upon Ōzhq as though its body were land. Waterfalls have been observed flowing from its back without any known source. Urukhomban naturalists disagree on whether Ōzhq walks across the landscape or whether the landscape moves with it."
+  },
+
+  khraei:{
+    name:"Khræi",
+    image:"assets/khraei.png.png",
+    habitat:"High mountains · Glacial zones",
+    size:"Approx. 150 metres",
+    lore:"Khræi is found above the permanent snow line. Its body appears to contain stone, ice and living tissue without any boundary between them. Old mountain accounts describe a low song around Khræi, yet witnesses claim the sound freezes in the air before reaching them."
+  },
+
+  nuvraqh:{
+    name:"Nūvraqh",
+    image:"assets/nuvraqh.png.png",
+    habitat:"Lake Navar · Unmeasured depths",
+    size:"Approx. 300 metres",
+    lore:"Nūvraqh moves through depths that should not physically fit beneath Lake Navar. Its translucent fins produce patterns resembling wings when seen from below. Some archivists believe it does not inhabit the lake at all, but passes through it from somewhere else."
+  },
+
+  eilth:{
+    name:"Eïl’th",
+    image:"assets/eilth.png.png",
+    habitat:"Verdant forests · Mist regions",
+    size:"Approx. 120 metres",
+    lore:"Neither plant nor animal classifications have survived examination of Eïl’th. Light grows inside its antlers and seeds have been recorded falling from its footprints. Travelers who follow those seeds frequently return to the place from which they began."
+  },
+
+  ora:{
+    name:"∅RA",
+    image:"assets/ora.png.png",
+    habitat:"Upper atmosphere · Location indeterminate",
+    size:"Variable · No reliable measurement",
+    lore:"∅RA is observed but not understood. Its apparent size changes according to distance in ways that contradict perspective. No two official sketches agree on its anatomy. Whether ∅RA is alive, a place, or an event remains unresolved."
+  }
+
+};
+
+const archive = document.getElementById("faunaArchive");
+const list = document.getElementById("faunaList");
+const dossier = document.getElementById("faunaDossier");
+
+function openArchive(){
+  archive.classList.add("open");
+  document.body.style.overflow="hidden";
+  showList();
+}
+
+function closeArchive(){
+  archive.classList.remove("open");
+  document.body.style.overflow="";
+}
+
+function showList(){
+  list.classList.remove("hidden");
+  dossier.classList.remove("show");
+}
+
+function openCreature(id){
+
+  const c = creatures[id];
+  if(!c) return;
+
+  document.getElementById("faunaDetailName").textContent=c.name;
+  document.getElementById("faunaDetailImage").src=c.image;
+  document.getElementById("faunaDetailImage").alt=c.name;
+  document.getElementById("faunaDetailHabitat").textContent=c.habitat;
+  document.getElementById("faunaDetailSize").textContent=c.size;
+  document.getElementById("faunaDetailLore").textContent=c.lore;
+
+  list.classList.add("hidden");
+  dossier.classList.add("show");
+
+  archive.scrollTop=0;
+}
+
+document.querySelectorAll(".fauna-entry").forEach(card=>{
+  card.addEventListener("click",()=>{
+    openCreature(card.dataset.creature);
+  });
+});
+
+document.getElementById("faunaBack").addEventListener("click",showList);
+document.getElementById("closeFauna").addEventListener("click",closeArchive);
+document.getElementById("closeFauna2").addEventListener("click",closeArchive);
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && archive.classList.contains("open")){
+    closeArchive();
+  }
+});
+
+const impossibleCard =
+  document.querySelector('[data-world-title="Impossible Fauna"]');
+
+if(impossibleCard){
+
+  impossibleCard.addEventListener("click",function(e){
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    openArchive();
+
+  },true);
+
+}
+
+})();
+</script>
+
+<!-- END IMPOSSIBLE FAUNA ARCHIVE -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="script.js"></script>
 </body></html>
