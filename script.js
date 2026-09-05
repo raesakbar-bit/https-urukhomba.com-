@@ -943,3 +943,63 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END KHOMBASA CITY ARCHIVE ===
+
+// === LAKE NAVAR ARCHIVE ===
+(function(){
+
+  const lakeNavarArchive = document.getElementById('lakeNavarArchive');
+  const closeLakeNavar = document.getElementById('closeLakeNavar');
+
+  function openLakeNavar(){
+    if(!lakeNavarArchive) return;
+
+    lakeNavarArchive.classList.add('open');
+    lakeNavarArchive.setAttribute('aria-hidden','false');
+    lakeNavarArchive.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLakeNavarArchive(){
+    if(!lakeNavarArchive) return;
+
+    lakeNavarArchive.classList.remove('open');
+    lakeNavarArchive.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  const lakeNavarCard =
+    document.querySelector('[data-world-title="Lake Navar"]');
+
+  if(lakeNavarCard){
+
+    lakeNavarCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openLakeNavar();
+    },true);
+
+    lakeNavarCard.addEventListener('keydown',function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openLakeNavar();
+      }
+    },true);
+  }
+
+  if(closeLakeNavar){
+    closeLakeNavar.addEventListener('click',closeLakeNavarArchive);
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(
+      e.key === 'Escape' &&
+      lakeNavarArchive &&
+      lakeNavarArchive.classList.contains('open')
+    ){
+      closeLakeNavarArchive();
+    }
+  });
+
+})();
+// === END LAKE NAVAR ARCHIVE ===
