@@ -690,9 +690,9 @@ if(info.sections){
   });
 }
 
+}
 
-
-    if(detail){
+if(detail){
       detail.classList.add('open');
       detail.setAttribute('aria-hidden','false');
     }
