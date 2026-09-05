@@ -582,15 +582,13 @@ document.addEventListener('keydown',e=>{
 document.querySelectorAll('.national-symbol-card[data-symbol]').forEach(card=>{
   card.addEventListener('click',()=>{
   const symbol=card.dataset.symbol;
+const detail=document.getElementById('nationalSymbolDetail');
 
-  if(symbol==='flag'){
-    const detail=document.getElementById('nationalSymbolDetail');
-    if(detail){
-      detail.classList.add('open');
-      detail.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    }
-  }
+if(detail){
+  detail.classList.add('open');
+  detail.setAttribute('aria-hidden','false');
+}
+  
 });
 
   card.addEventListener('keydown',e=>{
