@@ -621,12 +621,18 @@ if(nationalSymbolsArchive){
   },
 
   flower:{
-    number:'05 · NATIONAL FLOWER',
-    title:'Zarmina',
-    image:'assets/zarmina.png',
-    alt:'Zarmina, National Flower of Urukhomba',
-    intro:'Zarmina is the national flower of Urukhomba, known for its luminous blue, ivory and golden petals and its association with serenity and renewal.'
-  },
+  number:'05 · NATIONAL FLOWER',
+  title:'Zarmina',
+  image:'assets/zarmina.png',
+  alt:'Zarmina, National Flower of Urukhomba',
+  intro:'Zarmina is the national flower of Urukhomba, known for its luminous blue, ivory and golden petals and its association with serenity and renewal.',
+  sections:[
+    ['Symbolism','Zarmina represents serenity, renewal and beauty emerging from the unknown.'],
+    ['Appearance','Its luminous petals combine deep blue, ivory and subtle gold, making it unlike ordinary flowers.'],
+    ['Habitat','It is traditionally associated with misty valleys, quiet mountain forests and hidden waters of Urukhomba.'],
+    ['Cultural Meaning','Zarmina is used as a symbol of hope, inner peace and the beginning of something new.']
+  ]
+},
 
   tree:{
     number:'06 · NATIONAL TREE',
@@ -664,6 +670,16 @@ if(info && detail){
   img.alt=info.alt;
 
   detail.querySelector('.national-symbol-detail-intro').textContent=info.intro;
+  const sectionEls=detail.querySelectorAll('.national-symbol-detail-section');
+
+if(info.sections){
+  info.sections.forEach((section,index)=>{
+    if(sectionEls[index]){
+      sectionEls[index].querySelector('h3').textContent=section[0];
+      sectionEls[index].querySelector('p').textContent=section[1];
+    }
+  });
+}
 }
 
 
