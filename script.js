@@ -304,7 +304,10 @@ function hideWorldFolder(){
 
 document.querySelectorAll('.world-folder').forEach(card=>{
   card.addEventListener('click',()=>{
-    if(card.dataset.worldTitle==='Impossible Fauna' || card.dataset.worldTitle==='National Symbols') return;
+    if(card.dataset.worldTitle==='Impossible Fauna' || card.dataset.worldTitle==='National Symbols'){
+  if(card.dataset.worldTitle==='National Symbols') openNationalSymbolsArchive();
+  return;
+}
     openWorldFolder(card);
   });
 
