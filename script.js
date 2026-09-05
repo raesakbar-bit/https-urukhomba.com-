@@ -303,13 +303,24 @@ function hideWorldFolder(){
 }
 
 document.querySelectorAll('.world-folder').forEach(card=>{
-  card.addEventListener('click',()=>openWorldFolder(card));
+  card.addEventListener('click',()=>{
+    if(card.dataset.worldTitle==='Impossible Fauna') return;
+    openWorldFolder(card);
+  });
+
   card.addEventListener('keydown',e=>{
     if(e.key==='Enter' || e.key===' '){
       e.preventDefault();
+
+      if(card.dataset.worldTitle==='Impossible Fauna'){
+        card.click();
+        return;
+      }
+
       openWorldFolder(card);
     }
   });
+});
 });
 closeWorldFolder?.addEventListener('click',hideWorldFolder);
 worldFolderModal?.addEventListener('click',e=>{
