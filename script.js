@@ -589,38 +589,62 @@ if(nationalSymbolsArchive){
     const symbol=card.dataset.symbol;
     const SYMBOL_DETAILS={
   flag:{
-    number:'01 · NATIONAL FLAG',
-    title:'The Flag of Urukhomba',
-    image:'assets/flag.png',
-    alt:'National Flag of Urukhomba',
-    intro:'The national flag is one of the principal symbols of the Republic of Urukhomba. Its four colours represent the ideas upon which the imagined nation was founded.'
-  },
+  number:'01 · NATIONAL FLAG',
+  title:'The Flag of Urukhomba',
+  image:'assets/flag.png',
+  alt:'National Flag of Urukhomba',
+  intro:'The national flag is one of the principal symbols of the Republic of Urukhomba. Its four colours represent the ideas upon which the imagined nation was founded.',
+  sections:[
+    ['Emerald Green','Life, curiosity, imagination and the unexplored possibilities of the world.'],
+    ['Ivory Cream','Peace, openness and the space in which new ideas may emerge.'],
+    ['Navy Blue','Depth, memory, mystery and the unknown territories beyond the horizon.'],
+    ['Royal Gold','Aspiration, discovery and the light carried toward places that do not yet exist.']
+  ]
+},
 
-  emblem:{
-    number:'02 · NATIONAL EMBLEM',
-    title:'The National Emblem',
-    image:'assets/emblem.png',
-    alt:'National Emblem of Urukhomba',
-    intro:'The emblem represents the mountains, waters, light and enduring identity of Urukhomba.'
-  },
+emblem:{
+  number:'02 · NATIONAL EMBLEM',
+  title:'The National Emblem',
+  image:'assets/emblem.png',
+  alt:'National Emblem of Urukhomba',
+  intro:'The national emblem represents the landscapes, ideals and enduring identity of Urukhomba.',
+  sections:[
+    ['Mountains','The mountains represent endurance, exploration and the distant horizons of Urukhomba.'],
+    ['Waters','The waters symbolise movement, continuity and the unknown depths of imagination.'],
+    ['Golden Light','The rising golden light represents discovery, hope and the beginning of new possibilities.'],
+    ['Unity','The complete emblem brings together land, water and light as one national identity.']
+  ]
+},
 
-  anthem:{
-    number:'03 · NATIONAL ANTHEM',
-    title:'The National Anthem',
-    image:'assets/anthem.jpg',
-    alt:'National Anthem of Urukhomba',
-    intro:'The national anthem is a musical expression of belonging, hope and the shared imagination of the Urukhomban people.'
-  },
+anthem:{
+  number:'03 · NATIONAL ANTHEM',
+  title:'The National Anthem',
+  image:'assets/anthem.jpg',
+  alt:'National Anthem of Urukhomba',
+  intro:'The national anthem is a musical expression of belonging, hope and the shared imagination of the Urukhomban people.',
+  sections:[
+    ['Meaning','The anthem celebrates unity, imagination and the feeling of belonging to a land created through ideas.'],
+    ['Theme','Its words travel through mountains, seas, hope and the shared home of Urukhomba.'],
+    ['Tradition','The anthem is associated with national ceremonies, cultural gatherings and moments of remembrance.'],
+    ['Spirit','Its central spirit is that imagination can unite people beyond ordinary borders.']
+  ]
+},
 
-  motto:{
-    number:'04 · NATIONAL MOTTO',
-    title:'Imagination Is Our Greatest Territory.',
-    image:'assets/flag.png',
-    alt:'National Motto of Urukhomba',
-    intro:'The national motto expresses the central idea of Urukhomba: land may have borders, but imagination does not.'
-  },
-
-  flower:{
+motto:{
+  number:'04 · NATIONAL MOTTO',
+  title:'Imagination Is Our Greatest Territory.',
+  image:'assets/flag.png',
+  alt:'National Motto of Urukhomba',
+  intro:'The national motto expresses the central idea of Urukhomba: land may have borders, but imagination does not.',
+  sections:[
+    ['Meaning','The motto declares that the greatest territory is not physical land, but the human capacity to imagine.'],
+    ['Purpose','It encourages curiosity, creation and the exploration of ideas beyond conventional limits.'],
+    ['Identity','The phrase represents the philosophical foundation of Urukhomba as an imagined nation.'],
+    ['Legacy','It serves as a reminder that worlds can begin as thoughts before they become stories, traditions and symbols.']
+  ]
+},
+      
+flower:{
   number:'05 · NATIONAL FLOWER',
   title:'Zarmina',
   image:'assets/zarmina.png',
@@ -634,29 +658,47 @@ if(nationalSymbolsArchive){
   ]
 },
 
-  tree:{
-    number:'06 · NATIONAL TREE',
-    title:'The Glowing Tree',
-    image:'assets/glowing-tree.png',
-    alt:'Glowing Tree, National Tree of Urukhomba',
-    intro:'The Glowing Tree is an ancient radiant tree symbolising memory, wisdom, continuity and the unseen energy of the land.'
-  },
+tree:{
+  number:'06 · NATIONAL TREE',
+  title:'The Glowing Tree',
+  image:'assets/glowing-tree.png',
+  alt:'Glowing Tree, National Tree of Urukhomba',
+  intro:'The Glowing Tree is an ancient radiant tree symbolising memory, wisdom, continuity and the unseen energy of the land.',
+  sections:[
+    ['Symbolism','The tree represents memory, wisdom, continuity and the connection between generations.'],
+    ['Appearance','Its ancient pale trunk carries radiant golden growth while blue energy appears to flow through its roots and branches.'],
+    ['Habitat','The oldest Glowing Trees are said to grow near high lakes, mountain valleys and remote rocky overlooks.'],
+    ['Cultural Meaning','They are regarded as living witnesses to the history, stories and changing landscapes of Urukhomba.']
+  ]
+},
 
-  animal:{
-    number:'07 · NATIONAL ANIMAL',
-    title:'The National Guardian',
-    image:'assets/national-animal.png',
-    alt:'National Animal of Urukhomba',
-    intro:'The National Guardian is an eagle-faced creature of grace and strength, regarded as a protector of Urukhomba’s mountains and high valleys.'
-  },
+animal:{
+  number:'07 · NATIONAL ANIMAL',
+  title:'The National Guardian',
+  image:'assets/national-animal.png',
+  alt:'National Animal of Urukhomba',
+  intro:'The National Guardian is an eagle-faced creature of grace and strength, regarded as a protector of Urukhomba’s mountains and high valleys.',
+  sections:[
+    ['Symbolism','The National Guardian represents courage, vigilance, freedom and protection.'],
+    ['Appearance','It combines an eagle-like face with a powerful celestial body, sweeping plumage and colours drawn from Urukhomba’s national palette.'],
+    ['Habitat','It is traditionally associated with remote mountain ridges, high valleys and lakes hidden above the clouds.'],
+    ['Legend','Old Urukhomban stories describe the creature as a silent guardian that appears when the land is threatened or undergoing great change.']
+  ]
+},
 
-  colours:{
-    number:'08 · NATIONAL COLOURS',
-    title:'The Four National Colours',
-    image:'assets/flag.png',
-    alt:'National Colours of Urukhomba',
-    intro:'Emerald Green, Ivory Cream, Navy Blue and Royal Gold form the official national colour palette of Urukhomba.'
-  }
+colours:{
+  number:'08 · NATIONAL COLOURS',
+  title:'The Four National Colours',
+  image:'assets/flag.png',
+  alt:'National Colours of Urukhomba',
+  intro:'Emerald Green, Ivory Cream, Navy Blue and Royal Gold form the official national colour palette of Urukhomba.',
+  sections:[
+    ['Emerald Green','Represents life, curiosity, growth and imagination.'],
+    ['Ivory Cream','Represents peace, openness, clarity and possibility.'],
+    ['Navy Blue','Represents depth, memory, mystery and unexplored horizons.'],
+    ['Royal Gold','Represents aspiration, discovery, dignity and light.']
+  ]
+}
 };
 
 const info=SYMBOL_DETAILS[symbol];
