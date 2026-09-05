@@ -1063,3 +1063,63 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END MYTHS & LEGENDS ARCHIVE ===
+
+// === THE FIRST STORY ARCHIVE ===
+(function(){
+
+  const firstStoryArchive = document.getElementById('firstStoryArchive');
+  const closeFirstStory = document.getElementById('closeFirstStory');
+
+  function openFirstStory(){
+    if(!firstStoryArchive) return;
+
+    firstStoryArchive.classList.add('open');
+    firstStoryArchive.setAttribute('aria-hidden','false');
+    firstStoryArchive.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeFirstStoryArchive(){
+    if(!firstStoryArchive) return;
+
+    firstStoryArchive.classList.remove('open');
+    firstStoryArchive.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  const firstStoryCard =
+    document.querySelector('[data-world-title="The First Story"]');
+
+  if(firstStoryCard){
+
+    firstStoryCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openFirstStory();
+    },true);
+
+    firstStoryCard.addEventListener('keydown',function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openFirstStory();
+      }
+    },true);
+  }
+
+  if(closeFirstStory){
+    closeFirstStory.addEventListener('click',closeFirstStoryArchive);
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(
+      e.key === 'Escape' &&
+      firstStoryArchive &&
+      firstStoryArchive.classList.contains('open')
+    ){
+      closeFirstStoryArchive();
+    }
+  });
+
+})();
+// === END THE FIRST STORY ARCHIVE ===
