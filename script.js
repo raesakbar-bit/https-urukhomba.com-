@@ -1183,3 +1183,63 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END THE FLAG ARCHIVE ===
+
+// === THE EMBLEM ARCHIVE ===
+(function(){
+
+  const emblemArchive = document.getElementById('emblemArchive');
+  const closeEmblemArchive = document.getElementById('closeEmblemArchive');
+
+  function openEmblemArchive(){
+    if(!emblemArchive) return;
+
+    emblemArchive.classList.add('open');
+    emblemArchive.setAttribute('aria-hidden','false');
+    emblemArchive.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEmblem(){
+    if(!emblemArchive) return;
+
+    emblemArchive.classList.remove('open');
+    emblemArchive.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  const emblemCard =
+    document.querySelector('[data-world-title="The Emblem"]');
+
+  if(emblemCard){
+
+    emblemCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openEmblemArchive();
+    },true);
+
+    emblemCard.addEventListener('keydown',function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openEmblemArchive();
+      }
+    },true);
+  }
+
+  if(closeEmblemArchive){
+    closeEmblemArchive.addEventListener('click',closeEmblem);
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(
+      e.key === 'Escape' &&
+      emblemArchive &&
+      emblemArchive.classList.contains('open')
+    ){
+      closeEmblem();
+    }
+  });
+
+})();
+// === END THE EMBLEM ARCHIVE ===
