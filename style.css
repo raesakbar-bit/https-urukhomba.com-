@@ -2011,3 +2011,256 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END LAKE NAVAR ARCHIVE === */
+
+/* === MYTHS & LEGENDS ARCHIVE === */
+
+.myths-archive{
+  position:fixed;
+  inset:0;
+  z-index:100005;
+  background:rgba(2,12,17,.97);
+  color:#f1e6d0;
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+
+.myths-archive.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.myths-shell{
+  width:min(1400px,94%);
+  margin:0 auto;
+  padding:42px 0 60px;
+}
+
+.myths-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100006;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(199,161,92,.7);
+  background:rgba(3,15,20,.9);
+  color:#e4c181;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.myths-header{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:flex-end;
+  padding:24px 10px 28px;
+  border-bottom:1px solid rgba(193,153,81,.35);
+}
+
+.myths-header > div > span{
+  display:block;
+  margin-bottom:10px;
+  color:#c8a468;
+  font-size:10px;
+  letter-spacing:4px;
+}
+
+.myths-header h2{
+  margin:0;
+  font-family:Georgia,serif;
+  font-size:clamp(48px,6vw,78px);
+  font-weight:400;
+  line-height:1;
+  color:#edcf99;
+}
+
+.myths-header p{
+  margin:13px 0 0;
+  color:#d7bd8b;
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.myths-header blockquote{
+  width:min(390px,100%);
+  margin:0;
+  color:#cfc1aa;
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-style:italic;
+  line-height:1.6;
+  text-align:right;
+}
+
+.myths-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:26px;
+}
+
+.myth-card{
+  position:relative;
+  min-height:570px;
+  overflow:hidden;
+  border:1px solid rgba(199,160,87,.45);
+  background:#07171d;
+  cursor:pointer;
+}
+
+.myth-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+
+.myth-card:hover img{
+  transform:scale(1.035);
+}
+
+.myth-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(2,13,18,.98) 0%,
+      rgba(2,13,18,.92) 28%,
+      rgba(2,13,18,.35) 55%,
+      rgba(2,13,18,.05) 100%
+    );
+}
+
+.myth-card-text{
+  position:absolute;
+  z-index:2;
+  left:22px;
+  right:22px;
+  bottom:22px;
+}
+
+.myth-card-text span{
+  color:#cda75f;
+  font-size:11px;
+  letter-spacing:3px;
+}
+
+.myth-card-text h3{
+  margin:8px 0 8px;
+  font-family:Georgia,serif;
+  font-size:27px;
+  font-weight:400;
+  color:#f0dbb4;
+}
+
+.myth-card-text p{
+  margin:0;
+  min-height:44px;
+  color:#d3c9b8;
+  font-family:Georgia,serif;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.myth-card-text strong{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  margin-top:18px;
+  border:1px solid rgba(202,162,89,.65);
+  border-radius:50%;
+  color:#d9ba7b;
+  font-size:18px;
+  font-weight:400;
+}
+
+.myths-footer{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  margin-top:30px;
+}
+
+.myths-footer span{
+  display:block;
+  width:150px;
+  height:1px;
+  background:rgba(196,156,83,.5);
+}
+
+.myths-footer p{
+  margin:0;
+  color:#d4b67f;
+  font-family:Georgia,serif;
+  font-size:16px;
+  font-style:italic;
+  text-align:center;
+}
+
+@media(max-width:1050px){
+  .myths-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .myth-card{
+    min-height:520px;
+  }
+}
+
+@media(max-width:700px){
+  .myths-header{
+    display:block;
+  }
+
+  .myths-header blockquote{
+    margin-top:24px;
+    text-align:left;
+  }
+
+  .myths-grid{
+    grid-template-columns:1fr;
+  }
+
+  .myth-card{
+    min-height:500px;
+  }
+
+  .myths-footer span{
+    width:55px;
+  }
+}
+
+@media(max-width:500px){
+  .myths-shell{
+    width:94%;
+    padding-top:24px;
+  }
+
+  .myths-close{
+    top:12px;
+    right:12px;
+  }
+
+  .myth-card{
+    min-height:440px;
+  }
+
+  .myths-header h2{
+    font-size:48px;
+  }
+}
+
+/* === END MYTHS & LEGENDS ARCHIVE === */
