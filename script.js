@@ -581,9 +581,17 @@ document.addEventListener('keydown',e=>{
 // Individual National Symbol cards
 document.querySelectorAll('.national-symbol-card[data-symbol]').forEach(card=>{
   card.addEventListener('click',()=>{
-    const symbol=card.dataset.symbol;
-    console.log('National Symbol opened:',symbol);
-  });
+  const symbol=card.dataset.symbol;
+
+  if(symbol==='flag'){
+    const detail=document.getElementById('nationalSymbolDetail');
+    if(detail){
+      detail.classList.add('open');
+      detail.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+  }
+});
 
   card.addEventListener('keydown',e=>{
     if(e.key==='Enter' || e.key===' '){
@@ -592,6 +600,15 @@ document.querySelectorAll('.national-symbol-card[data-symbol]').forEach(card=>{
     }
   });
 });
+const nationalSymbolDetail=document.getElementById('nationalSymbolDetail');
+const closeNationalSymbolDetail=document.getElementById('closeNationalSymbolDetail');
 
+if(closeNationalSymbolDetail){
+  closeNationalSymbolDetail.addEventListener('click',()=>{
+    nationalSymbolDetail.classList.remove('open');
+    nationalSymbolDetail.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  });
+}
 
 // === END NATIONAL SYMBOLS ARCHIVE ===
