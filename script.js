@@ -1123,3 +1123,63 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END THE FIRST STORY ARCHIVE ===
+
+// === THE FLAG ARCHIVE ===
+(function(){
+
+  const flagArchive = document.getElementById('flagArchive');
+  const closeFlagArchive = document.getElementById('closeFlagArchive');
+
+  function openFlagArchive(){
+    if(!flagArchive) return;
+
+    flagArchive.classList.add('open');
+    flagArchive.setAttribute('aria-hidden','false');
+    flagArchive.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeFlag(){
+    if(!flagArchive) return;
+
+    flagArchive.classList.remove('open');
+    flagArchive.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  const flagCard =
+    document.querySelector('[data-world-title="The Flag"]');
+
+  if(flagCard){
+
+    flagCard.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openFlagArchive();
+    },true);
+
+    flagCard.addEventListener('keydown',function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openFlagArchive();
+      }
+    },true);
+  }
+
+  if(closeFlagArchive){
+    closeFlagArchive.addEventListener('click',closeFlag);
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(
+      e.key === 'Escape' &&
+      flagArchive &&
+      flagArchive.classList.contains('open')
+    ){
+      closeFlag();
+    }
+  });
+
+})();
+// === END THE FLAG ARCHIVE ===
