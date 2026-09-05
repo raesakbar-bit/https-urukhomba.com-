@@ -578,5 +578,20 @@ document.addEventListener('keydown',e=>{
     closeNationalSymbolsArchive();
   }
 });
+// Individual National Symbol cards
+document.querySelectorAll('.national-symbol-card[data-symbol]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const symbol=card.dataset.symbol;
+    console.log('National Symbol opened:',symbol);
+  });
+
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      card.click();
+    }
+  });
+});
+
 
 // === END NATIONAL SYMBOLS ARCHIVE ===
