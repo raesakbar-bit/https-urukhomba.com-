@@ -1453,6 +1453,10 @@ function openCreature(id){
 document.querySelectorAll(".fauna-entry").forEach(card=>{
   card.addEventListener("click",()=>{
     openCreature(card.dataset.creature);
+
+    if(window.recordUrukhombaDiscovery){
+      window.recordUrukhombaDiscovery("NATURAL_WONDER");
+    }
   });
 });
 
