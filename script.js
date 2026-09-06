@@ -2446,3 +2446,311 @@ if(closeNationalSymbolDetail){
 
 
 })();
+
+/* =========================================================
+   URUKHOMBA — RETURNING CITIZEN / RESTORE JOURNEY
+   ========================================================= */
+
+(function(){
+
+  const restoreButton =
+    document.getElementById("restoreUrukhombaCitizen");
+
+  const numberInput =
+    document.getElementById("returnCitizenNumber");
+
+  const keyInput =
+    document.getElementById("returnCitizenKey");
+
+  if(!restoreButton || !numberInput || !keyInput){
+    return;
+  }
+
+
+  function setRestoreButtonLoading(isLoading){
+
+    restoreButton.disabled = isLoading;
+
+    restoreButton.textContent =
+      isLoading
+        ? "RESTORING JOURNEY..."
+        : "RESTORE JOURNEY";
+
+  }
+
+
+  function formatCitizenNumber(value){
+
+    return String(value || "")
+      .trim()
+      .toUpperCase();
+
+  }
+
+
+  restoreButton.addEventListener("click", async function(){
+
+    const citizenNumber =
+      formatCitizenNumber(numberInput.value);
+
+    const citizenKey =
+      String(keyInput.value || "").trim();
+
+
+    if(!citizenNumber || !citizenKey){
+
+      alert(
+        "Please enter both your Citizen Number and Citizen Key."
+      );
+
+      return;
+
+    }
+
+
+    setRestoreButtonLoading(true);
+
+
+    try{
+
+      const response = await fetch(
+        URUKHOMBA_SUPABASE_URL +
+        "/rest/v1/rpc/restore_urukhomba_citizen",
+        {
+          method:"POST",
+
+          headers:{
+            "apikey":URUKHOMBA_SUPABASE_KEY,
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+            p_citizen_number:citizenNumber,
+            p_citizen_key:citizenKey
+          })
+        }
+      );
+
+
+      const result = await response.json();
+
+
+      if(!response.ok){
+
+        console.error(
+          "Restore citizen error:",
+          result
+        );
+
+        throw new Error(
+          "Citizen Number or Citizen Key is incorrect."
+        );
+
+      }
+
+
+      const row =
+        Array.isArray(result)
+          ? result[0]
+          : result;
+
+
+      if(!row){
+
+        throw new Error(
+          "Citizen Number or Citizen Key is incorrect."
+        );
+
+      }
+
+
+      const profile = {
+
+        citizenNumber:
+          row.citizen_number,
+
+        name:
+          row.citizen_name,
+
+        placeOfOrigin:
+          row.place_of_origin || "",
+
+        principle:
+          row.principle,
+
+        title:
+          row.citizen_title,
+
+        joinedAt:
+          row.joined_at,
+
+        discoveryCount:
+          Number(row.discovery_count || 0),
+
+        citizenKey:
+          citizenKey
+
+      };
+
+
+      localStorage.setItem(
+        "urukhombaActiveCitizen",
+        JSON.stringify(profile)
+      );
+
+
+      /* UPDATE CITIZENSHIP PROFILE */
+
+      const statusSymbol =
+        document.getElementById(
+          "citizenshipStatusSymbol"
+        );
+
+      const statusTitle =
+        document.getElementById(
+          "citizenshipStatusTitle"
+        );
+
+      const statusText =
+        document.getElementById(
+          "citizenshipStatusText"
+        );
+
+      const profilePanel =
+        document.getElementById(
+          "citizenshipProfile"
+        );
+
+
+      if(statusSymbol){
+        statusSymbol.textContent = "✦";
+      }
+
+      if(statusTitle){
+        statusTitle.textContent =
+          "Journey Restored";
+      }
+
+      if(statusText){
+        statusText.textContent =
+          "Welcome back to Urukhomba.";
+      }
+
+
+      const name =
+        document.getElementById(
+          "profileCitizenName"
+        );
+
+      const number =
+        document.getElementById(
+          "profileCitizenNumber"
+        );
+
+      const date =
+        document.getElementById(
+          "profileCitizenDate"
+        );
+
+      const principle =
+        document.getElementById(
+          "profileCitizenPrinciple"
+        );
+
+      const title =
+        document.getElementById(
+          "profileCitizenTitle"
+        );
+
+      const discoveries =
+        document.getElementById(
+          "profileCitizenDiscoveries"
+        );
+
+      const key =
+        document.getElementById(
+          "profileCitizenKey"
+        );
+
+
+      if(name){
+        name.textContent = profile.name;
+      }
+
+      if(number){
+        number.textContent =
+          profile.citizenNumber;
+      }
+
+      if(date){
+
+        date.textContent =
+          profile.joinedAt
+            ? new Date(
+                profile.joinedAt
+              ).toLocaleDateString()
+            : "—";
+
+      }
+
+      if(principle){
+        principle.textContent =
+          profile.principle;
+      }
+
+      if(title){
+        title.textContent =
+          profile.title;
+      }
+
+      if(discoveries){
+        discoveries.textContent =
+          profile.discoveryCount + " / 6";
+      }
+
+      if(key){
+        key.textContent =
+          profile.citizenKey;
+      }
+
+
+      if(profilePanel){
+
+        profilePanel.classList.remove(
+          "citizenship-hidden"
+        );
+
+      }
+
+
+      /* CLEAR RECOVERY FIELDS */
+
+      numberInput.value = "";
+      keyInput.value = "";
+
+
+      alert(
+        "Journey restored.\n\nWelcome back, " +
+        profile.name +
+        "."
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+      alert(
+        error.message ||
+        "We could not restore this journey."
+      );
+
+    }finally{
+
+      setRestoreButtonLoading(false);
+
+    }
+
+  });
+
+})();
