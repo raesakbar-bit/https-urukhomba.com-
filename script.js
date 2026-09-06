@@ -1344,3 +1344,310 @@ if(closeNationalSymbolDetail){
   });
 
 })();
+
+/* =========================================================
+   URUKHOMBA — REAL CITIZEN CREATION
+   ========================================================= */
+
+(function(){
+
+  const createButton = document.getElementById("createUrukhombaCitizen");
+
+  const nameInput = document.getElementById("citizenName");
+  const originInput = document.getElementById("citizenOrigin");
+  const reasonInput = document.getElementById("citizenReason");
+  const agreement = document.getElementById("citizenshipAgreement");
+
+  const principleButtons = document.querySelectorAll(
+    ".citizenship-principles button[data-principle]"
+  );
+
+  if(!createButton) return;
+
+  let selectedPrinciple = "Curiosity";
+
+  const titles = {
+    Knowledge: "Keeper of Questions",
+    Imagination: "Maker of Horizons",
+    Peace: "Keeper of Quiet Roads",
+    Curiosity: "Keeper of Stories",
+    Freedom: "Wanderer Beyond Borders",
+    Exploration: "Traveller of the Shifting Lands"
+  };
+
+
+  /* -----------------------------------------
+     PRINCIPLE SELECTION
+     ----------------------------------------- */
+
+  principleButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      principleButtons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      selectedPrinciple =
+        button.dataset.principle || "Curiosity";
+
+    });
+
+  });
+
+
+  /* -----------------------------------------
+     CREATE A STRONG CITIZEN KEY
+     ----------------------------------------- */
+
+  function generateCitizenKey(){
+
+    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    const randomPart = length => {
+
+      const values = new Uint32Array(length);
+
+      crypto.getRandomValues(values);
+
+      return Array.from(
+        values,
+        value => alphabet[value % alphabet.length]
+      ).join("");
+
+    };
+
+    return (
+      "URK-" +
+      randomPart(4) +
+      "-" +
+      randomPart(4) +
+      "-" +
+      randomPart(4)
+    );
+
+  }
+
+
+  /* -----------------------------------------
+     DISPLAY ACTIVE CITIZEN
+     ----------------------------------------- */
+
+  function displayCitizen(profile){
+
+    document.getElementById(
+      "citizenshipStatusSymbol"
+    ).textContent = "✦";
+
+    document.getElementById(
+      "citizenshipStatusTitle"
+    ).textContent = "Citizen of Urukhomba";
+
+    document.getElementById(
+      "citizenshipStatusText"
+    ).textContent =
+      "Your symbolic citizenship has been entered into the Republic of Urukhomba.";
+
+    document.getElementById(
+      "profileCitizenName"
+    ).textContent = profile.name;
+
+    document.getElementById(
+      "profileCitizenNumber"
+    ).textContent = profile.citizenNumber;
+
+    document.getElementById(
+      "profileCitizenDate"
+    ).textContent =
+      new Date(profile.joinedAt).toLocaleDateString();
+
+    document.getElementById(
+      "profileCitizenPrinciple"
+    ).textContent = profile.principle;
+
+    document.getElementById(
+      "profileCitizenTitle"
+    ).textContent = profile.title;
+
+    document.getElementById(
+      "profileCitizenDiscoveries"
+    ).textContent = "0 / 6";
+
+    document.getElementById(
+      "profileCitizenKey"
+    ).textContent = profile.citizenKey;
+
+    document.getElementById(
+      "citizenshipProfile"
+    ).classList.remove("citizenship-hidden");
+
+  }
+
+
+  /* -----------------------------------------
+     CREATE CITIZEN
+     ----------------------------------------- */
+
+  createButton.addEventListener("click", async () => {
+
+    const name = nameInput.value.trim();
+    const origin = originInput.value.trim();
+    const reason = reasonInput.value.trim();
+
+
+    if(!name){
+
+      alert("Please enter your name.");
+
+      nameInput.focus();
+
+      return;
+
+    }
+
+
+    if(!agreement.checked){
+
+      alert(
+        "Please confirm that Urukhomban citizenship is fictional and symbolic."
+      );
+
+      return;
+
+    }
+
+
+    const citizenKey = generateCitizenKey();
+
+    const originalText = createButton.textContent;
+
+    createButton.disabled = true;
+    createButton.textContent = "ENTERING URUKHOMBA...";
+
+
+    try{
+
+      const response = await fetch(
+        `${URUKHOMBA_SUPABASE_URL}/rest/v1/rpc/create_urukhomba_citizen`,
+        {
+          method: "POST",
+
+          headers: {
+            "apikey": URUKHOMBA_SUPABASE_KEY,
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+
+            p_name: name,
+
+            p_place_of_origin:
+              origin || null,
+
+            p_reason:
+              reason || null,
+
+            p_principle:
+              selectedPrinciple,
+
+            p_citizen_key:
+              citizenKey
+
+          })
+        }
+      );
+
+
+      if(!response.ok){
+
+        const detail = await response.text();
+
+        throw new Error(
+          detail || "Citizenship creation failed"
+        );
+
+      }
+
+
+      const data = await response.json();
+
+      const citizen = data[0];
+
+
+      if(!citizen){
+
+        throw new Error(
+          "Supabase did not return the citizen."
+        );
+
+      }
+
+
+      const profile = {
+
+        name:
+          citizen.citizen_name,
+
+        citizenNumber:
+          citizen.citizen_number,
+
+        citizenKey:
+          citizenKey,
+
+        principle:
+          citizen.principle,
+
+        title:
+          citizen.citizen_title,
+
+        joinedAt:
+          citizen.joined_at
+
+      };
+
+
+      localStorage.setItem(
+        "urukhombaActiveCitizen",
+        JSON.stringify(profile)
+      );
+
+
+      displayCitizen(profile);
+
+
+      createButton.textContent =
+        "WELCOME TO URUKHOMBA";
+
+
+      alert(
+        "Citizenship granted.\n\n" +
+        "Citizen Number: " +
+        profile.citizenNumber +
+        "\n\nCitizen Key: " +
+        profile.citizenKey +
+        "\n\nKeep your Citizen Key safe."
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Urukhomba citizenship error:",
+        error
+      );
+
+      alert(
+        "Citizenship could not be created. Please try again."
+      );
+
+      createButton.disabled = false;
+      createButton.textContent = originalText;
+
+    }
+
+  });
+
+
+})();
