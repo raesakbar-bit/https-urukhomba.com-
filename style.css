@@ -3577,3 +3577,380 @@ body.shifting-map-open{overflow:hidden}
   }
 
 }
+
+/* =========================================================
+   URUKHOMBA PASSPORT
+   ========================================================= */
+
+.urukhomba-passport{
+  position:fixed;
+  inset:0;
+  z-index:100030;
+  display:none;
+  overflow-y:auto;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(212,173,104,.12),transparent 30%),
+    rgba(2,13,17,.985);
+  color:#efe5d4;
+}
+
+.urukhomba-passport.open{
+  display:block;
+}
+
+.urukhomba-passport-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100032;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(212,173,104,.55);
+  background:#07191f;
+  color:#efd39d;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.urukhomba-passport-shell{
+  width:min(1120px,92%);
+  margin:0 auto;
+  padding:70px 0 90px;
+}
+
+.passport-document{
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  max-width:1000px;
+  margin:0 auto;
+  border:1px solid rgba(212,173,104,.45);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+
+/* PASSPORT COVER */
+
+.passport-cover{
+  min-height:650px;
+  box-sizing:border-box;
+  padding:65px 35px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border-right:1px solid rgba(212,173,104,.4);
+  background:
+    linear-gradient(rgba(5,42,38,.96),rgba(3,29,29,.98)),
+    radial-gradient(circle at center,rgba(212,173,104,.13),transparent 55%);
+}
+
+.passport-cover img{
+  width:145px;
+  height:145px;
+  object-fit:contain;
+  margin-bottom:45px;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.3));
+}
+
+.passport-cover > span{
+  font-size:11px;
+  letter-spacing:4px;
+  color:#d4ad68;
+}
+
+.passport-cover h2{
+  margin:22px 0 5px;
+  font-family:Georgia,serif;
+  font-size:48px;
+  font-weight:400;
+  letter-spacing:7px;
+  color:#efd39d;
+}
+
+.passport-cover p{
+  margin:0;
+  font-size:11px;
+  letter-spacing:3px;
+  color:#d7c7aa;
+}
+
+.passport-cover small{
+  margin-top:55px;
+  font-size:9px;
+  letter-spacing:2.5px;
+  color:#a99472;
+}
+
+
+/* INSIDE PAGE */
+
+.passport-page{
+  position:relative;
+  box-sizing:border-box;
+  min-height:650px;
+  padding:45px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(212,173,104,.08),transparent 25%),
+    #efe6d3;
+  color:#172a2c;
+}
+
+.passport-page::before{
+  content:"URUKHOMBA";
+  position:absolute;
+  right:-80px;
+  bottom:110px;
+  font-family:Georgia,serif;
+  font-size:82px;
+  letter-spacing:12px;
+  transform:rotate(-55deg);
+  color:rgba(18,65,61,.035);
+  pointer-events:none;
+}
+
+.passport-page-heading{
+  position:relative;
+  z-index:1;
+  border-bottom:1px solid rgba(39,72,69,.25);
+  padding-bottom:19px;
+}
+
+.passport-page-heading span{
+  font-size:9px;
+  letter-spacing:3px;
+  color:#8d6a31;
+}
+
+.passport-page-heading h2{
+  margin:7px 0 5px;
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:30px;
+  color:#173a37;
+}
+
+.passport-page-heading p{
+  margin:0;
+  font-size:11px;
+  color:#67716e;
+}
+
+
+/* IDENTITY */
+
+.passport-identity{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:28px;
+  margin-top:28px;
+}
+
+.passport-principle-mark{
+  min-height:180px;
+  border:1px solid rgba(32,74,69,.35);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:rgba(255,255,255,.24);
+}
+
+.passport-principle-mark div{
+  width:72px;
+  height:72px;
+  border:1px solid #9a763a;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin-bottom:16px;
+  font-size:35px;
+  color:#8f6c31;
+}
+
+.passport-principle-mark span{
+  font-size:8px;
+  letter-spacing:2px;
+  color:#7c837e;
+}
+
+.passport-principle-mark strong{
+  margin-top:5px;
+  font-family:Georgia,serif;
+  font-size:15px;
+  font-weight:400;
+  color:#234b46;
+}
+
+.passport-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px 22px;
+}
+
+.passport-details div{
+  border-bottom:1px solid rgba(30,67,64,.2);
+  padding-bottom:9px;
+}
+
+.passport-details span{
+  display:block;
+  margin-bottom:5px;
+  font-size:8px;
+  letter-spacing:1.5px;
+  color:#7a817c;
+}
+
+.passport-details strong{
+  font-family:Georgia,serif;
+  font-size:15px;
+  font-weight:400;
+  color:#173a37;
+}
+
+
+/* QUOTE */
+
+.passport-page blockquote{
+  position:relative;
+  z-index:1;
+  margin:28px 0;
+  padding:15px 20px;
+  border-left:2px solid #a98243;
+  background:rgba(22,66,61,.045);
+  font-family:Georgia,serif;
+  font-size:18px;
+  font-style:italic;
+  color:#35504d;
+}
+
+
+/* OATH */
+
+.passport-oath{
+  position:relative;
+  z-index:1;
+}
+
+.passport-oath > span,
+.passport-discovery > span{
+  display:block;
+  font-size:8px;
+  letter-spacing:2.5px;
+  color:#906e35;
+}
+
+.passport-oath p{
+  margin:10px 0;
+  font-family:Georgia,serif;
+  font-size:13px;
+  line-height:1.55;
+  color:#465a57;
+}
+
+
+/* DISCOVERIES */
+
+.passport-discovery{
+  position:relative;
+  z-index:1;
+  margin-top:22px;
+  padding:15px 17px;
+  border:1px solid rgba(39,72,69,.22);
+  background:rgba(255,255,255,.18);
+}
+
+.passport-discovery strong{
+  display:block;
+  margin:5px 0 2px;
+  font-family:Georgia,serif;
+  font-size:21px;
+  font-weight:400;
+  color:#173a37;
+}
+
+.passport-discovery p{
+  margin:0;
+  font-size:10px;
+  color:#6b7470;
+}
+
+
+/* ACTIONS */
+
+.passport-actions{
+  position:relative;
+  z-index:1;
+  display:flex;
+  gap:9px;
+  margin-top:25px;
+}
+
+.passport-actions .btn{
+  flex:1;
+  font-size:9px;
+}
+
+.passport-fictional-notice{
+  position:relative;
+  z-index:1;
+  display:block;
+  margin-top:18px;
+  text-align:center;
+  font-size:7px;
+  letter-spacing:1.4px;
+  color:#8a8e88;
+}
+
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .urukhomba-passport-shell{
+    padding-top:80px;
+  }
+
+  .passport-document{
+    grid-template-columns:1fr;
+  }
+
+  .passport-cover{
+    min-height:430px;
+    border-right:0;
+    border-bottom:1px solid rgba(212,173,104,.4);
+  }
+
+  .passport-page{
+    padding:30px 22px;
+  }
+
+  .passport-identity{
+    grid-template-columns:1fr;
+  }
+
+  .passport-principle-mark{
+    min-height:150px;
+  }
+
+  .passport-actions{
+    flex-direction:column;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .passport-details{
+    grid-template-columns:1fr;
+  }
+
+  .passport-cover h2{
+    font-size:38px;
+  }
+
+}
