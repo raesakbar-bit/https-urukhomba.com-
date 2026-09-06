@@ -2754,3 +2754,333 @@ if(closeNationalSymbolDetail){
   });
 
 })();
+
+/* =========================================================
+   URUKHOMBA — DISCOVERY ENGINE
+   ========================================================= */
+
+(function(){
+
+  const DISCOVERIES = {
+
+    FIRST_MEMORY:{
+      title:"The First Memory",
+      text:"You reached the beginning of Urukhomba."
+    },
+
+    KEEPER_OF_SYMBOLS:{
+      title:"Keeper of Symbols",
+      text:"You examined one of the symbols of Urukhomba."
+    },
+
+    NATURAL_WONDER:{
+      title:"Natural Wonder",
+      text:"You encountered one of Urukhomba's impossible creatures."
+    },
+
+    TRAVELLER_OF_KHOMBASA:{
+      title:"Traveller of Khombasa",
+      text:"You explored one of the places of Khombasa."
+    },
+
+    CARTOGRAPHER_OF_THE_IMPOSSIBLE:{
+      title:"Cartographer of the Impossible",
+      text:"You explored the Shifting Lands."
+    },
+
+    WATERS_REMEMBER:{
+      title:"The Waters Remember",
+      text:"You uncovered something within Lake Navar."
+    }
+
+  };
+
+
+  function getActiveCitizen(){
+
+    try{
+
+      const saved =
+        localStorage.getItem(
+          "urukhombaActiveCitizen"
+        );
+
+      return saved
+        ? JSON.parse(saved)
+        : null;
+
+    }catch(error){
+
+      return null;
+
+    }
+
+  }
+
+
+  function saveActiveCitizen(profile){
+
+    localStorage.setItem(
+      "urukhombaActiveCitizen",
+      JSON.stringify(profile)
+    );
+
+  }
+
+
+  function showDiscovery(discovery){
+
+    let notice =
+      document.getElementById(
+        "urukhombaDiscoveryNotice"
+      );
+
+
+    if(!notice){
+
+      notice =
+        document.createElement("div");
+
+      notice.id =
+        "urukhombaDiscoveryNotice";
+
+      notice.style.cssText = `
+        position:fixed;
+        left:50%;
+        bottom:35px;
+        transform:translateX(-50%) translateY(30px);
+        width:min(420px,calc(100% - 32px));
+        padding:20px 24px;
+        background:#062f2b;
+        border:1px solid rgba(211,170,91,.65);
+        box-shadow:0 20px 60px rgba(0,0,0,.45);
+        color:#f1e8d3;
+        z-index:200000;
+        opacity:0;
+        pointer-events:none;
+        transition:.4s ease;
+        text-align:center;
+        font-family:Georgia,serif;
+      `;
+
+      document.body.appendChild(notice);
+
+    }
+
+
+    notice.innerHTML = `
+      <div style="
+        color:#d3aa5b;
+        font-size:11px;
+        letter-spacing:3px;
+        margin-bottom:8px;
+      ">
+        ✦ DISCOVERY RECORDED
+      </div>
+
+      <div style="
+        font-size:21px;
+        margin-bottom:7px;
+      ">
+        ${discovery.title}
+      </div>
+
+      <div style="
+        font-size:13px;
+        opacity:.75;
+        line-height:1.5;
+      ">
+        ${discovery.text}
+      </div>
+    `;
+
+
+    requestAnimationFrame(function(){
+
+      notice.style.opacity = "1";
+
+      notice.style.transform =
+        "translateX(-50%) translateY(0)";
+
+    });
+
+
+    clearTimeout(
+      window.urukhombaDiscoveryTimer
+    );
+
+
+    window.urukhombaDiscoveryTimer =
+      setTimeout(function(){
+
+        notice.style.opacity = "0";
+
+        notice.style.transform =
+          "translateX(-50%) translateY(30px)";
+
+      },4500);
+
+  }
+
+
+  async function recordDiscovery(code){
+
+    const discovery =
+      DISCOVERIES[code];
+
+    const citizen =
+      getActiveCitizen();
+
+
+    /*
+       Visitors can explore Urukhomba without
+       citizenship, but discoveries are only
+       permanently recorded for citizens.
+    */
+
+    if(!discovery || !citizen){
+      return;
+    }
+
+
+    if(
+      !citizen.citizenNumber ||
+      !citizen.citizenKey
+    ){
+      return;
+    }
+
+
+    try{
+
+      const response = await fetch(
+        URUKHOMBA_SUPABASE_URL +
+        "/rest/v1/rpc/record_urukhomba_discovery",
+        {
+
+          method:"POST",
+
+          headers:{
+            "apikey":
+              URUKHOMBA_SUPABASE_KEY,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            p_citizen_number:
+              citizen.citizenNumber,
+
+            p_citizen_key:
+              citizen.citizenKey,
+
+            p_discovery_code:
+              code
+
+          })
+
+        }
+      );
+
+
+      const result =
+        await response.json();
+
+
+      if(!response.ok){
+
+        console.error(
+          "Discovery recording failed:",
+          result
+        );
+
+        return;
+
+      }
+
+
+      const row =
+        Array.isArray(result)
+          ? result[0]
+          : result;
+
+
+      if(!row){
+        return;
+      }
+
+
+      citizen.discoveryCount =
+        Number(
+          row.discovery_count || 0
+        );
+
+
+      saveActiveCitizen(citizen);
+
+
+      const profileCount =
+        document.getElementById(
+          "profileCitizenDiscoveries"
+        );
+
+      const passportCount =
+        document.getElementById(
+          "passportDiscoveryCount"
+        );
+
+
+      if(profileCount){
+
+        profileCount.textContent =
+          citizen.discoveryCount +
+          " / 6";
+
+      }
+
+
+      if(passportCount){
+
+        passportCount.textContent =
+          citizen.discoveryCount +
+          " / 6";
+
+      }
+
+
+      /*
+         Only show the cinematic notification
+         when this is a NEW discovery.
+      */
+
+      if(!row.already_discovered){
+
+        showDiscovery(discovery);
+
+      }
+
+
+    }catch(error){
+
+      console.error(
+        "Urukhomba discovery error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /*
+     Make this available to the existing
+     Urukhomba interfaces.
+  */
+
+  window.recordUrukhombaDiscovery =
+    recordDiscovery;
+
+
+})();
