@@ -3175,3 +3175,405 @@ body.shifting-map-open{overflow:hidden}
 }
 
 /* === END THE EMBLEM ARCHIVE === */
+
+/* =========================================================
+   URUKHOMBA CITIZENSHIP OFFICE
+   ========================================================= */
+
+.citizenship-entry{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:34px;
+  align-items:center;
+}
+
+.citizenship-entry-copy h2{
+  margin-top:8px;
+}
+
+.citizenship-kicker{
+  display:block;
+  font-size:11px;
+  letter-spacing:3px;
+  color:#b98d46;
+  margin-bottom:8px;
+}
+
+.citizenship-population{
+  margin:26px 0;
+  padding:22px 24px;
+  border:1px solid rgba(185,141,70,.35);
+  background:rgba(6,25,30,.06);
+}
+
+.citizenship-population span{
+  display:block;
+  font-size:10px;
+  letter-spacing:2.5px;
+  color:#8d744b;
+}
+
+.citizenship-population strong{
+  display:block;
+  font-size:68px;
+  line-height:1;
+  margin:6px 0;
+  color:#b98d46;
+  font-weight:400;
+}
+
+.citizenship-population p{
+  margin:0;
+}
+
+.citizenship-note{
+  font-size:12px;
+  opacity:.72;
+}
+
+.citizenship-entry-actions{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+.citizenship-entry-actions img{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  margin-bottom:8px;
+}
+
+.citizenship-entry-actions .btn{
+  width:min(320px,100%);
+}
+
+.citizenship-entry-actions small{
+  max-width:330px;
+  line-height:1.6;
+  opacity:.68;
+}
+
+/* MAIN OVERLAY */
+
+.citizenship-office{
+  position:fixed;
+  inset:0;
+  z-index:100020;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(212,173,104,.11),transparent 26%),
+    rgba(3,15,20,.985);
+  color:#f1e8d8;
+  overflow-y:auto;
+  display:none;
+}
+
+.citizenship-office.open{
+  display:block;
+}
+
+.citizenship-office-shell{
+  width:min(1180px,92%);
+  margin:0 auto;
+  padding:64px 0 90px;
+}
+
+.citizenship-office-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  z-index:100022;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(212,173,104,.5);
+  background:#07191f;
+  color:#efd39d;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.citizenship-office-header{
+  max-width:760px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+
+.citizenship-office-header > span{
+  font-size:10px;
+  letter-spacing:4px;
+  color:#d4ad68;
+}
+
+.citizenship-office-header h2{
+  font-size:48px;
+  font-weight:400;
+  margin:12px 0 14px;
+  color:#efd39d;
+}
+
+.citizenship-office-header p{
+  color:#bcb3a5;
+  line-height:1.7;
+  margin:0;
+}
+
+.citizenship-office-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.citizenship-form-panel,
+.citizenship-status-panel{
+  border:1px solid rgba(212,173,104,.32);
+  background:#091a20;
+  padding:30px;
+}
+
+.citizenship-form-panel h3,
+.citizenship-status-panel h3{
+  color:#efd39d;
+  font-weight:400;
+  font-size:28px;
+  margin:0 0 22px;
+}
+
+.citizenship-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:28px;
+}
+
+.citizenship-tab{
+  border:1px solid rgba(212,173,104,.25);
+  background:transparent;
+  color:#c7bbaa;
+  padding:12px 10px;
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:1.5px;
+}
+
+.citizenship-tab.active{
+  border-color:#d4ad68;
+  background:rgba(212,173,104,.12);
+  color:#efd39d;
+}
+
+.citizenship-form-panel label{
+  display:block;
+  margin:16px 0 7px;
+  font-size:12px;
+  color:#ddd4c7;
+}
+
+.citizenship-form-panel label span{
+  opacity:.55;
+}
+
+.citizenship-form-panel input,
+.citizenship-form-panel textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid rgba(212,173,104,.23);
+  background:#0b2026;
+  color:#f3eadc;
+  padding:13px 14px;
+  outline:none;
+}
+
+.citizenship-form-panel textarea{
+  min-height:96px;
+  resize:vertical;
+}
+
+.citizenship-form-panel input:focus,
+.citizenship-form-panel textarea:focus{
+  border-color:#d4ad68;
+}
+
+.citizenship-principles{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:9px;
+}
+
+.citizenship-principles button{
+  border:1px solid rgba(212,173,104,.25);
+  background:transparent;
+  color:#c7bbaa;
+  padding:12px 7px;
+  cursor:pointer;
+  font-size:11px;
+}
+
+.citizenship-principles button.active{
+  border-color:#d4ad68;
+  background:rgba(212,173,104,.13);
+  color:#efd39d;
+}
+
+.citizenship-checkbox{
+  display:flex !important;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:20px !important;
+  line-height:1.55;
+  font-size:11px !important;
+  color:#bdb3a5 !important;
+}
+
+.citizenship-checkbox input{
+  width:auto;
+  margin-top:2px;
+}
+
+.citizenship-submit{
+  margin-top:12px;
+  width:100%;
+}
+
+.citizenship-key-warning{
+  margin-top:18px;
+  font-size:11px;
+  line-height:1.6;
+  color:#aaa093;
+}
+
+/* STATUS SIDE */
+
+.citizenship-status-panel{
+  text-align:center;
+}
+
+.citizenship-status-panel > span{
+  font-size:10px;
+  letter-spacing:3px;
+  color:#d4ad68;
+}
+
+.citizenship-status-symbol{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:1px solid #d4ad68;
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  font-size:42px;
+  color:#efd39d;
+  background:
+    radial-gradient(circle,rgba(212,173,104,.12),transparent 70%);
+}
+
+.citizenship-status-panel > p{
+  color:#bdb4a6;
+  line-height:1.7;
+}
+
+.citizenship-profile{
+  margin-top:28px;
+  text-align:left;
+  border:1px solid rgba(212,173,104,.24);
+  background:#061419;
+  padding:20px;
+}
+
+.citizenship-profile-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  padding:9px 0;
+}
+
+.citizenship-profile-row:last-of-type{
+  border-bottom:0;
+}
+
+.citizenship-profile-row span{
+  font-size:11px;
+  color:#9f978c;
+}
+
+.citizenship-profile-row strong{
+  text-align:right;
+  font-weight:400;
+  color:#efe4d1;
+}
+
+.citizenship-key-box{
+  margin-top:18px;
+  border:1px dashed #d4ad68;
+  background:rgba(212,173,104,.06);
+  padding:17px;
+  text-align:center;
+}
+
+.citizenship-key-box span{
+  display:block;
+  font-size:9px;
+  letter-spacing:2px;
+  color:#b8ac9d;
+}
+
+.citizenship-key-box strong{
+  display:block;
+  font-family:monospace;
+  font-size:19px;
+  letter-spacing:2px;
+  margin:9px 0;
+  color:#efd39d;
+  overflow-wrap:anywhere;
+}
+
+.citizenship-key-box small{
+  color:#a99f91;
+  line-height:1.5;
+}
+
+.citizenship-profile-actions{
+  display:flex;
+  gap:9px;
+  margin-top:17px;
+}
+
+.citizenship-profile-actions .btn{
+  flex:1;
+}
+
+.citizenship-hidden{
+  display:none !important;
+}
+
+@media(max-width:850px){
+
+  .citizenship-entry{
+    grid-template-columns:1fr;
+  }
+
+  .citizenship-office-grid{
+    grid-template-columns:1fr;
+  }
+
+  .citizenship-office-shell{
+    padding-top:78px;
+  }
+
+  .citizenship-office-header h2{
+    font-size:38px;
+  }
+
+  .citizenship-principles{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .citizenship-profile-actions{
+    flex-direction:column;
+  }
+
+}
