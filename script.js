@@ -1243,3 +1243,104 @@ if(closeNationalSymbolDetail){
 
 })();
 // === END THE EMBLEM ARCHIVE ===
+
+
+/* =========================================================
+   URUKHOMBA CITIZENSHIP OFFICE
+   ========================================================= */
+
+(function(){
+
+  const office = document.getElementById("citizenshipOffice");
+  const openNewBtn = document.getElementById("openCitizenshipOffice");
+  const openReturnBtn = document.getElementById("openReturningCitizen");
+  const closeBtn = document.getElementById("closeCitizenshipOffice");
+
+  const newTab = document.getElementById("newCitizenTab");
+  const returnTab = document.getElementById("returnCitizenTab");
+
+  const newForm = document.getElementById("newCitizenForm");
+  const returnForm = document.getElementById("returnCitizenForm");
+
+  if(
+    !office ||
+    !openNewBtn ||
+    !openReturnBtn ||
+    !closeBtn ||
+    !newTab ||
+    !returnTab ||
+    !newForm ||
+    !returnForm
+  ){
+    return;
+  }
+
+  function showNewCitizen(){
+
+    newTab.classList.add("active");
+    returnTab.classList.remove("active");
+
+    newForm.classList.remove("citizenship-hidden");
+    returnForm.classList.add("citizenship-hidden");
+
+  }
+
+  function showReturningCitizen(){
+
+    returnTab.classList.add("active");
+    newTab.classList.remove("active");
+
+    returnForm.classList.remove("citizenship-hidden");
+    newForm.classList.add("citizenship-hidden");
+
+  }
+
+  function openOffice(mode){
+
+    office.classList.add("open");
+    office.setAttribute("aria-hidden","false");
+
+    document.body.style.overflow = "hidden";
+
+    if(mode === "return"){
+      showReturningCitizen();
+    }else{
+      showNewCitizen();
+    }
+
+  }
+
+  function closeOffice(){
+
+    office.classList.remove("open");
+    office.setAttribute("aria-hidden","true");
+
+    document.body.style.overflow = "";
+
+  }
+
+  openNewBtn.addEventListener("click",function(){
+    openOffice("new");
+  });
+
+  openReturnBtn.addEventListener("click",function(){
+    openOffice("return");
+  });
+
+  closeBtn.addEventListener("click",closeOffice);
+
+  newTab.addEventListener("click",showNewCitizen);
+  returnTab.addEventListener("click",showReturningCitizen);
+
+  document.addEventListener("keydown",function(e){
+
+    if(
+      e.key === "Escape" &&
+      office.classList.contains("open")
+    ){
+      closeOffice();
+    }
+
+  });
+
+})();
