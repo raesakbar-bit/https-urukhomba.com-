@@ -225,13 +225,67 @@
   </div>
 </div>
 
-<section class="section pale" id="government"><div class="shell">
-  <div class="sectionhead"><span>THE REPUBLIC</span><h2>Government of Urukhomba</h2><p>A fictional government built around curiosity, creativity and playful civic traditions.</p></div>
-  <div class="passport">
-    <div><h2>Become a Fictional Citizen</h2><p>Create a fun Urukhomba citizenship card. It is a fictional souvenir and has no legal status.</p><img src="assets/emblem.png" alt=""></div>
-    <form id="citizenForm"><label>Your name</label><input id="name" required placeholder="Enter your name"><label>City / country</label><input id="place" placeholder="Where are you visiting from?"><button class="btn gold" type="submit">CREATE CITIZENSHIP CARD</button><div id="card"></div></form>
+<section class="section pale" id="government">
+  <div class="shell">
+
+    <div class="sectionhead">
+      <span>THE REPUBLIC</span>
+      <h2>Government of Urukhomba</h2>
+      <p>A fictional government built around curiosity, creativity and playful civic traditions.</p>
+    </div>
+
+    <div class="passport citizenship-entry">
+
+      <div class="citizenship-entry-copy">
+        <span class="citizenship-kicker">CITIZENSHIP OF URUKHOMBA</span>
+
+        <h2>Enter the Imagined Republic</h2>
+
+        <p>
+          Become a symbolic citizen of Urukhomba and begin a journey through its stories,
+          places and discoveries.
+        </p>
+
+        <div class="citizenship-population">
+          <span>CITIZENS OF URUKHOMBA</span>
+          <strong>∞</strong>
+          <p>Everyone who can imagine it.</p>
+        </div>
+
+        <p class="citizenship-note">
+          Urukhomban citizenship is fictional and symbolic. It creates no legal nationality,
+          residency or travel rights.
+        </p>
+      </div>
+
+      <div class="citizenship-entry-actions">
+
+        <img src="assets/emblem.png" alt="Emblem of Urukhomba">
+
+        <button
+          class="btn gold"
+          id="openCitizenshipOffice"
+          type="button">
+          BECOME A CITIZEN
+        </button>
+
+        <button
+          class="btn"
+          id="openReturningCitizen"
+          type="button">
+          RETURNING CITIZEN
+        </button>
+
+        <small>
+          Receive a permanent citizen number, private Citizen Key and Passport to the Imagined World.
+        </small>
+
+      </div>
+
+    </div>
+
   </div>
-</div></section>
+</section>
 </main>
 
 <footer id="contact">
@@ -244,6 +298,265 @@
   </div>
   <div class="shell copy">© 2026 Urukhomba. Fictional world-building project.</div>
 </footer>
+
+<!-- URUKHOMBA CITIZENSHIP OFFICE -->
+<div id="citizenshipOffice" class="citizenship-office" aria-hidden="true">
+
+  <button
+    id="closeCitizenshipOffice"
+    class="citizenship-office-close"
+    type="button"
+    aria-label="Close citizenship office">
+    ×
+  </button>
+
+  <div class="citizenship-office-shell">
+
+    <div class="citizenship-office-header">
+      <span>CITIZENSHIP OFFICE · REPUBLIC OF URUKHOMBA</span>
+      <h2>Enter Urukhomba</h2>
+      <p>
+        Become a symbolic citizen and begin recording your journey through the imagined republic.
+      </p>
+    </div>
+
+    <div class="citizenship-office-grid">
+
+      <div class="citizenship-form-panel">
+
+        <div class="citizenship-tabs">
+          <button
+            class="citizenship-tab active"
+            id="newCitizenTab"
+            type="button">
+            NEW CITIZEN
+          </button>
+
+          <button
+            class="citizenship-tab"
+            id="returnCitizenTab"
+            type="button">
+            RETURNING CITIZEN
+          </button>
+        </div>
+
+        <!-- NEW CITIZEN FORM -->
+        <div id="newCitizenForm">
+
+          <h3>Citizenship Application</h3>
+
+          <label for="citizenName">Your Name</label>
+          <input
+            id="citizenName"
+            maxlength="60"
+            placeholder="Enter your name">
+
+          <label for="citizenOrigin">
+            Place of Origin
+            <span>(optional)</span>
+          </label>
+          <input
+            id="citizenOrigin"
+            maxlength="80"
+            placeholder="City or country">
+
+          <label for="citizenReason">
+            Why do you seek Urukhomban citizenship?
+            <span>(optional)</span>
+          </label>
+          <textarea
+            id="citizenReason"
+            maxlength="500"
+            placeholder="Write a short message..."></textarea>
+
+          <label>Choose Your Principle</label>
+
+          <div class="citizenship-principles">
+
+            <button type="button" data-principle="Knowledge">
+              Knowledge
+            </button>
+
+            <button type="button" data-principle="Imagination">
+              Imagination
+            </button>
+
+            <button type="button" data-principle="Peace">
+              Peace
+            </button>
+
+            <button
+              type="button"
+              class="active"
+              data-principle="Curiosity">
+              Curiosity
+            </button>
+
+            <button type="button" data-principle="Freedom">
+              Freedom
+            </button>
+
+            <button type="button" data-principle="Exploration">
+              Exploration
+            </button>
+
+          </div>
+
+          <label class="citizenship-checkbox">
+
+            <input
+              id="citizenshipAgreement"
+              type="checkbox">
+
+            <span>
+              I understand Urukhomba is fictional and this symbolic citizenship
+              creates no legal nationality, residency or travel rights.
+            </span>
+
+          </label>
+
+          <button
+            id="createUrukhombaCitizen"
+            class="btn gold citizenship-submit"
+            type="button">
+            ENTER URUKHOMBA →
+          </button>
+
+        </div>
+
+        <!-- RETURNING CITIZEN FORM -->
+        <div
+          id="returnCitizenForm"
+          class="citizenship-hidden">
+
+          <h3>Return to Your Journey</h3>
+
+          <label for="returnCitizenNumber">
+            Citizen Number
+          </label>
+
+          <input
+            id="returnCitizenNumber"
+            placeholder="URK-000001">
+
+          <label for="returnCitizenKey">
+            Citizen Key
+          </label>
+
+          <input
+            id="returnCitizenKey"
+            placeholder="NAVAR-KHOMBA-7318">
+
+          <button
+            id="restoreUrukhombaCitizen"
+            class="btn gold citizenship-submit"
+            type="button">
+            RESTORE JOURNEY →
+          </button>
+
+          <p class="citizenship-key-warning">
+            Your Citizen Key is required to restore your journey on another device.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- STATUS PANEL -->
+      <div class="citizenship-status-panel">
+
+        <div
+          id="citizenshipStatusSymbol"
+          class="citizenship-status-symbol">
+          ✦
+        </div>
+
+        <span>CITIZEN STATUS</span>
+
+        <h3 id="citizenshipStatusTitle">
+          No Active Citizen
+        </h3>
+
+        <p id="citizenshipStatusText">
+          Create a symbolic citizenship or restore a returning journey.
+        </p>
+
+        <div
+          id="citizenshipProfile"
+          class="citizenship-profile citizenship-hidden">
+
+          <div class="citizenship-profile-row">
+            <span>Name</span>
+            <strong id="profileCitizenName">—</strong>
+          </div>
+
+          <div class="citizenship-profile-row">
+            <span>Citizen No.</span>
+            <strong id="profileCitizenNumber">—</strong>
+          </div>
+
+          <div class="citizenship-profile-row">
+            <span>Joined</span>
+            <strong id="profileCitizenDate">—</strong>
+          </div>
+
+          <div class="citizenship-profile-row">
+            <span>Principle</span>
+            <strong id="profileCitizenPrinciple">—</strong>
+          </div>
+
+          <div class="citizenship-profile-row">
+            <span>Title</span>
+            <strong id="profileCitizenTitle">—</strong>
+          </div>
+
+          <div class="citizenship-profile-row">
+            <span>Discoveries</span>
+            <strong id="profileCitizenDiscoveries">0 / 6</strong>
+          </div>
+
+          <div class="citizenship-key-box">
+
+            <span>KEEP YOUR CITIZEN KEY</span>
+
+            <strong id="profileCitizenKey">
+              —
+            </strong>
+
+            <small>
+              This is the recovery key for your Urukhomban journey.
+            </small>
+
+          </div>
+
+          <div class="citizenship-profile-actions">
+
+            <button
+              id="viewCitizenPassport"
+              class="btn gold"
+              type="button">
+              VIEW PASSPORT
+            </button>
+
+            <button
+              id="viewCitizenDiscoveries"
+              class="btn"
+              type="button">
+              VIEW DISCOVERIES
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- END URUKHOMBA CITIZENSHIP OFFICE -->
 
 
 
