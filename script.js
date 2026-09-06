@@ -1651,3 +1651,185 @@ if(closeNationalSymbolDetail){
 
 
 })();
+
+/* =========================================================
+   URUKHOMBA PASSPORT VIEWER
+   ========================================================= */
+
+(function(){
+
+  const passport = document.getElementById("urukhombaPassport");
+  const openButton = document.getElementById("viewCitizenPassport");
+  const closeButton = document.getElementById("closeUrukhombaPassport");
+
+  if(!passport || !openButton || !closeButton){
+    return;
+  }
+
+
+  const principleSymbols = {
+    Knowledge: "◈",
+    Imagination: "✧",
+    Peace: "◌",
+    Curiosity: "✦",
+    Freedom: "◇",
+    Exploration: "⌁"
+  };
+
+
+  function getActiveCitizen(){
+
+    try{
+
+      const saved = localStorage.getItem(
+        "urukhombaActiveCitizen"
+      );
+
+      if(!saved){
+        return null;
+      }
+
+      return JSON.parse(saved);
+
+    }catch(error){
+
+      console.error(
+        "Could not read active Urukhomba citizen:",
+        error
+      );
+
+      return null;
+
+    }
+
+  }
+
+
+  function fillPassport(profile){
+
+    document.getElementById(
+      "passportCitizenName"
+    ).textContent = profile.name || "—";
+
+
+    document.getElementById(
+      "passportCitizenNumber"
+    ).textContent = profile.citizenNumber || "—";
+
+
+    document.getElementById(
+      "passportCitizenTitle"
+    ).textContent = profile.title || "—";
+
+
+    document.getElementById(
+      "passportCitizenDate"
+    ).textContent =
+      profile.joinedAt
+        ? new Date(profile.joinedAt).toLocaleDateString()
+        : "—";
+
+
+    document.getElementById(
+      "passportPrinciple"
+    ).textContent = profile.principle || "—";
+
+
+    document.getElementById(
+      "passportSymbol"
+    ).textContent =
+      principleSymbols[profile.principle] || "✦";
+
+
+    document.getElementById(
+      "passportDiscoveryCount"
+    ).textContent =
+      profile.discoveryCount !== undefined
+        ? `${profile.discoveryCount} / 6`
+        : "0 / 6";
+
+  }
+
+
+  function openPassport(){
+
+    const profile = getActiveCitizen();
+
+    if(!profile){
+
+      alert(
+        "No active Urukhomban citizen was found."
+      );
+
+      return;
+
+    }
+
+    fillPassport(profile);
+
+    passport.classList.add("open");
+
+    passport.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  function closePassport(){
+
+    passport.classList.remove("open");
+
+    passport.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  openButton.addEventListener(
+    "click",
+    openPassport
+  );
+
+
+  closeButton.addEventListener(
+    "click",
+    closePassport
+  );
+
+
+  passport.addEventListener(
+    "click",
+    function(event){
+
+      if(event.target === passport){
+        closePassport();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function(event){
+
+      if(
+        event.key === "Escape" &&
+        passport.classList.contains("open")
+      ){
+        closePassport();
+      }
+
+    }
+  );
+
+
+})();
