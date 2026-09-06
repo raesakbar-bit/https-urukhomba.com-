@@ -2114,27 +2114,32 @@ if(closeNationalSymbolDetail){
 
       const details = [
 
-        [
-          "NAME",
-          safePDFText(citizen.name)
-        ],
+  [
+    "NAME",
+    safePDFText(citizen.name)
+  ],
 
-        [
-          "CITIZEN NUMBER",
-          safePDFText(citizen.citizenNumber)
-        ],
+  [
+    "CITIZEN NUMBER",
+    safePDFText(citizen.citizenNumber)
+  ],
 
-        [
-          "TITLE",
-          safePDFText(citizen.title)
-        ],
+  [
+    "CITIZEN KEY",
+    safePDFText(citizen.citizenKey || citizen.key)
+  ],
 
-        [
-          "JOINED",
-          safePDFText(joined)
-        ]
+  [
+    "TITLE",
+    safePDFText(citizen.title)
+  ],
 
-      ];
+  [
+    "JOINED",
+    safePDFText(joined)
+  ]
+
+];
 
 
       let y = 54;
@@ -2170,7 +2175,7 @@ if(closeNationalSymbolDetail){
         );
 
 
-        y += 23;
+        y += 18;
 
       });
 
