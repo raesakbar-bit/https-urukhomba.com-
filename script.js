@@ -1833,3 +1833,611 @@ if(closeNationalSymbolDetail){
 
 
 })();
+
+/* =========================================================
+   URUKHOMBA PASSPORT + CITIZEN CARD PDF
+   ========================================================= */
+
+(function(){
+
+  const passportButton =
+    document.getElementById("downloadUrukhombaPassport");
+
+  const cardButton =
+    document.getElementById("downloadUrukhombaCitizenCard");
+
+  if(!passportButton || !cardButton){
+    return;
+  }
+
+
+  function getCitizen(){
+
+    try{
+
+      const saved =
+        localStorage.getItem("urukhombaActiveCitizen");
+
+      return saved ? JSON.parse(saved) : null;
+
+    }catch(error){
+
+      console.error(
+        "Could not read Urukhomba citizen:",
+        error
+      );
+
+      return null;
+
+    }
+
+  }
+
+
+  function getPDF(){
+
+    if(
+      !window.jspdf ||
+      !window.jspdf.jsPDF
+    ){
+
+      alert(
+        "The PDF system has not loaded. Please refresh the page and try again."
+      );
+
+      return null;
+
+    }
+
+    return window.jspdf.jsPDF;
+
+  }
+
+
+  function safePDFText(value){
+
+    return String(value || "—")
+      .replace(/[^\x20-\x7E]/g, "");
+
+  }
+
+
+  /* =====================================================
+     PASSPORT PDF
+     ===================================================== */
+
+  passportButton.addEventListener(
+    "click",
+    function(){
+
+      const citizen = getCitizen();
+      const jsPDF = getPDF();
+
+      if(!citizen || !jsPDF){
+
+        if(!citizen){
+          alert("No active citizen was found.");
+        }
+
+        return;
+
+      }
+
+
+      const doc = new jsPDF({
+        orientation:"portrait",
+        unit:"mm",
+        format:"a5"
+      });
+
+
+      const width = doc.internal.pageSize.getWidth();
+      const height = doc.internal.pageSize.getHeight();
+
+
+      /* COVER */
+
+      doc.setFillColor(5,45,42);
+      doc.rect(0,0,width,height,"F");
+
+
+      doc.setDrawColor(198,157,83);
+      doc.setLineWidth(.6);
+
+      doc.circle(
+        width / 2,
+        57,
+        20
+      );
+
+
+      doc.setTextColor(224,185,109);
+      doc.setFont("times","bold");
+
+      doc.setFontSize(25);
+
+      doc.text(
+        "URUKHOMBA",
+        width / 2,
+        62,
+        {align:"center"}
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(8);
+
+      doc.text(
+        "REPUBLIC OF URUKHOMBA",
+        width / 2,
+        92,
+        {align:"center"}
+      );
+
+
+      doc.setFont("times","normal");
+      doc.setFontSize(29);
+
+      doc.text(
+        "PASSPORT",
+        width / 2,
+        116,
+        {align:"center"}
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(8);
+
+      doc.text(
+        "TO THE IMAGINED WORLD",
+        width / 2,
+        126,
+        {align:"center"}
+      );
+
+
+      doc.setFontSize(6);
+
+      doc.text(
+        "FICTIONAL COLLECTIBLE",
+        width / 2,
+        height - 20,
+        {align:"center"}
+      );
+
+
+      /* INSIDE PAGE */
+
+      doc.addPage();
+
+
+      doc.setFillColor(241,232,211);
+      doc.rect(0,0,width,height,"F");
+
+
+      doc.setTextColor(142,104,48);
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(6);
+
+      doc.text(
+        "REPUBLIC OF URUKHOMBA",
+        14,
+        16
+      );
+
+
+      doc.setTextColor(25,58,55);
+      doc.setFont("times","normal");
+      doc.setFontSize(19);
+
+      doc.text(
+        "Symbolic Citizen Passport",
+        14,
+        27
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(7);
+      doc.setTextColor(90,105,101);
+
+      doc.text(
+        "A record of citizenship within the imagined republic.",
+        14,
+        34
+      );
+
+
+      doc.setDrawColor(180,163,129);
+      doc.line(
+        14,
+        40,
+        width - 14,
+        40
+      );
+
+
+      /* SYMBOL */
+
+      doc.setDrawColor(160,120,55);
+
+      doc.circle(
+        30,
+        65,
+        13
+      );
+
+
+      doc.setTextColor(150,111,48);
+      doc.setFont("times","normal");
+      doc.setFontSize(22);
+
+      doc.text(
+        "*",
+        30,
+        69,
+        {align:"center"}
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+
+      doc.text(
+        "PRINCIPLE",
+        30,
+        86,
+        {align:"center"}
+      );
+
+
+      doc.setFont("times","normal");
+      doc.setFontSize(9);
+
+      doc.text(
+        safePDFText(citizen.principle),
+        30,
+        92,
+        {align:"center"}
+      );
+
+
+      /* DETAILS */
+
+      const joined =
+        citizen.joinedAt
+          ? new Date(citizen.joinedAt)
+              .toLocaleDateString()
+          : "—";
+
+
+      const details = [
+
+        [
+          "NAME",
+          safePDFText(citizen.name)
+        ],
+
+        [
+          "CITIZEN NUMBER",
+          safePDFText(citizen.citizenNumber)
+        ],
+
+        [
+          "TITLE",
+          safePDFText(citizen.title)
+        ],
+
+        [
+          "JOINED",
+          safePDFText(joined)
+        ]
+
+      ];
+
+
+      let y = 54;
+
+
+      details.forEach(item => {
+
+        doc.setFont("helvetica","normal");
+        doc.setFontSize(5);
+        doc.setTextColor(120,125,117);
+
+        doc.text(
+          item[0],
+          52,
+          y
+        );
+
+
+        doc.setFont("times","normal");
+        doc.setFontSize(10);
+        doc.setTextColor(25,58,55);
+
+        const lines =
+          doc.splitTextToSize(
+            item[1],
+            width - 68
+          );
+
+        doc.text(
+          lines,
+          52,
+          y + 7
+        );
+
+
+        y += 23;
+
+      });
+
+
+      /* QUOTE */
+
+      doc.setFillColor(232,222,198);
+
+      doc.rect(
+        14,
+        146,
+        width - 28,
+        18,
+        "F"
+      );
+
+
+      doc.setTextColor(54,79,74);
+      doc.setFont("times","italic");
+      doc.setFontSize(11);
+
+      doc.text(
+        '"All lands are within you."',
+        20,
+        157
+      );
+
+
+      /* OATH */
+
+      doc.setTextColor(142,104,48);
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+
+      doc.text(
+        "THE URUKHOMBAN OATH",
+        14,
+        176
+      );
+
+
+      doc.setTextColor(65,82,78);
+      doc.setFont("times","normal");
+      doc.setFontSize(8);
+
+
+      const oath = [
+        "I enter Urukhomba without conquest,",
+        "without possession, and without borders.",
+        "",
+        "I come with curiosity, respect for all ideas,",
+        "and a desire to see a brighter world."
+      ];
+
+
+      doc.text(
+        oath,
+        14,
+        185
+      );
+
+
+      /* FOOTER */
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+      doc.setTextColor(125,125,116);
+
+      doc.text(
+        "PASSPORT TO THE IMAGINED WORLD - FICTIONAL COLLECTIBLE - NOT A TRAVEL DOCUMENT",
+        width / 2,
+        height - 9,
+        {
+          align:"center",
+          maxWidth:width - 20
+        }
+      );
+
+
+      doc.save(
+        `Urukhomba-Passport-${citizen.citizenNumber}.pdf`
+      );
+
+    }
+  );
+
+
+  /* =====================================================
+     CITIZEN CARD PDF
+     ===================================================== */
+
+  cardButton.addEventListener(
+    "click",
+    function(){
+
+      const citizen = getCitizen();
+      const jsPDF = getPDF();
+
+      if(!citizen || !jsPDF){
+
+        if(!citizen){
+          alert("No active citizen was found.");
+        }
+
+        return;
+
+      }
+
+
+      const doc = new jsPDF({
+        orientation:"landscape",
+        unit:"mm",
+        format:[85.6,53.98]
+      });
+
+
+      const width =
+        doc.internal.pageSize.getWidth();
+
+      const height =
+        doc.internal.pageSize.getHeight();
+
+
+      doc.setFillColor(5,45,42);
+      doc.roundedRect(
+        0,
+        0,
+        width,
+        height,
+        2,
+        2,
+        "F"
+      );
+
+
+      doc.setDrawColor(202,161,86);
+      doc.setLineWidth(.35);
+
+      doc.roundedRect(
+        3,
+        3,
+        width - 6,
+        height - 6,
+        1.5,
+        1.5
+      );
+
+
+      doc.setTextColor(222,181,104);
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+
+      doc.text(
+        "REPUBLIC OF URUKHOMBA",
+        7,
+        9
+      );
+
+
+      doc.setFont("times","normal");
+      doc.setFontSize(14);
+
+      doc.text(
+        "SYMBOLIC CITIZEN",
+        7,
+        17
+      );
+
+
+      doc.setTextColor(240,229,209);
+      doc.setFont("times","bold");
+      doc.setFontSize(11);
+
+      doc.text(
+        safePDFText(citizen.name),
+        7,
+        27
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+      doc.setTextColor(181,172,153);
+
+      doc.text(
+        "CITIZEN NO.",
+        7,
+        34
+      );
+
+
+      doc.setTextColor(240,229,209);
+      doc.setFontSize(7);
+
+      doc.text(
+        safePDFText(citizen.citizenNumber),
+        7,
+        39
+      );
+
+
+      doc.setFontSize(5);
+      doc.setTextColor(181,172,153);
+
+      doc.text(
+        "PRINCIPLE",
+        48,
+        25
+      );
+
+
+      doc.setTextColor(240,229,209);
+      doc.setFont("times","normal");
+      doc.setFontSize(8);
+
+      doc.text(
+        safePDFText(citizen.principle),
+        48,
+        31
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(5);
+      doc.setTextColor(181,172,153);
+
+      doc.text(
+        "TITLE",
+        48,
+        37
+      );
+
+
+      doc.setTextColor(240,229,209);
+      doc.setFont("times","normal");
+      doc.setFontSize(6.5);
+
+      const titleLines =
+        doc.splitTextToSize(
+          safePDFText(citizen.title),
+          31
+        );
+
+      doc.text(
+        titleLines,
+        48,
+        42
+      );
+
+
+      doc.setFont("helvetica","normal");
+      doc.setFontSize(4.5);
+      doc.setTextColor(202,161,86);
+
+      doc.text(
+        "FICTIONAL WORLD - SYMBOLIC CITIZENSHIP",
+        7,
+        height - 6
+      );
+
+
+      doc.save(
+        `Urukhomba-Citizen-Card-${citizen.citizenNumber}.pdf`
+      );
+
+    }
+  );
+
+
+})();
