@@ -4,12 +4,1558 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Trials of Urukhomba</title><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Trials of Urukhomba</title>
+<meta name="description" content="Enter the Trials of Urukhomba — riddles, logic mysteries and strange paths through the Republic of Imagination.">
+
+<style>
+:root{
+    --bg:#05070c;
+    --panel:#0b1019;
+    --panel2:#101722;
+    --line:rgba(255,255,255,.11);
+    --gold:#c2a866;
+    --gold2:#e2cc91;
+    --text:#eee9dd;
+    --muted:#8d96a5;
+    --green:#91b89a;
+    --red:#b98484;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Georgia,"Times New Roman",serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 50% 0%,#172239 0%,#090e17 35%,var(--bg) 70%);
+    min-height:100vh;
+}
+
+button{
+    font:inherit;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* NAV */
+
+nav{
+    min-height:72px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    border-bottom:1px solid var(--line);
+    background:rgba(5,7,12,.92);
+}
+
+.brand{
+    font-size:19px;
+    font-weight:bold;
+    letter-spacing:4px;
+}
+
+.back{
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.back:hover{
+    color:var(--gold2);
+}
+
+/* MAIN */
+
+.container{
+    width:min(1120px,91%);
+    margin:auto;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:90px 0 60px;
+}
+
+.kicker{
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#9ca6b7;
+}
+
+.hero h1{
+    margin:15px 0 0;
+    font-size:clamp(45px,8vw,82px);
+    font-weight:normal;
+}
+
+.hero p{
+    max-width:650px;
+    margin:22px auto 0;
+    color:#a1a8b3;
+    line-height:1.8;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+}
+
+.gold-line{
+    width:70px;
+    height:1px;
+    margin:35px auto 0;
+    background:var(--gold);
+}
+
+/* PROFILE */
+
+.profile{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+    padding:22px 27px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+}
+
+.profile small{
+    display:block;
+    font-family:Arial,sans-serif;
+    color:#747e8e;
+    font-size:9px;
+    letter-spacing:3px;
+    margin-bottom:7px;
+}
+
+.profile-name{
+    font-size:20px;
+}
+
+.stats{
+    display:flex;
+    gap:38px;
+}
+
+.stat{
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    color:var(--gold2);
+    font-size:20px;
+}
+
+.stat span{
+    font-family:Arial,sans-serif;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#747e8e;
+}
+
+/* SECTION */
+
+.section-heading{
+    text-align:center;
+    margin:70px 0 28px;
+}
+
+.section-heading h2{
+    margin:0;
+    font-size:30px;
+    font-weight:normal;
+}
+
+.section-heading p{
+    font-family:Arial,sans-serif;
+    color:#747e8e;
+    font-size:13px;
+}
+
+/* MAIN TRIALS */
+
+.trial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.trial-card{
+    appearance:none;
+    width:100%;
+    min-height:280px;
+    padding:30px 24px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    color:var(--text);
+    background:rgba(255,255,255,.025);
+    cursor:pointer;
+    transition:.25s;
+}
+
+.trial-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(194,168,102,.7);
+    background:rgba(194,168,102,.06);
+}
+
+.trial-symbol{
+    font-size:55px;
+    color:var(--gold);
+    margin-bottom:25px;
+}
+
+.trial-card h3{
+    margin:0;
+    font-size:21px;
+    font-weight:normal;
+}
+
+.trial-card p{
+    min-height:63px;
+    margin:13px 0;
+    font-family:Arial,sans-serif;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.65;
+}
+
+.label{
+    margin-top:22px;
+    font-family:Arial,sans-serif;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#9c895c;
+}
+
+/* CHAMBERS */
+
+.chamber{
+    display:none;
+    margin:55px 0 90px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:rgba(5,8,13,.86);
+    overflow:hidden;
+}
+
+.chamber.active{
+    display:block;
+}
+
+.chamber-top{
+    padding:25px 28px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.chamber-title small{
+    display:block;
+    color:#847451;
+    font-family:Arial,sans-serif;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.chamber-title h2{
+    margin:6px 0 0;
+    font-size:28px;
+    font-weight:normal;
+}
+
+.close{
+    width:44px;
+    height:44px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+    font-size:20px;
+}
+
+.close:hover{
+    color:white;
+    border-color:#777;
+}
+
+/* DOORS */
+
+.door-layout{
+    display:grid;
+    grid-template-columns:300px 1fr;
+}
+
+.door-list{
+    padding:20px;
+    border-right:1px solid var(--line);
+    background:rgba(255,255,255,.018);
+}
+
+.door-button{
+    width:100%;
+    padding:14px 15px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid transparent;
+    border-radius:8px;
+    background:transparent;
+    color:#8e96a2;
+    cursor:pointer;
+    text-align:left;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+}
+
+.door-button:hover:not(:disabled){
+    background:rgba(255,255,255,.04);
+}
+
+.door-button.current{
+    color:var(--gold2);
+    border-color:rgba(194,168,102,.3);
+    background:rgba(194,168,102,.06);
+}
+
+.door-button.solved{
+    color:#9eb9a2;
+}
+
+.door-button:disabled{
+    cursor:not-allowed;
+    opacity:.35;
+}
+
+.puzzle-area{
+    min-height:530px;
+    padding:55px;
+}
+
+.door-number{
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:4px;
+    color:#8e7950;
+}
+
+.puzzle-area h3{
+    margin:13px 0 30px;
+    font-size:33px;
+    font-weight:normal;
+}
+
+.riddle{
+    max-width:670px;
+    font-size:22px;
+    line-height:1.7;
+}
+
+.answer-area{
+    max-width:600px;
+    margin-top:35px;
+}
+
+.text-answer{
+    width:100%;
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#080c13;
+    color:white;
+    outline:none;
+    font-family:Arial,sans-serif;
+    font-size:16px;
+}
+
+.text-answer:focus{
+    border-color:var(--gold);
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+}
+
+.primary,
+.secondary{
+    min-height:44px;
+    padding:11px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+}
+
+.primary{
+    border:1px solid #a58d55;
+    background:#9a824e;
+    color:#080a0e;
+    font-weight:bold;
+}
+
+.secondary{
+    border:1px solid var(--line);
+    background:transparent;
+    color:#a8aeb7;
+}
+
+.feedback{
+    min-height:35px;
+    margin-top:22px;
+    font-family:Arial,sans-serif;
+    color:var(--gold2);
+    line-height:1.6;
+}
+
+.hint{
+    display:none;
+    margin-top:18px;
+    padding:14px 16px;
+    border-left:2px solid #756541;
+    background:rgba(194,168,102,.05);
+    color:#999faa;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.hint.show{
+    display:block;
+}
+
+/* LOGIC */
+
+.logic-content,
+.path-content{
+    padding:50px;
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+}
+
+.logic-content h3,
+.path-content h3{
+    font-size:32px;
+    font-weight:normal;
+}
+
+.logic-statements{
+    margin:30px auto;
+    max-width:600px;
+    text-align:left;
+    font-family:Arial,sans-serif;
+    color:#aeb3bc;
+    line-height:2;
+}
+
+.choice-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:25px;
+}
+
+.choice{
+    min-height:45px;
+    padding:12px 20px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:transparent;
+    color:#c7cad0;
+    cursor:pointer;
+}
+
+.choice:hover{
+    border-color:var(--gold);
+    color:var(--gold2);
+}
+
+/* SECRET */
+
+.secret-box{
+    margin-top:28px;
+    padding:22px;
+    border:1px solid rgba(194,168,102,.25);
+    border-radius:9px;
+    background:rgba(194,168,102,.045);
+}
+
+.secret-box small{
+    font-family:Arial,sans-serif;
+    letter-spacing:3px;
+    color:#8f7b50;
+}
+
+.secret-box p{
+    color:#b8b2a4;
+    line-height:1.7;
+}
+
+/* RESET */
+
+.reset-area{
+    text-align:center;
+    margin:50px 0 80px;
+}
+
+.reset-button{
+    border:0;
+    background:transparent;
+    color:#555e6b;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.reset-button:hover{
+    color:#9da4ae;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 20px;
+    border-top:1px solid var(--line);
+    text-align:center;
+    color:#555e6b;
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:2px;
+    line-height:2;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    .brand{
+        font-size:15px;
+    }
+
+    .trial-grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .stats{
+        width:100%;
+        justify-content:space-between;
+        gap:8px;
+    }
+
+    .door-layout{
+        grid-template-columns:1fr;
+    }
+
+    .door-list{
+        border-right:0;
+        border-bottom:1px solid var(--line);
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:5px;
+    }
+
+    .door-button{
+        margin:0;
+        padding:10px;
+        font-size:10px;
+    }
+
+    .puzzle-area{
+        padding:35px 22px;
+    }
+
+    .logic-content,
+    .path-content{
+        padding:35px 20px;
+    }
+
+    .riddle{
+        font-size:19px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a class="brand" href="/">URUKHOMBA</a>
+    <a class="back" href="/">← RETURN TO URUKHOMBA</a>
+</nav>
+
+<main class="container">
+
+<section class="hero">
+    <div class="kicker">Beyond the Shifting Lands</div>
+
+    <h1>The Trials</h1>
+
+    <p>
+        Some come to Urukhomba seeking stories.
+        Others come seeking answers.
+        The Trials were created for those willing to discover
+        whether every question truly needs an answer.
+    </p>
+
+    <div class="gold-line"></div>
+</section>
+
+
+<section class="profile">
+
+    <div>
+        <small>TRAVELER</small>
+        <div class="profile-name">Anonymous Wanderer</div>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong id="trialCount">0</strong>
+            <span>Trials</span>
+        </div>
+
+        <div class="stat">
+            <strong id="wisdomCount">0</strong>
+            <span>Wisdom</span>
+        </div>
+
+        <div class="stat">
+            <strong id="secretCount">0</strong>
+            <span>Secrets</span>
+        </div>
+
+        <div class="stat">
+            <strong id="rankName">Wanderer</strong>
+            <span>Rank</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="section-heading">
+    <h2>Choose Your Trial</h2>
+    <p>Three chambers are currently open.</p>
+</div>
+
+
+<section class="trial-grid">
+
+    <button class="trial-card" onclick="openChamber('seventhDoor')">
+        <div class="trial-symbol">Ⅶ</div>
+        <h3>The Seventh Door</h3>
+        <p>
+            Twelve doors. Twelve riddles.
+            Every answer carries you deeper into the archive.
+        </p>
+        <div class="label">RIDDLE CHAMBER</div>
+    </button>
+
+
+    <button class="trial-card" onclick="openChamber('liar')">
+        <div class="trial-symbol">◐</div>
+        <h3>The Liar of Khombasa</h3>
+        <p>
+            Three voices speak in Khombasa.
+            One statement cannot be true.
+        </p>
+        <div class="label">LOGIC TRIAL</div>
+    </button>
+
+
+    <button class="trial-card" onclick="openChamber('path')">
+        <div class="trial-symbol">⌁</div>
+        <h3>Which Path?</h3>
+        <p>
+            Somewhere beside Lake Navar,
+            three roads appear where yesterday there were none.
+        </p>
+        <div class="label">INTERACTIVE STORY</div>
+    </button>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- SEVENTH DOOR -->
+<!-- ====================================================== -->
+
+<section id="seventhDoor" class="chamber">
+
+    <div class="chamber-top">
+
+        <div class="chamber-title">
+            <small>THE RIDDLE CHAMBER</small>
+            <h2>The Seventh Door</h2>
+        </div>
+
+        <button class="close" onclick="closeChambers()">×</button>
+
+    </div>
+
+
+    <div class="door-layout">
+
+        <div id="doorList" class="door-list"></div>
+
+        <div class="puzzle-area">
+
+            <div id="doorNumber" class="door-number"></div>
+
+            <h3 id="doorTitle"></h3>
+
+            <div id="riddleText" class="riddle"></div>
+
+
+            <div class="answer-area">
+
+                <input
+                    id="riddleAnswer"
+                    class="text-answer"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Speak your answer..."
+                >
+
+                <div class="actions">
+
+                    <button class="primary" onclick="submitRiddle()">
+                        Answer
+                    </button>
+
+                    <button class="secondary" onclick="showHint()">
+                        Ask for a hint
+                    </button>
+
+                </div>
+
+                <div id="hintText" class="hint"></div>
+
+                <div id="riddleFeedback" class="feedback"></div>
+
+                <div id="secretFragment"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- LIAR -->
+<!-- ====================================================== -->
+
+<section id="liar" class="chamber">
+
+    <div class="chamber-top">
+
+        <div class="chamber-title">
+            <small>KHOMBASA</small>
+            <h2>The Liar of Khombasa</h2>
+        </div>
+
+        <button class="close" onclick="closeChambers()">×</button>
+
+    </div>
+
+
+    <div class="logic-content">
+
+        <h3>Three travelers stand before the gate.</h3>
+
+        <div class="logic-statements">
+
+            <p><strong>Azhr:</strong> “Navari is telling the truth.”</p>
+
+            <p><strong>Navari:</strong> “Oru is lying.”</p>
+
+            <p><strong>Oru:</strong> “Azhr and Navari are both telling the truth.”</p>
+
+        </div>
+
+        <p>Exactly one of these three statements is false. Who is lying?</p>
+
+
+        <div class="choice-grid">
+
+            <button class="choice" onclick="logicAnswer('azhr')">
+                Azhr
+            </button>
+
+            <button class="choice" onclick="logicAnswer('navari')">
+                Navari
+            </button>
+
+            <button class="choice" onclick="logicAnswer('oru')">
+                Oru
+            </button>
+
+        </div>
+
+        <div id="logicResult" class="feedback"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- WHICH PATH -->
+<!-- ====================================================== -->
+
+<section id="path" class="chamber">
+
+    <div class="chamber-top">
+
+        <div class="chamber-title">
+            <small>LAKE NAVAR</small>
+            <h2>Which Path?</h2>
+        </div>
+
+        <button class="close" onclick="closeChambers()">×</button>
+
+    </div>
+
+
+    <div class="path-content">
+
+        <h3>You wake beside Lake Navar.</h3>
+
+        <p style="color:#9aa1ac; line-height:1.8;">
+            There is no road behind you.
+            Ahead, three paths have appeared.
+            You do not remember arriving here.
+        </p>
+
+
+        <div class="choice-grid">
+
+            <button class="choice" onclick="choosePath('lights')">
+                Follow the floating lights
+            </button>
+
+            <button class="choice" onclick="choosePath('reeds')">
+                Enter the silent reeds
+            </button>
+
+            <button class="choice" onclick="choosePath('bell')">
+                Follow the distant bell
+            </button>
+
+        </div>
+
+
+        <div id="pathResult" class="feedback"></div>
+
+    </div>
+
+</section>
+
+
+<div class="reset-area">
+
+    <button class="reset-button" onclick="resetProgress()">
+        RESET TRAVELER PROGRESS
+    </button>
+
+</div>
+
+</main>
+
+
+<footer>
+
+IMAGINATION IS OUR GREATEST TERRITORY
+
+<br>
+
+URUKHOMBA
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   RIDDLES
+========================================================= */
+
+const riddles = [
+
+{
+    title:"The First Mark",
+    question:"The more of me you take, the more you leave behind. What am I?",
+    answers:["footsteps","steps","footstep"],
+    hint:"A traveler creates them by moving forward.",
+    reward:50,
+    secret:null
+},
+
+{
+    title:"The Empty Earth",
+    question:"The more you remove from me, the larger I become. What am I?",
+    answers:["hole","a hole"],
+    hint:"You may find one beneath your feet.",
+    reward:50,
+    secret:null
+},
+
+{
+    title:"The Borrowed Word",
+    question:"It belongs to you, but other people use it more than you do. What is it?",
+    answers:["name","my name","your name"],
+    hint:"People use it when they want your attention.",
+    reward:50,
+    secret:"The oldest maps of Urukhomba contain several places whose names have been deliberately erased."
+},
+
+{
+    title:"The Invisible Voice",
+    question:"I speak without a mouth and answer without knowing the question. What am I?",
+    answers:["echo","an echo"],
+    hint:"Mountains sometimes return what you give them.",
+    reward:75,
+    secret:null
+},
+
+{
+    title:"The Silent Traveller",
+    question:"I travel around the world while remaining in one corner. What am I?",
+    answers:["stamp","a stamp","postage stamp"],
+    hint:"Before messages became instant, travelers placed me on letters.",
+    reward:75,
+    secret:null
+},
+
+{
+    title:"The Unheld Thing",
+    question:"You can break me without touching me or seeing me. What am I?",
+    answers:["promise","a promise"],
+    hint:"It can exist between two people.",
+    reward:75,
+    secret:"An old Khombasan proverb says: 'A promise survives longer than the mouth that made it.'"
+},
+
+{
+    title:"The Growing Darkness",
+    question:"The more there is of me, the less you can see. What am I?",
+    answers:["darkness","dark","the dark"],
+    hint:"It arrives when light disappears.",
+    reward:100,
+    secret:null
+},
+
+{
+    title:"The Unseen River",
+    question:"I am always coming, but I never arrive. What am I?",
+    answers:["tomorrow","the future","future"],
+    hint:"When it finally comes, its name changes.",
+    reward:100,
+    secret:null
+},
+
+{
+    title:"The Prison Without Walls",
+    question:"What can hold you prisoner even when no walls surround you?",
+    answers:["fear","your fear","my fear"],
+    hint:"The prison may exist only inside the prisoner.",
+    reward:125,
+    secret:"The northern travelers of Urukhomba once called fear 'the wall carried within.'"
+},
+
+{
+    title:"The Forgotten Visitor",
+    question:"Everyone enters me every night, yet nobody can remain inside me forever. What am I?",
+    answers:["sleep","a dream","dream","dreams"],
+    hint:"You usually enter it with your eyes closed.",
+    reward:125,
+    secret:null
+},
+
+{
+    title:"The Keeper",
+    question:"I become more valuable when I am shared, yet I can disappear when I am forgotten. What am I?",
+    answers:["knowledge","wisdom","a memory","memory"],
+    hint:"A teacher can give it away without losing it.",
+    reward:150,
+    secret:null
+},
+
+{
+    title:"Beyond the Twelfth Door",
+    question:"I have no borders, yet entire worlds can exist inside me. I weigh nothing, but I can move nations. What am I?",
+    answers:["imagination","the imagination"],
+    hint:"Urukhomba itself could not exist without it.",
+    reward:250,
+    secret:"ARCHIVE XII: Urukhomba was never discovered. It was imagined — and perhaps that is another way of discovering something."
+}
+
+];
+
+
+/* =========================================================
+   SAVE DATA
+========================================================= */
+
+let state = JSON.parse(localStorage.getItem("urukhombaTrials")) || {
+    solved:0,
+    wisdom:0,
+    secrets:0,
+    logicSolved:false,
+    pathSolved:false
+};
+
+let currentDoor = Math.min(state.solved, riddles.length - 1);
+
+
+function save(){
+
+    localStorage.setItem(
+        "urukhombaTrials",
+        JSON.stringify(state)
+    );
+
+    updateProfile();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function updateProfile(){
+
+    document.getElementById("trialCount").textContent =
+        state.solved +
+        (state.logicSolved ? 1 : 0) +
+        (state.pathSolved ? 1 : 0);
+
+    document.getElementById("wisdomCount").textContent =
+        state.wisdom;
+
+    document.getElementById("secretCount").textContent =
+        state.secrets;
+
+    let rank = "Wanderer";
+
+    if(state.wisdom >= 300){
+        rank = "Traveler";
+    }
+
+    if(state.wisdom >= 750){
+        rank = "Seeker";
+    }
+
+    if(state.wisdom >= 1500){
+        rank = "Pathfinder";
+    }
+
+    if(state.wisdom >= 2500){
+        rank = "Keeper";
+    }
+
+    document.getElementById("rankName").textContent = rank;
+
+}
+
+
+/* =========================================================
+   CHAMBERS
+========================================================= */
+
+function openChamber(id){
+
+    closeChambers();
+
+    document.getElementById(id).classList.add("active");
+
+    if(id === "seventhDoor"){
+        renderDoorList();
+        loadDoor(currentDoor);
+    }
+
+    setTimeout(function(){
+
+        document.getElementById(id).scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },50);
+
+}
+
+
+function closeChambers(){
+
+    document.querySelectorAll(".chamber").forEach(function(chamber){
+
+        chamber.classList.remove("active");
+
+    });
+
+}
+
+
+/* =========================================================
+   DOOR LIST
+========================================================= */
+
+function renderDoorList(){
+
+    const list = document.getElementById("doorList");
+
+    list.innerHTML = "";
+
+    riddles.forEach(function(riddle,index){
+
+        const button = document.createElement("button");
+
+        button.className = "door-button";
+
+        const unlocked = index <= state.solved;
+
+        if(index < state.solved){
+            button.classList.add("solved");
+        }
+
+        if(index === currentDoor){
+            button.classList.add("current");
+        }
+
+        button.disabled = !unlocked;
+
+        let status = "○";
+
+        if(index < state.solved){
+            status = "✓";
+        }
+
+        if(!unlocked){
+            status = "🔒";
+        }
+
+        button.innerHTML =
+            "<span>Door " + (index + 1) + "</span>" +
+            "<span>" + status + "</span>";
+
+        button.onclick = function(){
+
+            currentDoor = index;
+
+            loadDoor(index);
+
+            renderDoorList();
+
+        };
+
+        list.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================================================
+   LOAD RIDDLE
+========================================================= */
+
+function loadDoor(index){
+
+    const riddle = riddles[index];
+
+    document.getElementById("doorNumber").textContent =
+        "DOOR " + roman(index + 1);
+
+    document.getElementById("doorTitle").textContent =
+        riddle.title;
+
+    document.getElementById("riddleText").textContent =
+        riddle.question;
+
+    document.getElementById("riddleAnswer").value = "";
+
+    document.getElementById("riddleFeedback").innerHTML = "";
+
+    document.getElementById("hintText").classList.remove("show");
+
+    document.getElementById("hintText").textContent =
+        riddle.hint;
+
+    document.getElementById("secretFragment").innerHTML = "";
+
+    if(index < state.solved){
+
+        document.getElementById("riddleFeedback").innerHTML =
+            "✓ This door has already been opened.";
+
+        if(riddle.secret){
+
+            showSecret(riddle.secret);
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   ANSWER RIDDLE
+========================================================= */
+
+function submitRiddle(){
+
+    const input =
+        document.getElementById("riddleAnswer").value
+        .toLowerCase()
+        .trim()
+        .replace(/[.!?]/g,"");
+
+    const riddle = riddles[currentDoor];
+
+    if(!input){
+
+        document.getElementById("riddleFeedback").textContent =
+            "The door waits for an answer.";
+
+        return;
+
+    }
+
+    const correct = riddle.answers.some(function(answer){
+
+        return input === answer;
+
+    });
+
+
+    if(correct){
+
+        if(currentDoor >= state.solved){
+
+            state.solved++;
+
+            state.wisdom += riddle.reward;
+
+            if(riddle.secret){
+                state.secrets++;
+            }
+
+            save();
+
+        }
+
+        document.getElementById("riddleFeedback").innerHTML =
+            "The stone moves.<br><strong>Correct.</strong> +" +
+            riddle.reward +
+            " Wisdom";
+
+        if(riddle.secret){
+
+            showSecret(riddle.secret);
+
+        }
+
+        renderDoorList();
+
+
+        if(currentDoor < riddles.length - 1){
+
+            setTimeout(function(){
+
+                currentDoor++;
+
+                loadDoor(currentDoor);
+
+                renderDoorList();
+
+            },1600);
+
+        }
+
+        else{
+
+            document.getElementById("riddleFeedback").innerHTML +=
+                "<br><br><strong>All twelve doors have been opened.</strong>";
+
+        }
+
+    }
+
+    else{
+
+        document.getElementById("riddleFeedback").textContent =
+            "The door remains closed.";
+
+    }
+
+}
+
+
+/* ENTER KEY */
+
+document.getElementById("riddleAnswer")
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+        submitRiddle();
+    }
+
+});
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+function showHint(){
+
+    document.getElementById("hintText")
+    .classList.add("show");
+
+}
+
+
+/* =========================================================
+   SECRET
+========================================================= */
+
+function showSecret(text){
+
+    document.getElementById("secretFragment").innerHTML =
+
+        '<div class="secret-box">' +
+
+        '<small>ARCHIVE FRAGMENT DISCOVERED</small>' +
+
+        '<p>' + text + '</p>' +
+
+        '</div>';
+
+}
+
+
+/* =========================================================
+   LOGIC TRIAL
+========================================================= */
+
+function logicAnswer(person){
+
+    const result =
+        document.getElementById("logicResult");
+
+    if(person === "oru"){
+
+        result.innerHTML =
+            "Oru lowers his eyes.<br><br>" +
+            "<strong>The contradiction reveals him.</strong>";
+
+        if(!state.logicSolved){
+
+            state.logicSolved = true;
+
+            state.wisdom += 150;
+
+            save();
+
+            result.innerHTML +=
+                "<br>+150 Wisdom";
+
+        }
+
+    }
+
+    else{
+
+        result.textContent =
+            "The gate remains closed. Examine the statements again.";
+
+    }
+
+}
+
+
+/* =========================================================
+   WHICH PATH
+========================================================= */
+
+function choosePath(path){
+
+    const result =
+        document.getElementById("pathResult");
+
+    let story = "";
+
+
+    if(path === "lights"){
+
+        story =
+        "You follow the lights along the shore." +
+        "<br><br>" +
+        "One after another, they sink beneath Lake Navar." +
+        "<br><br>" +
+        "For several seconds the water becomes transparent." +
+        "<br><br>" +
+        "Far beneath you stands an entire city." +
+        "<br><br>" +
+        "Something inside it looks back at you.";
+
+    }
+
+
+    if(path === "reeds"){
+
+        story =
+        "You enter the reeds." +
+        "<br><br>" +
+        "Every sound disappears." +
+        "<br><br>" +
+        "Eventually you find a black stone." +
+        "<br><br>" +
+        "Your name is carved upon it." +
+        "<br><br>" +
+        "The carving appears centuries old.";
+
+    }
+
+
+    if(path === "bell"){
+
+        story =
+        "You follow the distant bell into the mountains." +
+        "<br><br>" +
+        "At the summit there is no tower." +
+        "<br><br>" +
+        "Only a rope hanging from the clouds." +
+        "<br><br>" +
+        "You pull it." +
+        "<br><br>" +
+        "Something beneath the mountain rings.";
+
+    }
+
+
+    result.innerHTML = story;
+
+
+    if(!state.pathSolved){
+
+        state.pathSolved = true;
+
+        state.wisdom += 100;
+
+        save();
+
+        result.innerHTML +=
+            "<br><br><strong>+100 Wisdom</strong>";
+
+    }
+
+}
+
+
+/* =========================================================
+   ROMAN NUMERALS
+========================================================= */
+
+function roman(number){
+
+    const numbers = [
+        "I","II","III","IV","V","VI",
+        "VII","VIII","IX","X","XI","XII"
+    ];
+
+    return numbers[number - 1] || number;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetProgress(){
+
+    const confirmReset =
+        confirm(
+            "Erase all Trials progress on this browser?"
+        );
+
+    if(!confirmReset){
+        return;
+    }
+
+    localStorage.removeItem("urukhombaTrials");
+
+    state = {
+        solved:0,
+        wisdom:0,
+        secrets:0,
+        logicSolved:false,
+        pathSolved:false
+    };
+
+    currentDoor = 0;
+
+    updateProfile();
+
+    renderDoorList();
+
+    loadDoor(0);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateProfile();
+
+</script>
+
 </body>
 </html>
