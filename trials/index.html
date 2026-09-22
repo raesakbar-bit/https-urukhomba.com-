@@ -609,6 +609,11 @@ footer{
     }
 }
 
+
+/* TRIALS AMBIENCE */
+.ambience-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(194,168,102,.35);border-radius:999px;background:rgba(194,168,102,.04);color:var(--gold2);cursor:pointer;font-family:Arial,sans-serif;font-size:10px;letter-spacing:1.4px;white-space:nowrap;transition:.25s}.ambience-btn:hover{border-color:rgba(194,168,102,.8);background:rgba(194,168,102,.09)}.ambience-btn.playing{border-color:rgba(194,168,102,.75);box-shadow:0 0 18px rgba(194,168,102,.10)}.ambience-dot{width:7px;height:7px;border-radius:50%;background:#59606b;transition:.25s}.ambience-btn.playing .ambience-dot{background:var(--gold2);box-shadow:0 0 8px rgba(226,204,145,.7)}
+@media(max-width:800px){nav{flex-wrap:wrap;padding-top:12px;padding-bottom:12px}.ambience-btn{order:3;width:100%;justify-content:center}}
+
 </style>
 </head>
 
@@ -616,8 +621,10 @@ footer{
 
 <nav>
     <a class="brand" href="/">URUKHOMBA</a>
+    <button id="ambienceBtn" class="ambience-btn" type="button" onclick="toggleAmbience()"><span class="ambience-dot"></span><span id="ambienceLabel">♪ AMBIENCE: OFF</span></button>
     <a class="back" href="/">← RETURN TO URUKHOMBA</a>
 </nav>
+<audio id="trialsAmbience" loop preload="metadata"><source src="trials-ambience.mp3" type="audio/mpeg"></audio>
 
 <main class="container">
 
@@ -1548,6 +1555,23 @@ function resetProgress(){
 
 }
 
+
+/* =========================================================
+   AMBIENCE
+========================================================= */
+const trialsAmbience=document.getElementById("trialsAmbience");
+const ambienceBtn=document.getElementById("ambienceBtn");
+const ambienceLabel=document.getElementById("ambienceLabel");
+const AMBIENCE_VOLUME=0.18;
+let ambiencePlaying=false;
+let ambienceFadeTimer=null;
+trialsAmbience.volume=0;
+function setAmbienceUI(on){ambiencePlaying=on;ambienceBtn.classList.toggle("playing",on);ambienceLabel.textContent=on?"♪ AMBIENCE: ON":"♪ AMBIENCE: OFF";}
+function stopAmbienceFade(){if(ambienceFadeTimer){clearInterval(ambienceFadeTimer);ambienceFadeTimer=null;}}
+function fadeInAmbience(){stopAmbienceFade();trialsAmbience.volume=0;trialsAmbience.play().then(function(){setAmbienceUI(true);localStorage.setItem("urukhombaAmbience","on");ambienceFadeTimer=setInterval(function(){const v=Math.min(AMBIENCE_VOLUME,trialsAmbience.volume+0.01);trialsAmbience.volume=v;if(v>=AMBIENCE_VOLUME)stopAmbienceFade();},80);}).catch(function(){setAmbienceUI(false);localStorage.setItem("urukhombaAmbience","off");});}
+function fadeOutAmbience(){stopAmbienceFade();ambienceFadeTimer=setInterval(function(){const v=Math.max(0,trialsAmbience.volume-0.01);trialsAmbience.volume=v;if(v<=0){stopAmbienceFade();trialsAmbience.pause();setAmbienceUI(false);localStorage.setItem("urukhombaAmbience","off");}},60);}
+function toggleAmbience(){ambiencePlaying?fadeOutAmbience():fadeInAmbience();}
+if(localStorage.getItem("urukhombaAmbience")==="on"){ambienceLabel.textContent="♪ AMBIENCE: READY";const resume=function(){fadeInAmbience();document.removeEventListener("click",resume);document.removeEventListener("touchstart",resume);};document.addEventListener("click",resume,{once:true});document.addEventListener("touchstart",resume,{once:true});}
 
 /* =========================================================
    INITIALIZE
